@@ -21,19 +21,19 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Name&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Enter Name">
+                                <input type="text" class="form-control form-control-sm" name="name" value="{{$res->name}}" placeholder="Enter Name">
                                 <span id="name_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Email&nbsp;<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter Email">
+                                <input type="email" class="form-control form-control-sm" name="email" value="{{$res->email}}" placeholder="Enter Email">
                                 <span id="email_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" placeholder="Enter Mobile No">
+                                <input type="text" class="form-control form-control-sm" name="mobile" value="{{$res->mobile}}" placeholder="Enter Mobile No">
                                 <span id="mobile_msg" class="text-danger"></span>
                             </div>
                         </div>
@@ -50,35 +50,31 @@
 
                             <div class="form-group col-md-3">
                                 <label>Store Name</label>
-                                <input type="text" class="form-control form-control-sm" name="store_name" placeholder="Enter Store name">
+                                <input type="text" class="form-control form-control-sm" name="store_name" value="{{$res->store_name}}" placeholder="Enter Store name">
                                 <span id="store_name_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Store Email</label>
-                                <input type="email" class="form-control form-control-sm" name="store_email" placeholder="Enter Store email">
+                                <input type="email" class="form-control form-control-sm" name="store_email" value="{{$res->store_email}}" placeholder="Enter Store email">
                                 <span id="store_email_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Mobile</label>
-                                <input type="text" class="form-control form-control-sm" name="store_mobile" placeholder="Enter Store Mobile">
+                                <input type="text" class="form-control form-control-sm" name="store_mobile" value="{{$res->store_mobile}}" placeholder="Enter Store Mobile">
                                 <span id="store_mobile_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>GST No</label>
-                                <input type="text" class="form-control form-control-sm" name="gst_no" placeholder="Enter GST No.">
+                                <input type="text" class="form-control form-control-sm" name="gst_no" value="{{$res->gst_no}}" placeholder="Enter GST No.">
                                 <span id="gst_no_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Country</label>
-                                <select class="form-select form-control form-control-sm" name="country">
-                                    <option value="">-Select Here-</option>
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                </select>
+                                <input type="text" class="form-control form-control-sm" name="country" value="{{$res->country}}" placeholder="Enter Country.">
                                 <span id="country_msg" class="text-danger"></span>
                             </div>
 
@@ -86,44 +82,44 @@
                                 <label>State</label>
                                 <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="UP">UP</option>
+                                    <option value="Delhi" {{ $res->verified =="Delhi")?'selected':''}}>Delhi</option>
+                                    <option value="Goa" {{ $res->verified =="Goa")?'selected':''}}>Goa</option>
+                                    <option value="UP" {{ $res->verified =="UP")?'selected':''}}>UP</option>
                                 </select>
                                 <span id="state_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>City</label>
-                                <input type="text" name="city" class="form-control form-control-sm" placeholder="Enter City">
+                                <input type="text" name="city" value="{{$res->city}}" class="form-control form-control-sm" placeholder="Enter City">
                                 <span id="city_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Pincode</label>
-                                <input type="text" class="form-control form-control-sm" name="pincode" placeholder="Enter Pincode">
+                                <input type="text" class="form-control form-control-sm" name="pincode" value="{{$res->pincode}}" placeholder="Enter Pincode">
                                 <span id="pincode_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>Store Address</label>
-                                <textarea class="form-control form-control-sm" name="store_address" rows="4" cols="50" placeholder="Store Address"></textarea>
+                                <textarea class="form-control form-control-sm" name="store_address" value="{{$res->store_address}}" rows="4" cols="50" placeholder="Store Address"></textarea>
                                 <span id="store_address_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Verified Store</label>
-                                <select class="form-select form-control form-control-sm" name="verified">
-                                    <option value="1">Verified</option>
-                                    <option value="0">Non Verified</option>
+                                <select class="form-select form-control form-control-sm" name="verified" value="{{$res->verified}}">
+                                    <option value="1"{{ $res->verified ==1)?'selected':''}} >Verified</option>
+                                    <option value="0" {{ $res->verified ==0)?'selected':''}}>Non Verified</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Status</label>
                                 <select class="form-select form-control form-control-sm" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Deactive</option>
+                                    <option value="1" {{ $res->verified ==1)?'selected':''}}>Active</option>
+                                    <option value="0" {{ $res->verified ==0)?'selected':''}}>Deactive</option>
                                 </select>
                             </div>
 
