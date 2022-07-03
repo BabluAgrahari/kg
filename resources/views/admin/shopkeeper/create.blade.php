@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="" enctype="multipart/form-data">
+                    <form class="user" method="POST" action="{{url('admin/shopkeeper')}}" enctype="multipart/form-data">
                         @csrf
                         <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
                         <div class="form-row">

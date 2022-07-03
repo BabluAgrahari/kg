@@ -128,7 +128,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{url('shopkeeper')}}">Shopkeeper</a>
+                  <a class="nav-link" href="{{url('admin/shopkeeper')}}">Shopkeeper</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Supplier</a>
