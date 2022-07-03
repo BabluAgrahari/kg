@@ -3,7 +3,7 @@
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
-        <x-page-head title="Shopkeeper List" url="admin/shopkeeper" type="create" />
+        <x-page-head title="Add Shopkeeper " url="admin/shopkeeper" type="create" />
 
         <div class="card-body">
             <div class="row">
