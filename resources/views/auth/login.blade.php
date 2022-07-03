@@ -28,7 +28,7 @@
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
-                    
+
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block">
                                 <img src="{{asset('assets/image/2.jpg')}}" alt="" height="500" width="500">

@@ -136,50 +136,49 @@
 
                             <div class="form-group">
                                 <label>Logo</label>
-                                <input type="file" name="logo"  class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[logo]"  class="form-control form-control-sm" accept="image/*,.pdf">
 
                             </div>
                             <div class="form-group">
                                 <label>Store Cover Photo</label>
-                                <input type="file" name="store_cover_photo" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[cover_photo]" class="form-control form-control-sm" accept="image/*,.pdf">
 
                             </div>
                             <div class="form-group">
                                 <label>GST Certificate</label>
-                                <input type="file" name="gst_certificate" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[gst_certificate]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>Udyam Aadhar (MSME Certificate)</label>
-                                <input type="file" name="u_a_msme_certificate" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[msme_certificate]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>Shop & Establishment License</label>
-                                <input type="file" name="shop_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[shop_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>Trade Certificate/Licence</label>
-                                <input type="file" name="trade_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[trade_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>FSSAI Registration</label>
-                                <input type="file" name="fssai_registration" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[fssai_registration]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>Drug Licence</label>
-                                <input type="file" name="drug_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[drug_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
                             <div class="form-group">
                                 <label>Current Account Cheque</label>
-                                <input type="file" name="current_account_cheque" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[current_account_cheque]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-2" style="float: right;">
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    {{ __('Submit') }}
-                                </button>
+                            <div class="col-sm-12 text-center">
+                              <input type="submit" value="Submit" class="btn btn-success">
+                              <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
                         </div>
                     </form>

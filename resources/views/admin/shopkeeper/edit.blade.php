@@ -170,12 +170,12 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-2" style="float: right;">
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    {{ __('Submit') }}
-                                </button>
+                            <div class="col-sm-12 text-center">
+                              <input type="submit" value="Update" class="btn btn-success">
+                              <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -27,7 +27,7 @@ class LoginController extends Controller
             return redirect()->intended('admin/dashboard');
         }
 
-        return redirect("/")->withSuccess('Login details are not valid');
+        return redirect("/")->with('error','Login Credentails are Invalid');
     }
 
 

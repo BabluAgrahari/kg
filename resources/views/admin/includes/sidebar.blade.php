@@ -114,7 +114,7 @@
             <span class="nav-item-head">Template Pages</span>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/dashobard')}}">
+            <a class="nav-link" href="{{url('admin/dashboard')}}">
               <i class="mdi mdi-compass-outline menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -131,15 +131,15 @@
                   <a class="nav-link" href="{{url('admin/shopkeeper')}}">Shopkeeper</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Supplier</a>
+                  <a class="nav-link" href="{{ url('admin/supplier') }}">Supplier</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Warehouse</a>
+                  <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
                 </li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">
               <i class="mdi mdi-contacts menu-icon"></i>
               <span class="menu-title">Icons</span>
@@ -168,6 +168,6 @@
               <i class="mdi mdi-file-document-box menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>

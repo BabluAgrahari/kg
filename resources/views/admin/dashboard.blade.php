@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="col-xl-3 stretch-card grid-margin">
-            <div class="card card-img">
+            <!-- <div class="card card-img">
                 <div class="card-body d-flex align-items-center">
                     <div class="text-white">
                         <h1 class="font-20 font-weight-semibold mb-0"> Get premium </h1>
@@ -74,7 +74,7 @@
                         <button class="btn bg-white font-12">Get Premium</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- chart row starts here -->
@@ -121,7 +121,7 @@
         </div>
     </div>
     <!-- image card row starts here -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-4 stretch-card grid-margin">
             <div class="card">
                 <div class="card-body p-0">
@@ -182,9 +182,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- table row starts here -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-xl-4 grid-margin">
             <div class="card card-stat stretch-card mb-3">
                 <div class="card-body">
@@ -385,9 +385,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- doughnut chart row starts -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-12 stretch-card grid-margin">
             <div class="card">
                 <div class="row">
@@ -433,9 +433,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- last row starts here -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-6 col-xl-4 stretch-card grid-margin">
             <div class="card">
                 <div class="card-body">
@@ -582,6 +582,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection

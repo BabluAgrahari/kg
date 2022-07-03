@@ -14,7 +14,7 @@
         }
 
         body {
-            background: #f3e0e2;
+            background: #bed3e7;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -50,8 +50,8 @@
 
         button {
             border-radius: 20px;
-            border: 1px solid #FF4B2B;
-            background-color: #FF4B2B;
+            border: 1px solid #0033c4;
+            background-color: #0033c4;
             color: #FFFFFF;
             font-size: 12px;
             font-weight: bold;
@@ -116,7 +116,7 @@
         .overlay {
             background: #FF416C;
             background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-            background: linear-gradient(to right, #FF4B2B, #FF416C);
+            background: linear-gradient(to right, #0a215c, #41a7ff);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 0 0;
@@ -166,16 +166,33 @@
 <body>
     <div class="container" id="container">
         <div class="form-container log-in-container">
+
             <form method="POST" action="{{ url('login') }}">
-                 @csrf
+                @csrf
                 <h1>Login</h1>
                 <div class="social-container">
                     <!-- <a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
                     <a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a> -->
+                    @if(session()->has('error'))
+                    <div class="alert alert-success">
+                        <span style="color:red; font-size:15px">{{ session()->get('error') }}!</span>
+                    </div>
+                    @endif
                 </div>
                 <!-- <span>or use your account</span> -->
-                <input type="email" placeholder="Email" name="email" />
-                <input type="password" placeholder="Password" name="password"/>
+                <input type="email" placeholder="Email" name="email" class="@error('email') is-invalid @enderror" />
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+                <input type="password" placeholder="Password" name="password" class="@error('email') is-invalid @enderror" />
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
                 <a href="#">Forgot your password?</a>
                 <button type="submit">Log In</button>
                 <!-- <input type="submit" class="submit" value="Log In"> -->

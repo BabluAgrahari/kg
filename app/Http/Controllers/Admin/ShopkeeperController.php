@@ -69,6 +69,8 @@ class ShopkeeperController extends Controller
         //     ]);
         // }
 
+        pr($request->all());
+
         $save = new Shopkeeper();
         $save->userType        = 'shopkeeper';
         $save->name            = $request->name;
