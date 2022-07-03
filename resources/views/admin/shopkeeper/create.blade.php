@@ -80,11 +80,7 @@
 
                             <div class="form-group col-md-3">
                                 <label>Country</label>
-                                <select class="form-select form-control form-control-sm" name="country">
-                                    <option value="">-Select Here-</option>
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                </select>
+                                <input type="text" class="form-control form-control-sm" name="country" placeholder="Enter Country.">
                                 <span id="country_msg" class="text-danger"></span>
                             </div>
 
