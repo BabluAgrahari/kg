@@ -56,31 +56,31 @@
 
                             <div class="form-group col-md-3">
                                 <label>Store Name</label>
-                                <input type="text" class="form-control form-control-sm" value="{{$res->store_name}}" name="store_name" placeholder="Enter Store name">
+                                <input type="text" class="form-control form-control-sm" name="store_name" placeholder="Enter Store name">
                                 <span id="store_name_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Store Email</label>
-                                <input type="email" class="form-control form-control-sm" value="{{$res->store_email}}" name="store_email" placeholder="Enter Store email">
+                                <input type="email" class="form-control form-control-sm" name="store_email" placeholder="Enter Store email">
                                 <span id="store_email_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Mobile</label>
-                                <input type="text" class="form-control form-control-sm" value="{{$res->store_mobile}}" name="store_mobile" placeholder="Enter Store Mobile">
+                                <input type="text" class="form-control form-control-sm" name="store_mobile" placeholder="Enter Store Mobile">
                                 <span id="store_mobile_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>GST No</label>
-                                <input type="text" class="form-control form-control-sm" value="{{$res->gst_no}}" name="gst_no" placeholder="Enter GST No.">
+                                <input type="text" class="form-control form-control-sm" name="gst_no" placeholder="Enter GST No.">
                                 <span id="gst_no_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Country</label>
-                                <select class="form-select form-control form-control-sm" value="{{$res->country}}" name="country">
+                                <select class="form-select form-control form-control-sm" name="country">
                                     <option value="">-Select Here-</option>
                                     <option value="India">India</option>
                                     <option value="USA">USA</option>
@@ -90,7 +90,7 @@
 
                             <div class="form-group col-md-3">
                                 <label>State</label>
-                                <select class="form-select form-control form-control-sm" value="{{$res->state}}" name="state">
+                                <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
                                     <option value="Delhi">Delhi</option>
                                     <option value="Goa">Goa</option>
@@ -101,25 +101,25 @@
 
                             <div class="form-group col-md-3">
                                 <label>City</label>
-                                <input type="text" name="city" value="{{$res->city}}" class="form-control form-control-sm" placeholder="Enter City">
+                                <input type="text" name="city" class="form-control form-control-sm" placeholder="Enter City">
                                 <span id="city_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Pincode</label>
-                                <input type="text" class="form-control form-control-sm" value="{{$res->pincode}}" name="pincode" placeholder="Enter Pincode">
+                                <input type="text" class="form-control form-control-sm" name="pincode" placeholder="Enter Pincode">
                                 <span id="pincode_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>Store Address</label>
-                                <textarea class="form-control form-control-sm" value="{{$res->store_address}}" name="store_address" rows="4" cols="50" placeholder="Store Address"></textarea>
+                                <textarea class="form-control form-control-sm" name="store_address" rows="4" cols="50" placeholder="Store Address"></textarea>
                                 <span id="store_address_msg" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Verified Store</label>
-                                <select class="form-select form-control form-control-sm" value="{{$res->verified}}" name="verified">
+                                <select class="form-select form-control form-control-sm"  name="verified">
                                     <option value="1">Verified</option>
                                     <option value="0">Non Verified</option>
                                 </select>
@@ -127,7 +127,7 @@
 
                             <div class="form-group col-md-3">
                                 <label>Status</label>
-                                <select class="form-select form-control form-control-sm" value="{{$res->status}}" name="status">
+                                <select class="form-select form-control form-control-sm"  name="status">
                                     <option value="1">Active</option>
                                     <option value="0">Deactive</option>
                                 </select>
