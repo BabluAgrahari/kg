@@ -23,10 +23,11 @@ class ShopkeeperController extends Controller
         return view('admin.shopkeeper.create');
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $data = Shopkeeper::where('_id', $id)->first();
-        return view('admin.shopkeeper.edit', compact('data'));
+        $data['res'] = Shopkeeper::find($id);
+
+        return view('admin.shopkeeper.edit', $data);
     }
 
     public function store(Request $request)
