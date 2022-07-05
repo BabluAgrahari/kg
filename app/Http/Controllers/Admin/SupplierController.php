@@ -18,7 +18,7 @@ class SupplierController extends Controller
 
     public function supplierDetailsAdd(Request $request)
     {
-        return view('admin.supplier.add');
+        return view('admin.supplier.create');
     }
 
     public function supplierDetailsEdit(Request $request,$id)

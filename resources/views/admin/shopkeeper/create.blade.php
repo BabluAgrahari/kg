@@ -19,7 +19,7 @@
 
                         <div class="form-row">
                             <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details</h6>
+                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details sunil</h6>
                                 <hr>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         </div>
 
 
-                        <div class="form-row">
+                        <div class="form-group row">
 
                             <div class="form-group col-md-3">
                                 <label>Store Name</label>
