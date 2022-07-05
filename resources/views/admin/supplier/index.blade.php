@@ -1,14 +1,8 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.layouts')
 @section('content')
-<div class="container-fluid">
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+
+<div class="content-wrapper pb-0">
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">

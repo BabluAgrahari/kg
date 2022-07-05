@@ -1,12 +1,12 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.layouts')
 @section('content')
-<div class="container-fluid">
+<div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6"><h6 class="m-0 font-weight-bold text-primary">Supplier Details Add</h6></div>
                 <div class="col-md-6">
-                    <a href="{{route('supplier-details')}}">
+                    <a href="{{url('supplier')}}">
                         <button style="float: right;" class="btn btn-sm btn-primary">
                             Back
                         </button>
@@ -17,10 +17,10 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="{{route('supplier-details-save')}}" enctype="multipart/form-data"> 
+                    <form class="user" method="POST" action="{{url('supplier')}}" enctype="multipart/form-data">
                         @csrf
+
                         <div class="form-group row">
-                            <input type="hidden" name="userType" value="supplier">
                             <div class="col-sm-6 mb-3">
                                 <label for="">Store Owner</label>
                                 <input type="email" class="form-control" id="email" name="store_owner" placeholder="Store owner">

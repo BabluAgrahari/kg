@@ -38,6 +38,9 @@
  <!-- Custom js for this page -->
  <script src="{{ asset('assets') }}/js/dashboard.js"></script>
  <!-- End custom js for this page -->
+
+ <!-- axios library-->
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
  </body>
 
  </html>

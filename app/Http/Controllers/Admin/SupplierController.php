@@ -9,7 +9,7 @@ use Str;
 
 class SupplierController extends Controller
 {
-    public function supplierDetails(Request $request)
+    public function index(Request $request)
     {
         $user_details = UserDetails::where('userType','supplier')->get();
         return view('admin.supplier.index',compact('user_details'))
@@ -31,42 +31,42 @@ class SupplierController extends Controller
     {
         // dd($request->all());
         if($request->id != '')
-        {  
+        {
             $this->validate($request, [
-                'userType'                  => 'required', 
-                'store_owner'               => 'required', 
-                'store_name'                => 'required', 
-                'business_email'            => 'required', 
-                'gst_no'                    => 'required', 
-                'phone'                     => 'required|digits:10', 
-                'mobile'                    => 'required|digits:10', 
-                'country'                   => 'required', 
-                'state'                     => 'required', 
-                'city'                      => 'required', 
-                'pincode'                   => 'required|digits:6', 
-                'store_address'             => 'required', 
-                'store_description'         => 'required|max:100', 
+                'userType'                  => 'required',
+                'store_owner'               => 'required',
+                'store_name'                => 'required',
+                'business_email'            => 'required',
+                'gst_no'                    => 'required',
+                'phone'                     => 'required|digits:10',
+                'mobile'                    => 'required|digits:10',
+                'country'                   => 'required',
+                'state'                     => 'required',
+                'city'                      => 'required',
+                'pincode'                   => 'required|digits:6',
+                'store_address'             => 'required',
+                'store_description'         => 'required|max:100',
                 'logo'                      => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
             ]);
         } else {
             $this->validate($request, [
-                'userType'                  => 'required', 
-                'store_owner'               => 'required|unique:user_details,store_owner', 
-                'store_name'                => 'required', 
-                'business_email'            => 'required|unique:user_details,business_email', 
-                'gst_no'                    => 'required', 
-                'phone'                     => 'required|digits:10', 
-                'mobile'                    => 'required|digits:10', 
-                'country'                   => 'required', 
-                'state'                     => 'required', 
-                'city'                      => 'required', 
-                'pincode'                   => 'required|digits:6', 
-                'store_address'             => 'required', 
-                'store_description'         => 'required|max:100',  
+                'userType'                  => 'required',
+                'store_owner'               => 'required|unique:user_details,store_owner',
+                'store_name'                => 'required',
+                'business_email'            => 'required|unique:user_details,business_email',
+                'gst_no'                    => 'required',
+                'phone'                     => 'required|digits:10',
+                'mobile'                    => 'required|digits:10',
+                'country'                   => 'required',
+                'state'                     => 'required',
+                'city'                      => 'required',
+                'pincode'                   => 'required|digits:6',
+                'store_address'             => 'required',
+                'store_description'         => 'required|max:100',
                 'logo'                      => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
             ]);
         }
-        
+
         if($request->id != ''){
 
             $saveData                       = UserDetails::find($request->id);
@@ -170,7 +170,7 @@ class SupplierController extends Controller
             $saveData->save();
             return redirect()->route('supplier-details')->with('success','Data updated successfully.');
         } else {
-            
+
             $saveData                       = new UserDetails;
             $saveData->userType             = $request->userType;
             $saveData->store_owner          = $request->store_owner;

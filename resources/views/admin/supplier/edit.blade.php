@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
-<div class="container-fluid">
+<div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
@@ -17,7 +17,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="{{route('supplier-details-save')}}" enctype="multipart/form-data"> 
+                    <form class="user" method="POST" action="{{route('supplier-details-save')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <input type="hidden" name="userType" value="supplier">

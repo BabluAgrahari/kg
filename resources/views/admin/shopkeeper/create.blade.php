@@ -184,4 +184,9 @@
     </div>
 
 </div>
+@push('script')
+<script>
+
+</script>
+@endpush
 @endsection
