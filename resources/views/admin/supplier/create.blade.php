@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="{{url('supplier')}}" enctype="multipart/form-data">
+                    <form id="supplier" method="POST" action="{{url('admin/supplier')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-row">
@@ -70,7 +70,7 @@
 
                             <div class="form-group col-md-3">
                                 <label for="">Mobile</label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" placeholder="Mobile">
+                                <input type="text" class="form-control form-control-sm" name="store_mobile" placeholder="Mobile">
                             </div>
 
                             <div class="form-group col-md-3">
@@ -130,47 +130,47 @@
 
                             <div class="form-group col-md-3">
                                 <label for="">Logo</label>
-                                <input type="file" name="logo" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="flies[logo]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Store Cover Photo</label>
-                                <input type="file" name="store_cover_photo" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[store_cover_photo]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">GST Certificate</label>
-                                <input type="file" name="gst_certificate" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[gst_certificate]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Udyam Aadhar (MSME Certificate)</label>
-                                <input type="file" name="u_a_msme_certificate" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[u_a_msme_certificate]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Shop & Establishment License</label>
-                                <input type="file" name="shop_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[shop_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Trade Certificate/Licence</label>
-                                <input type="file" name="trade_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[trade_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">FSSAI Registration</label>
-                                <input type="file" name="fssai_registration" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[fssai_registration]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Drug Licence</label>
-                                <input type="file" name="drug_licence" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[drug_licence]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Current Account Cheque</label>
-                                <input type="file" name="current_account_cheque" class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="file[current_account_cheque]" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
 
                         </div>
@@ -187,4 +187,56 @@
     </div>
 
 </div>
+@push('script')
+<script>
+    $('form#supplier').submit(function(e) {
+        e.preventDefault();
+        formData = new FormData(this);
+        let url = $(this).attr('action');
+        $('.cover-loader').removeClass('d-none');
+        $('.h-body').addClass('d-none');
+        axios.post(url, formData)
+            .then(function(response) {
+                res = response.data;
+
+                $('.cover-loader').addClass('d-none');
+                $('.h-body').removeClass('d-none');
+
+                /*Start Validation Error Message*/
+                $('span.custom-text-danger').html('');
+                $.each(res.validation, (index, msg) => {
+                    $(`#${index}_msg`).html(`${msg}`);
+                })
+                /*Start Validation Error Message*/
+
+                /*Start Status message*/
+                if (res.status == 'success' || res.status == 'error') {
+                    Swal.fire(
+                        `${res.status}!`,
+                        res.msg,
+                        `${res.status}`,
+                    )
+                }
+                /*End Status message*/
+
+                //for reset all field
+                if (res.status == 'success') {
+                    $('form#supplier')[0].reset();
+                    setTimeout(() => {
+                        // location.reload();
+                    }, 1000);
+                }
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                Swal.fire(
+                    `Error!`,
+                    error,
+                    `error`,
+                );
+            });
+    })
+</script>
+@endpush
 @endsection
