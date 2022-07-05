@@ -1,9 +1,11 @@
 @extends('admin.layouts.layouts')
 @section('content')
+
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
-       
+
         <x-page-head title="Add Supplier " url="admin/supplier" type="create" />
+
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -51,7 +53,6 @@
 
 
                         <div class="form-group row">
-
 
                             <div class="form-group col-md-3">
                                 <label for="">Store Name</label>

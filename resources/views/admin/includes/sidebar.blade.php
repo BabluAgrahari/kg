@@ -81,21 +81,21 @@
 
 
 
- <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile border-bottom">
-            <a href="#" class="nav-link flex-column">
-              <div class="nav-profile-image">
-                <img src="../assets/images/faces/face1.jpg" alt="profile" />
-                <!--change to offline or busy as needed-->
-              </div>
-              <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
-                <span class="font-weight-semibold mb-1 mt-2 text-center">Antonio Olson</span>
-                <!-- <span class="text-secondary icon-sm text-center">$3499.00</span> -->
-              </div>
-            </a>
-          </li>
-          <!-- <li class="nav-item pt-3">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile border-bottom">
+      <a href="#" class="nav-link flex-column">
+        <div class="nav-profile-image">
+          <img src="../assets/images/faces/face1.jpg" alt="profile" />
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
+          <span class="font-weight-semibold mb-1 mt-2 text-center">Antonio Olson</span>
+          <!-- <span class="text-secondary icon-sm text-center">$3499.00</span> -->
+        </div>
+      </a>
+    </li>
+    <!-- <li class="nav-item pt-3">
             <a class="nav-link d-block" href="index.html">
               <img class="sidebar-brand-logo" src="../assets/images/logo.svg" alt="" />
               <img class="sidebar-brand-logomini" src="../assets/images/logo-mini.svg" alt="" />
@@ -110,36 +110,58 @@
               </div>
             </form>
           </li> -->
-          <!-- <li class="pt-2 pb-1">
+    <!-- <li class="pt-2 pb-1">
             <span class="nav-item-head">Template Pages</span>
           </li> -->
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('admin/dashboard')}}">
+        <i class="mdi mdi-compass-outline menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title">User</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/dashboard')}}">
-              <i class="mdi mdi-compass-outline menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
+            <a class="nav-link" href="{{url('admin/shopkeeper')}}">Shopkeeper</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
-              <span class="menu-title">User</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{url('admin/shopkeeper')}}">Shopkeeper</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('admin/supplier') }}">Supplier</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
-                </li>
-              </ul>
-            </div>
+            <a class="nav-link" href="{{ url('admin/supplier') }}">Supplier</a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title">Addons</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('admin/city')}}">City</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/unit') }}">Unit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/brand') }}">Brand</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">
               <i class="mdi mdi-contacts menu-icon"></i>
               <span class="menu-title">Icons</span>
@@ -169,5 +191,5 @@
               <span class="menu-title">Documentation</span>
             </a>
           </li> -->
-        </ul>
-      </nav>
+  </ul>
+</nav>

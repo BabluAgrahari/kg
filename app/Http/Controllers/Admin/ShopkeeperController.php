@@ -31,7 +31,6 @@ class ShopkeeperController extends Controller
     public function store(Request $request)
     {
         $save = new Shopkeeper();
-        $save->userType        = 'shopkeeper';
         $save->name            = $request->name;
         $save->email           = $request->email;
         $save->mobile          = $request->mobile;

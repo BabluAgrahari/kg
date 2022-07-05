@@ -4,12 +4,13 @@
 <div class="content-wrapper pb-0">
 
     <div class="card shadow mb-4">
-    <x-page-head title="Supplier List " url="admin/supplier" type="list" />
-       
+
+        <x-page-head title="Supplier List " url="admin/supplier" type="list" />
+
         <div class="card-body p-2">
             <div class="table-responsive">
                 <table class="table table-striped">
-                <thead>
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>

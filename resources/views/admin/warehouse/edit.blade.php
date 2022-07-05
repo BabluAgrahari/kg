@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.layouts')
 @section('content')
 <div class="container-fluid">
 
@@ -18,7 +18,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="{{route('warehouse-details-save')}}" enctype="multipart/form-data"> 
+                    <form class="user" method="POST" action="{{route('warehouse-details-save')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <input type="hidden" name="userType" value="warehouse">

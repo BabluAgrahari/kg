@@ -8,59 +8,74 @@ use App\Models\City;
 
 class CityController extends Controller
 {
-    public function city(Request $request)
+
+    public function index(Request $request)
     {
-        $data = City::get();
-        return view('admin.city',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['lists'] = City::get();
+        return view('admin.city.index', $data);
     }
 
-    public function cityAdd(Request $request)
+
+    public function edit(Request $request, $id)
     {
-        return view('admin.shopkeeper.add');
+        $data = City::where('_id', $id)->first();
+        return view('admin.shopkeeper.edit', compact('data'));
     }
 
-    public function cityEdit(Request $request,$id)
-    {
-        $data = City::where('_id',$id)->first();
-        return view('admin.shopkeeper.edit',compact('data'));
-    }
 
-    public function citySave(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
-        if($request->id != '')
-        {  
-            $this->validate($request, [
-                'userType'                  => 'required', 
-            ]);
-        } else {
-            $this->validate($request, [
-                'userType'                  => 'required',
-            ]);
-        }
-        
-        if($request->id != ''){
+        // if ($request->id != '') {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // } else {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // }
 
-            $saveData                       = City::find($request->id);
-            $saveData->city_name           = $request->city_name;
-            $saveData->status               = $request->status;
-            $saveData->save();
-            return redirect()->route('city')->with('success','Data updated successfully.');
-        } else {
-            
-            $saveData                       = new city;
-            $saveData->city_name           = $request->city_name;
-            $saveData->status               = 1;
-            $saveData->save();
-            return redirect()->route('city')->with('success','Data saved successfully.');
-        }
+        // if ($request->id != '') {
+
+        //     $saveData                       = City::find($request->id);
+        //     $saveData->city_name           = $request->city_name;
+        //     $saveData->status               = $request->status;
+        //     $saveData->save();
+        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
+        // } else {
+
+        $save            = new city;
+        $save->city      = $request->city;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'City not Saved!']);
+
+        return response(['status' => 'success', 'msg' => 'City Saved Successfully!']);
+
+        // }
     }
 
-    public function cityStatus($id)
+    public function update(Request $request, $id)
     {
-        $data = City::find($id);
-        $data->delete();
-        return redirect()->route('city')->with('success','Data deleted successfully.');
+        $save            = City::find($id);
+        $save->city      = $request->city;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'City not Updated!']);
+
+        return response(['status' => 'success', 'msg' => 'City Updated Successfully!']);
+    }
+
+    public function destrory($id)
+    {
+        $res = City::find($id)->delete();
+
+        if (!$res)
+            return response(['status' => 'error', 'msg' => 'City not Removed!']);
+
+        return response(['status' => 'success', 'msg' => 'City Removed Successfully!']);
     }
 }

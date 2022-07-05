@@ -1,7 +1,7 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.layouts')
 @section('content')
 <div class="container-fluid">
-    
+
     @if(session()->has('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}

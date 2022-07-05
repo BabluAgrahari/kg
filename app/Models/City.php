@@ -12,7 +12,7 @@ class City extends Eloquent
 
     protected $connection = 'mongodb';
     protected $collection = 'city';
-    
+
     protected $fillable = [
         'state_id','city_name','status'
     ];
