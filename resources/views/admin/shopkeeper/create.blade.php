@@ -1,16 +1,22 @@
 @extends('admin.layouts.layouts')
 @section('content')
+
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
+        <div class="cover-loader d-none">
+            <div class="loader"></div>
+        </div>
+
         <x-page-head title="Add Shopkeeper " url="admin/shopkeeper" type="create" />
 
-        <div class="card-body">
+        <div class="card-body h-body">
             <div class="row">
+
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="{{url('admin/shopkeeper')}}" enctype="multipart/form-data">
+                    <form id="shopkeeper" method="POST" action="{{url('admin/shopkeeper')}}" enctype="multipart/form-data">
                         @csrf
-                        <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
+
                         <div class="form-row">
                             <div class="col-md-12">
                                 <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details</h6>
@@ -115,7 +121,7 @@
 
                             <div class="form-group col-md-3">
                                 <label>Verified Store</label>
-                                <select class="form-select form-control form-control-sm"  name="verified">
+                                <select class="form-select form-control form-control-sm" name="verified">
                                     <option value="1">Verified</option>
                                     <option value="0">Non Verified</option>
                                 </select>
@@ -123,7 +129,7 @@
 
                             <div class="form-group col-md-3">
                                 <label>Status</label>
-                                <select class="form-select form-control form-control-sm"  name="status">
+                                <select class="form-select form-control form-control-sm" name="status">
                                     <option value="1">Active</option>
                                     <option value="0">Deactive</option>
                                 </select>
@@ -132,7 +138,7 @@
 
                             <div class="form-group">
                                 <label>Logo</label>
-                                <input type="file" name="files[logo]"  class="form-control form-control-sm" accept="image/*,.pdf">
+                                <input type="file" name="files[logo]" class="form-control form-control-sm" accept="image/*,.pdf">
 
                             </div>
                             <div class="form-group">
@@ -173,8 +179,8 @@
 
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
-                              <input type="submit" value="Submit" class="btn btn-success">
-                              <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
+                                <input type="submit" value="Submit" class="btn btn-success">
+                                <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
                         </div>
                     </form>
@@ -186,7 +192,54 @@
 </div>
 @push('script')
 <script>
+    $('form#shopkeeper').submit(function(e) {
+        e.preventDefault();
+        formData = new FormData(this);
+        let url = $(this).attr('action');
+        $('.cover-loader').removeClass('d-none');
+        $('.h-body').addClass('d-none');
+        axios.post(url, formData)
+            .then(function(response) {
+                res = response.data;
 
+                $('.cover-loader').addClass('d-none');
+                $('.h-body').removeClass('d-none');
+
+                /*Start Validation Error Message*/
+                $('span.custom-text-danger').html('');
+                $.each(res.validation, (index, msg) => {
+                    $(`#${index}_msg`).html(`${msg}`);
+                })
+                /*Start Validation Error Message*/
+
+                /*Start Status message*/
+                if (res.status == 'success' || res.status == 'error') {
+                    Swal.fire(
+                        `${res.status}!`,
+                        res.msg,
+                        `${res.status}`,
+                    )
+                }
+                /*End Status message*/
+
+                //for reset all field
+                if (res.status == 'success') {
+                    $('form#shopkeeper')[0].reset();
+                    setTimeout(() => {
+                        // location.reload();
+                    }, 1000);
+                }
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                Swal.fire(
+                    `Error!`,
+                    error,
+                    `error`,
+                );
+            });
+    })
 </script>
 @endpush
 @endsection

@@ -8,7 +8,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="user" method="POST" action="" enctype="multipart/form-data">
+                    <form id="shopkeeper" method="POST" action="{{url('admin/shopkeeper/'.$res->_id)}}" enctype="multipart/form-data">
+                        {{ method_field('PUT') }}
                         @csrf
                         <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
                         <div class="form-row">
@@ -82,9 +83,9 @@
                                 <label>State</label>
                                 <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
-                                    <option value="Delhi" {{ $res->verified =="Delhi")?'selected':''}}>Delhi</option>
-                                    <option value="Goa" {{ $res->verified =="Goa")?'selected':''}}>Goa</option>
-                                    <option value="UP" {{ $res->verified =="UP")?'selected':''}}>UP</option>
+                                    <option value="Delhi" {{ ($res->verified =="Delhi")?'selected':''}}>Delhi</option>
+                                    <option value="Goa" {{ ($res->verified =="Goa")?'selected':''}}>Goa</option>
+                                    <option value="UP" {{ ($res->verified =="UP")?'selected':''}}>UP</option>
                                 </select>
                                 <span id="state_msg" class="text-danger"></span>
                             </div>
@@ -110,16 +111,16 @@
                             <div class="form-group col-md-3">
                                 <label>Verified Store</label>
                                 <select class="form-select form-control form-control-sm" name="verified" value="{{$res->verified}}">
-                                    <option value="1"{{ $res->verified ==1)?'selected':''}} >Verified</option>
-                                    <option value="0" {{ $res->verified ==0)?'selected':''}}>Non Verified</option>
+                                    <option value="1" {{ ($res->verified ==1)?'selected':''}}>Verified</option>
+                                    <option value="0" {{ ($res->verified ==0)?'selected':''}}>Non Verified</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label>Status</label>
                                 <select class="form-select form-control form-control-sm" name="status">
-                                    <option value="1" {{ $res->verified ==1)?'selected':''}}>Active</option>
-                                    <option value="0" {{ $res->verified ==0)?'selected':''}}>Deactive</option>
+                                    <option value="1" {{ ($res->verified ==1)?'selected':''}}>Active</option>
+                                    <option value="0" {{ ($res->verified ==0)?'selected':''}}>Deactive</option>
                                 </select>
                             </div>
 
@@ -167,8 +168,8 @@
 
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
-                              <input type="submit" value="Update" class="btn btn-success">
-                              <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
+                                <input type="submit" value="Update" class="btn btn-success">
+                                <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
                         </div>
 
@@ -179,4 +180,58 @@
     </div>
 
 </div>
+
+@push('script')
+<script>
+    $('form#shopkeeper').submit(function(e) {
+        e.preventDefault();
+        formData = new FormData(this);
+        let url = $(this).attr('action');
+        $('.cover-loader').removeClass('d-none');
+        $('.h-body').addClass('d-none');
+        axios.post(url, formData)
+            .then(function(response) {
+                res = response.data;
+
+                $('.cover-loader').addClass('d-none');
+                $('.h-body').removeClass('d-none');
+
+                /*Start Validation Error Message*/
+                $('span.custom-text-danger').html('');
+                $.each(res.validation, (index, msg) => {
+                    $(`#${index}_msg`).html(`${msg}`);
+                })
+                /*Start Validation Error Message*/
+
+                /*Start Status message*/
+                if (res.status == 'success' || res.status == 'error') {
+                    Swal.fire(
+                        `${res.status}!`,
+                        res.msg,
+                        `${res.status}`,
+                    )
+                }
+                /*End Status message*/
+
+                //for reset all field
+                if (res.status == 'success') {
+                    $('form#shopkeeper')[0].reset();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                }
+
+            })
+            .catch(function(error) {
+                console.log(error);
+                Swal.fire(
+                    `Error!`,
+                    error,
+                    `error`,
+                );
+            });
+    })
+</script>
+@endpush
+
 @endsection

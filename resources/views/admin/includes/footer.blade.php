@@ -39,8 +39,12 @@
  <script src="{{ asset('assets') }}/js/dashboard.js"></script>
  <!-- End custom js for this page -->
 
+ <!--sweet alert-->
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <!-- axios library-->
  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ @stack('script');
  </body>
 
  </html>
