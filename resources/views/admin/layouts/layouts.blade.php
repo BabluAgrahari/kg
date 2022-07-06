@@ -39,8 +39,6 @@
             <div class="main-panel">
                 @yield('content')
 
-                @section('loader')
-                This is the master sidebar.
-                @show
+
 
                 @include('admin/includes/footer')

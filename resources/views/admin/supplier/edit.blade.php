@@ -3,7 +3,7 @@
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
-        <x-page-head title="Edit Supplier " url="admin/supplier/edit" type="edit" />
+        <x-page-head title="Edit Supplier " url="admin/supplier" type="create" />
 
         <div class="card-body">
             <div class="row">

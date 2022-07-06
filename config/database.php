@@ -114,7 +114,7 @@ return [
         ] :
             [
                 'driver'   => env('DB_DRIVER', 'mongodb'),
-                'dsn'      => env('DB_URI', ''),
+                'dsn' => env('DB_URI', 'mongodb://admin:1df54119a5d154b4fec4383f@127.0.0.1:12109/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'),
                 'database' => env('DB_DATABASE', 'test1')
             ]
 
