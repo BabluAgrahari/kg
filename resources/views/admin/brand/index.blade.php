@@ -9,10 +9,10 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">City List</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Brand List</h6>
                 </div>
                 <div class="col-md-6">
-                    <a href="javascript:void(0);" id="addCity" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
+                    <a href="javascript:void(0);" id="addbrand" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>City</th>
+                            <th>Brand</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -32,10 +32,10 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ ucwords($list->city)}}</td>
+                            <td>{{ ucwords($list->brand)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
-                                <a href="{{ url('admin/city/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
+                                <a href="{{ url('admin/brand/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
                             </td>
                         </tr>
@@ -50,12 +50,12 @@
 
 @push('modal')
 <!-- Modal -->
-<div class="modal fade" id="cityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="brandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalHeading">Add City</h5>
+                <h5 class="modal-title" id="modalHeading">Add Brand</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -67,11 +67,11 @@
 
 
             <div class="modal-body h-body">
-                <form id="city" action="" method="post">
+                <form id="brand" action="" method="post">
                     @csrf
                     <div class="form-group">
-                        <label>City Name</label>
-                        <input type="text" name="city" class="form-control form-control-sm" placeholder="Enter City Name">
+                        <label>Brand Name</label>
+                        <input type="text" name="brand" class="form-control form-control-sm" placeholder="Enter Unit Name">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
@@ -93,13 +93,13 @@
 <script>
     $(document).ready(function() {
 
-        $('#addCity').click(function() {
-            $('#modalHeading').html('Add City');
-            $('form#city').attr('action', '{{url("admin/city")}}');
-            $('#cityModal').modal('show');
+        $('#addbrand').click(function() {
+            $('#modalHeading').html('Add Brand');
+            $('form#brand').attr('action', '{{url("admin/brand")}}');
+            $('#brandModal').modal('show');
         })
 
-        $('form#city').submit(function(e) {
+        $('form#brand').submit(function(e) {
             e.preventDefault();
             formData = new FormData(this);
             let url = $(this).attr('action');
@@ -131,7 +131,7 @@
 
                     //for reset all field
                     if (res.status == 'success') {
-                        $('form#city')[0].reset();
+                        $('form#brand')[0].reset();
                         setTimeout(() => {
                             location.reload();
                         }, 1000);
@@ -151,7 +151,7 @@
 
         $('.edit').click(function() {
             let id = $(this).attr('_id');
-            let url = `{{url('admin/city')}}/${id}/edit`;
+            let url = `{{url('admin/brand')}}/${id}/edit`;
             axios.get(url).then(resp => {
 
             }).catch(function(error) {

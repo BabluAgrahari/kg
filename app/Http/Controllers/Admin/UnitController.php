@@ -8,59 +8,74 @@ use App\Models\Unit;
 
 class UnitController extends Controller
 {
-    public function unit(Request $request)
+ 
+    public function index(Request $request)
     {
-        $data = Unit::get();
-        return view('admin.unit',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['lists'] = Unit::get();
+        return view('admin.unit.index', $data);
     }
 
-    public function unitAdd(Request $request)
+
+    public function edit(Request $request, $id)
     {
-        return view('admin.shopkeeper.add');
+        $data = Unit::where('_id', $id)->first();
+        return view('admin.unit.edit', compact('data'));
     }
 
-    public function unitEdit(Request $request,$id)
-    {
-        $data = Unit::where('_id',$id)->first();
-        return view('admin.shopkeeper.edit',compact('data'));
-    }
 
-    public function unitSave(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
-        if($request->id != '')
-        {  
-            $this->validate($request, [
-                'userType'                  => 'required', 
-            ]);
-        } else {
-            $this->validate($request, [
-                'userType'                  => 'required',
-            ]);
-        }
-        
-        if($request->id != ''){
+        // if ($request->id != '') {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // } else {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // }
 
-            $saveData                       = Unit::find($request->id);
-            $saveData->unit_name           = $request->unit_name;
-            $saveData->status               = $request->status;
-            $saveData->save();
-            return redirect()->route('unit')->with('success','Data updated successfully.');
-        } else {
-            
-            $saveData                       = new unit;
-            $saveData->unit_name           = $request->unit_name;
-            $saveData->status               = 1;
-            $saveData->save();
-            return redirect()->route('unit')->with('success','Data saved successfully.');
-        }
+        // if ($request->id != '') {
+
+        //     $saveData                       = City::find($request->id);
+        //     $saveData->city_name           = $request->city_name;
+        //     $saveData->status               = $request->status;
+        //     $saveData->save();
+        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
+        // } else {
+
+        $save            = new Unit;
+        $save->unit      = $request->unit;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Unit not Saved!']);
+
+        return response(['status' => 'success', 'msg' => 'Unit Saved Successfully!']);
+
+        // }
     }
 
-    public function unitStatus($id)
+    public function update(Request $request, $id)
     {
-        $data = Unit::find($id);
-        $data->delete();
-        return redirect()->route('unit')->with('success','Data deleted successfully.');
+        $save            = Unit::find($id);
+        $save->unit      = $request->unit;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Unit not Updated!']);
+
+        return response(['status' => 'success', 'msg' => 'Unit Updated Successfully!']);
+    }
+
+    public function destrory($id)
+    {
+        $res = Unit::find($id)->delete();
+
+        if (!$res)
+            return response(['status' => 'error', 'msg' => 'Unit not Removed!']);
+
+        return response(['status' => 'success', 'msg' => 'Unit Removed Successfully!']);
     }
 }
