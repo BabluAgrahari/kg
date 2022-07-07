@@ -13,6 +13,7 @@ class ShopkeeperController extends Controller
     public function index()
     {
         $data['lists'] = Shopkeeper::get();
+
         return view('admin.shopkeeper.index',$data);
     }
 

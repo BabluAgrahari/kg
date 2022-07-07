@@ -1,7 +1,6 @@
 @extends('admin.layouts.layouts')
 @section('content')
 
-@section('loader')
 <div class="content-wrapper pb-0">
 
     <div class="card shadow mb-4">
