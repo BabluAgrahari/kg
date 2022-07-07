@@ -8,7 +8,7 @@ use App\Models\City;
 
 class CityController extends Controller
 {
-
+ 
     public function index(Request $request)
     {
         $data['lists'] = City::get();

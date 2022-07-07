@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ShopkeeperController as Shopkeeper;
 use App\Http\Controllers\Admin\SupplierController as Supplier;
 use App\Http\Controllers\Admin\WarehouseController as Warehouse;
 use App\Http\Controllers\Admin\CityController as City;
+use App\Http\Controllers\Admin\UnitController as Unit;
+use App\Http\Controllers\Admin\BrandController as Brand;
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +42,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('warehouse', Warehouse::class);
 
     Route::resource('city', City::class);
+    Route::resource('unit', Unit::class);
+    Route::resource('brand', Brand::class);
 
 
     Route::get('/shopkeeper-details', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetails'])->name('shopkeeper-details');
@@ -66,20 +70,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/state-edit/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateEdit'])->name('state-edit');
     Route::post('/state-save', [App\Http\Controllers\Admin\StateController::class, 'stateSave'])->name('state-save');
     Route::get('/state-status/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateStatus'])->name('state-status');
-
-
-    Route::get('/brand', [App\Http\Controllers\Admin\BrandController::class, 'brand'])->name('brand');
-    Route::get('/brand-add', [App\Http\Controllers\Admin\BrandController::class, 'brandAdd'])->name('brand-add');
-    Route::get('/brand-edit/{id?}', [App\Http\Controllers\Admin\BrandController::class, 'brandEdit'])->name('brand-edit');
-    Route::post('/brand-save', [App\Http\Controllers\Admin\BrandController::class, 'brandSave'])->name('brand-save');
-    Route::get('/brand-status/{id?}', [App\Http\Controllers\Admin\BrandController::class, 'brandStatus'])->name('brand-status');
-
-
-    Route::get('/unit', [App\Http\Controllers\Admin\UnitController::class, 'unit'])->name('unit');
-    Route::get('/unit-add', [App\Http\Controllers\Admin\UnitController::class, 'unitAdd'])->name('unit-add');
-    Route::get('/unit-edit/{id?}', [App\Http\Controllers\Admin\UnitController::class, 'unitEdit'])->name('unit-edit');
-    Route::post('/unit-save', [App\Http\Controllers\Admin\UnitController::class, 'unitSave'])->name('unit-save');
-    Route::get('/unit-status/{id?}', [App\Http\Controllers\Admin\UnitController::class, 'unitStatus'])->name('unit-status');
 
     Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'category'])->name('category');
     Route::get('/category-add', [App\Http\Controllers\Admin\CategoryController::class, 'categoryAdd'])->name('category-add');

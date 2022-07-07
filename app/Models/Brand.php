@@ -17,3 +17,4 @@ class Brand extends Eloquent
         'brand_name', 'status'
     ];
 }
+ 

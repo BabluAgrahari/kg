@@ -8,59 +8,74 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function brand(Request $request)
+ 
+    public function index(Request $request)
     {
-        $data = Brand::get();
-        return view('admin.brand',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['lists'] = Brand::get();
+        return view('admin.brand.index', $data);
     }
 
-    public function brandAdd(Request $request)
+
+    public function edit(Request $request, $id)
     {
-        return view('admin.shopkeeper.add');
+        $data = Brand::where('_id', $id)->first();
+        return view('admin.brand.edit', compact('data'));
     }
 
-    public function brandEdit(Request $request,$id)
-    {
-        $data = Brand::where('_id',$id)->first();
-        return view('admin.shopkeeper.edit',compact('data'));
-    }
 
-    public function brandSave(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
-        if($request->id != '')
-        {  
-            $this->validate($request, [
-                'userType'                  => 'required', 
-            ]);
-        } else {
-            $this->validate($request, [
-                'userType'                  => 'required',
-            ]);
-        }
-        
-        if($request->id != ''){
+        // if ($request->id != '') {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // } else {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // }
 
-            $saveData                       = Brand::find($request->id);
-            $saveData->brand_name           = $request->brand_name;
-            $saveData->status               = $request->status;
-            $saveData->save();
-            return redirect()->route('brand')->with('success','Data updated successfully.');
-        } else {
-            
-            $saveData                       = new brand;
-            $saveData->brand_name           = $request->brand_name;
-            $saveData->status               = 1;
-            $saveData->save();
-            return redirect()->route('brand')->with('success','Data saved successfully.');
-        }
+        // if ($request->id != '') {
+
+        //     $saveData                       = City::find($request->id);
+        //     $saveData->city_name           = $request->city_name;
+        //     $saveData->status               = $request->status;
+        //     $saveData->save();
+        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
+        // } else {
+
+        $save            = new Brand;
+        $save->brand      = $request->brand;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Brand not Saved!']);
+
+        return response(['status' => 'success', 'msg' => 'Brand Saved Successfully!']);
+
+        // }
     }
 
-    public function brandStatus($id)
+    public function update(Request $request, $id)
     {
-        $data = Brand::find($id);
-        $data->delete();
-        return redirect()->route('brand')->with('success','Data deleted successfully.');
+        $save            = Brand::find($id);
+        $save->brand      = $request->brand;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Brand not Updated!']);
+
+        return response(['status' => 'success', 'msg' => 'Brand Updated Successfully!']);
+    }
+
+    public function destrory($id)
+    {
+        $res = Brand::find($id)->delete();
+
+        if (!$res)
+            return response(['status' => 'error', 'msg' => 'Brand not Removed!']);
+
+        return response(['status' => 'success', 'msg' => 'Brand Removed Successfully!']);
     }
 }
