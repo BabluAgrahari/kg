@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\WarehouseController as Warehouse;
 use App\Http\Controllers\Admin\CityController as City;
 use App\Http\Controllers\Admin\UnitController as Unit;
 use App\Http\Controllers\Admin\BrandController as Brand;
+use App\Http\Controllers\Admin\CategoryController as Category;
+use App\Http\Controllers\Admin\SubCategoryController as SubCategory;
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('city', City::class);
     Route::resource('unit', Unit::class);
     Route::resource('brand', Brand::class);
+    Route::resource('category', Category::class);
+    Route::resource('sub_category',SubCategory::class);
 
 
     Route::get('/shopkeeper-details', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetails'])->name('shopkeeper-details');
@@ -70,16 +74,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/state-edit/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateEdit'])->name('state-edit');
     Route::post('/state-save', [App\Http\Controllers\Admin\StateController::class, 'stateSave'])->name('state-save');
     Route::get('/state-status/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateStatus'])->name('state-status');
-
-    Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'category'])->name('category');
-    Route::get('/category-add', [App\Http\Controllers\Admin\CategoryController::class, 'categoryAdd'])->name('category-add');
-    Route::get('/category-edit/{id?}', [App\Http\Controllers\Admin\CategoryController::class, 'categoryEdit'])->name('category-edit');
-    Route::post('/category-save', [App\Http\Controllers\Admin\CategoryController::class, 'categorySave'])->name('category-save');
-    Route::get('/category-status/{id?}', [App\Http\Controllers\Admin\CategoryController::class, 'categoryStatus'])->name('category-status');
-
-    Route::get('/sub-category', [App\Http\Controllers\Admin\SubCategoryController::class, 'subCategory'])->name('sub-category');
-    Route::get('/sub-category-add', [App\Http\Controllers\Admin\SubCategoryController::class, 'subCategoryAdd'])->name('sub-category-add');
-    Route::get('/sub-category-edit/{id?}', [App\Http\Controllers\Admin\SubCategoryController::class, 'subCategoryEdit'])->name('sub-category-edit');
-    Route::post('/sub-category-save', [App\Http\Controllers\Admin\SubCategoryController::class, 'subCategorySave'])->name('sub-category-save');
-    Route::get('/sub-category-status/{id?}', [App\Http\Controllers\Admin\SubCategoryController::class, 'subCategoryStatus'])->name('sub-category-status');
 });
