@@ -8,59 +8,74 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function category(Request $request)
+ 
+    public function index(Request $request)
     {
-        $data = Category::get();
-        return view('admin.category',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['lists'] = Category::get();
+        return view('admin.category.index', $data);
     }
 
-    public function categoryAdd(Request $request)
+
+    public function edit(Request $request, $id)
     {
-        return view('admin.shopkeeper.add');
+        $data = Category::where('_id', $id)->first();
+        return view('admin.category.edit', compact('data'));
     }
 
-    public function categoryEdit(Request $request,$id)
-    {
-        $data = Category::where('_id',$id)->first();
-        return view('admin.shopkeeper.edit',compact('data'));
-    }
 
-    public function categorySave(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
-        if($request->id != '')
-        {  
-            $this->validate($request, [
-                'userType'                  => 'required', 
-            ]);
-        } else {
-            $this->validate($request, [
-                'userType'                  => 'required',
-            ]);
-        }
-        
-        if($request->id != ''){
+        // if ($request->id != '') {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // } else {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // }
 
-            $saveData                       = Category::find($request->id);
-            $saveData->category_name           = $request->category_name;
-            $saveData->status               = $request->status;
-            $saveData->save();
-            return redirect()->route('category')->with('success','Data updated successfully.');
-        } else {
-            
-            $saveData                       = new category;
-            $saveData->category_name           = $request->category_name;
-            $saveData->status               = 1;
-            $saveData->save();
-            return redirect()->route('category')->with('success','Data saved successfully.');
-        }
+        // if ($request->id != '') {
+
+        //     $saveData                       = City::find($request->id);
+        //     $saveData->city_name           = $request->city_name;
+        //     $saveData->status               = $request->status;
+        //     $saveData->save();
+        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
+        // } else {
+
+        $save            = new Category;
+        $save->category      = $request->category;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Category not Saved!']);
+
+        return response(['status' => 'success', 'msg' => 'Category Saved Successfully!']);
+
+        // }
     }
 
-    public function categoryStatus($id)
+    public function update(Request $request, $id)
     {
-        $data = Category::find($id);
-        $data->delete();
-        return redirect()->route('category')->with('success','Data deleted successfully.');
+        $save            = Category::find($id);
+        $save->category      = $request->category;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'Category not Updated!']);
+
+        return response(['status' => 'success', 'msg' => 'Category Updated Successfully!']);
+    }
+
+    public function destrory($id)
+    {
+        $res = Category::find($id)->delete();
+
+        if (!$res)
+            return response(['status' => 'error', 'msg' => 'Category not Removed!']);
+
+        return response(['status' => 'success', 'msg' => 'Category Removed Successfully!']);
     }
 }
