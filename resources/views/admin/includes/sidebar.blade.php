@@ -122,7 +122,7 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="mdi mdi-account-multiple menu-icon"></i>
-        <span class="menu-title">User</span>
+        <span class="menu-title">Users</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
@@ -135,6 +135,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('admin/user')}}">User</a>
           </li>
         </ul>
       </div>
