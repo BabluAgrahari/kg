@@ -8,59 +8,74 @@ use App\Models\SubCategory;
 
 class SubCategoryController extends Controller
 {
-    public function subCategory(Request $request)
+ 
+    public function index(Request $request)
     {
-        $data = SubCategory::get();
-        return view('admin.sub-category',compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data['lists'] = SubCategory::get();
+        return view('admin.sub_category.index', $data);
     }
 
-    public function subCategoryAdd(Request $request)
+
+    public function edit(Request $request, $id)
     {
-        return view('admin.shopkeeper.add');
+        $data = SubCategory::where('_id', $id)->first();
+        return view('admin.sub_category.edit', compact('data'));
     }
 
-    public function subCategoryEdit(Request $request,$id)
-    {
-        $data = SubCategory::where('_id',$id)->first();
-        return view('admin.shopkeeper.edit',compact('data'));
-    }
 
-    public function subCategorySave(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
-        if($request->id != '')
-        {  
-            $this->validate($request, [
-                'userType'                  => 'required', 
-            ]);
-        } else {
-            $this->validate($request, [
-                'userType'                  => 'required',
-            ]);
-        }
-        
-        if($request->id != ''){
+        // if ($request->id != '') {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // } else {
+        //     $this->validate($request, [
+        //         'userType'                  => 'required',
+        //     ]);
+        // }
 
-            $saveData                       = SubCategory::find($request->id);
-            $saveData->subCategory_name           = $request->subCategory_name;
-            $saveData->status               = $request->status;
-            $saveData->save();
-            return redirect()->route('subCategory')->with('success','Data updated successfully.');
-        } else {
-            
-            $saveData                       = new subCategory;
-            $saveData->subCategory_name           = $request->subCategory_name;
-            $saveData->status               = 1;
-            $saveData->save();
-            return redirect()->route('subCategory')->with('success','Data saved successfully.');
-        }
+        // if ($request->id != '') {
+
+        //     $saveData                       = City::find($request->id);
+        //     $saveData->city_name           = $request->city_name;
+        //     $saveData->status               = $request->status;
+        //     $saveData->save();
+        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
+        // } else {
+
+        $save            = new SubCategory;
+        $save->sub_category      = $request->sub_category;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'SubCategory not Saved!']);
+
+        return response(['status' => 'success', 'msg' => 'SubCategory Saved Successfully!']);
+
+        // }
     }
 
-    public function subCategoryStatus($id)
+    public function update(Request $request, $id)
     {
-        $data = SubCategory::find($id);
-        $data->delete();
-        return redirect()->route('subCategory')->with('success','Data deleted successfully.');
+        $save            = SubCategory::find($id);
+        $save->sub_category      = $request->sub_category;
+        $save->status    = (int)$request->status;
+
+        if (!$save->save())
+            return response(['status' => 'error', 'msg' => 'SubCategory not Updated!']);
+
+        return response(['status' => 'success', 'msg' => 'SubCategory Updated Successfully!']);
+    }
+
+    public function destrory($id)
+    {
+        $res = SubCategory::find($id)->delete();
+
+        if (!$res)
+            return response(['status' => 'error', 'msg' => 'SubCategory not Removed!']);
+
+        return response(['status' => 'success', 'msg' => 'SubCategory Removed Successfully!']);
     }
 }
