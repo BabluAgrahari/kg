@@ -12,7 +12,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Brand List</h6>
                 </div>
                 <div class="col-md-6">
-                    <a href="javascript:void(0);" id="addbrand" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
+                    <a href="javascript:void(0);" id="addBrand" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
                 </div>
             </div>
         </div>
@@ -35,8 +35,8 @@
                             <td>{{ ucwords($list->brand)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
-                                <a href="{{ url('admin/brand/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
-                                <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-info editbrand" _id="{{$list->_id}}"><span class="mdi mdi-pencil-box-outline"></span></a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger remove"><span class="mdi mdi-delete"></span></a>
                             </td>
                         </tr>
                         @endforeach
@@ -56,6 +56,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalHeading">Add Brand</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -69,9 +70,11 @@
             <div class="modal-body h-body">
                 <form id="brand" action="" method="post">
                     @csrf
+                    <div id="put"></div>
+
                     <div class="form-group">
                         <label>Brand Name</label>
-                        <input type="text" name="brand" class="form-control form-control-sm" placeholder="Enter Unit Name">
+                        <input type="text" name="brand" id="brand_name" class="form-control form-control-sm" placeholder="Enter Brand Name">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
@@ -81,7 +84,7 @@
                         </select>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success" id="submitbrand">Submit</button>
                     </div>
                 </form>
             </div>
@@ -93,11 +96,14 @@
 <script>
     $(document).ready(function() {
 
-        $('#addbrand').click(function() {
+        $('#addBrand').click(function() {
             $('#modalHeading').html('Add Brand');
+            $('#submitBrand').html('Submit');
             $('form#brand').attr('action', '{{url("admin/brand")}}');
+            $('form#brand')[0].reset();
+            $('#put').html('');
             $('#brandModal').modal('show');
-        })
+        });
 
         $('form#brand').submit(function(e) {
             e.preventDefault();
@@ -149,10 +155,25 @@
                 });
         });
 
-        $('.edit').click(function() {
+
+        //for edit
+        $('.editbrand').click(function() {
+
             let id = $(this).attr('_id');
+
             let url = `{{url('admin/brand')}}/${id}/edit`;
+
             axios.get(url).then(resp => {
+                response = resp.data.data;
+                $('#brand_name').val(response.brand);
+                $('#status').val(response.status);
+
+                $('form#brand').attr('action', '{{url("admin/brand")}}/' + id);
+                $('#put').html('<input type="hidden" name="_method" value="PUT">');
+
+                $('#modalHeading').html('Edit Brand');
+                $('#submitBrand').html('Update');
+                $('#brandModal').modal('show');
 
             }).catch(function(error) {
                 console.log(error);
@@ -164,6 +185,33 @@
                 );
             });
         })
+
+
+        //for delete
+        $('.remove').click(function() {
+
+            let id = $(this).attr('_id');
+
+            let url = `{{url('admin/brand')}}/${id}/edit`;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        });
     })
 </script>
 @endpush

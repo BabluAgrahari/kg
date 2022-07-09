@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
+use App\Models\Category;
 
 class SubCategoryController extends Controller
 {
@@ -12,40 +13,24 @@ class SubCategoryController extends Controller
     public function index(Request $request)
     {
         $data['lists'] = SubCategory::get();
+        $data['categories'] = Category::get();
         return view('admin.sub_category.index', $data);
+
     }
 
 
     public function edit(Request $request, $id)
     {
-        $data = SubCategory::where('_id', $id)->first();
-        return view('admin.sub_category.edit', compact('data'));
+        $record = SubCategory::where('_id', $id)->first();
+        return response(['status' => 'success', 'data' => $record]);
     }
 
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        // if ($request->id != '') {
-        //     $this->validate($request, [
-        //         'userType'                  => 'required',
-        //     ]);
-        // } else {
-        //     $this->validate($request, [
-        //         'userType'                  => 'required',
-        //     ]);
-        // }
-
-        // if ($request->id != '') {
-
-        //     $saveData                       = City::find($request->id);
-        //     $saveData->city_name           = $request->city_name;
-        //     $saveData->status               = $request->status;
-        //     $saveData->save();
-        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
-        // } else {
 
         $save            = new SubCategory;
+        $save->category_id      = $request->category;
         $save->sub_category      = $request->sub_category;
         $save->status    = (int)$request->status;
 
@@ -54,7 +39,6 @@ class SubCategoryController extends Controller
 
         return response(['status' => 'success', 'msg' => 'SubCategory Saved Successfully!']);
 
-        // }
     }
 
     public function update(Request $request, $id)

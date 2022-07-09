@@ -13,7 +13,7 @@ class CityController extends Controller
     {
         $data['lists'] = City::get();
         return view('admin.city.index', $data);
-    }
+    } 
 
 
     public function edit(Request $request, $id)

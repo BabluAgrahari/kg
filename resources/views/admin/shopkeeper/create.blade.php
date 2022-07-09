@@ -22,7 +22,7 @@
                                 <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details </h6>
                                 <hr>
                             </div>
-                        </div>
+                        </div> 
 
                         <div class="form-row">
                             <div class="form-group col-md-4">

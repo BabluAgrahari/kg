@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -18,8 +18,8 @@ class CategoryController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $data = Category::where('_id', $id)->first();
-        return view('admin.category.edit', compact('data'));
+        $record = Category::where('_id', $id)->first();
+        return response(['status' => 'success', 'data' => $record]);
     }
 
 

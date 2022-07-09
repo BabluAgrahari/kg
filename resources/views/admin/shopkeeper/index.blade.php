@@ -27,7 +27,7 @@
                         @foreach($lists as $key => $lsit)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{$lsit->name}}</td>
+                            <td>{{$lsit->name}}</td> 
                             <td>{{$lsit->email}}</td>
                             <td>{{$lsit->mobile}}</td>
                             <td>{{$lsit->store_name}}</td>

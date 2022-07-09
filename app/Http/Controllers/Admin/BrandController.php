@@ -18,33 +18,12 @@ class BrandController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $data = Brand::where('_id', $id)->first();
-        return view('admin.brand.edit', compact('data'));
+        $record = Brand::where('_id', $id)->first();
+        return response(['status' => 'success', 'data' => $record]);
     }
-
-
     public function store(Request $request)
     {
-        // dd($request->all());
-        // if ($request->id != '') {
-        //     $this->validate($request, [
-        //         'userType'                  => 'required',
-        //     ]);
-        // } else {
-        //     $this->validate($request, [
-        //         'userType'                  => 'required',
-        //     ]);
-        // }
-
-        // if ($request->id != '') {
-
-        //     $saveData                       = City::find($request->id);
-        //     $saveData->city_name           = $request->city_name;
-        //     $saveData->status               = $request->status;
-        //     $saveData->save();
-        //     return redirect()->route('city')->with('success', 'Data updated successfully.');
-        // } else {
-
+       
         $save            = new Brand;
         $save->brand      = $request->brand;
         $save->status    = (int)$request->status;
@@ -53,8 +32,6 @@ class BrandController extends Controller
             return response(['status' => 'error', 'msg' => 'Brand not Saved!']);
 
         return response(['status' => 'success', 'msg' => 'Brand Saved Successfully!']);
-
-        // }
     }
 
     public function update(Request $request, $id)

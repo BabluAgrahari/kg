@@ -90,7 +90,7 @@
                                 <span id="state_msg" class="text-danger"></span>
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3"> 
                                 <label>City</label>
                                 <input type="text" name="city" value="{{$res->city}}" class="form-control form-control-sm" placeholder="Enter City">
                                 <span id="city_msg" class="text-danger"></span>

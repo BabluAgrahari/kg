@@ -23,6 +23,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Category</th>
                             <th>SubCategory</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -32,11 +33,12 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
+                            <td>{{ ucwords($list->category_id)}}</td>
                             <td>{{ ucwords($list->sub_category)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
-                                <a href="{{ url('admin/sub_category/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
-                                <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-info editsub_category" _id="{{$list->_id}}"><span class="mdi mdi-pencil-box-outline"></span></a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger remove"><span class="mdi mdi-delete"></span></a>
                             </td>
                         </tr>
                         @endforeach
@@ -56,6 +58,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalHeading">Add SubCategory</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -69,9 +72,22 @@
             <div class="modal-body h-body">
                 <form id="sub_category" action="" method="post">
                     @csrf
+                    <div id="put"></div>
+
                     <div class="form-group">
-                        <label>SubCategory Name</label>
-                        <input type="text" name="sub_category" class="form-control form-control-sm" placeholder="Enter SubCategory Name">
+                        <label>Category</label>
+                        <select class="form-control form-control-sm" id="category" name="category">
+                        <option>select</option>  
+                            @foreach($categories as $show)
+                            <option value="{{ $show->_id }}">{{ ucwords($show->category)}}</option>
+                           
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sub Category Name</label>
+                        <input type="text" name="sub_category" id="sub_category_name" class="form-control form-control-sm" placeholder="Enter Sub Category Name">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
@@ -81,7 +97,7 @@
                         </select>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success" id="submitsub_category">Submit</button>
                     </div>
                 </form>
             </div>
@@ -95,9 +111,12 @@
 
         $('#addSubCategory').click(function() {
             $('#modalHeading').html('Add SubCategory');
+            $('#submitSubCategory').html('Submit');
             $('form#sub_category').attr('action', '{{url("admin/sub_category")}}');
+            $('form#sub_category')[0].reset();
+            $('#put').html('');
             $('#sub_categoryModal').modal('show');
-        })
+        });
 
         $('form#sub_category').submit(function(e) {
             e.preventDefault();
@@ -149,10 +168,25 @@
                 });
         });
 
-        $('.edit').click(function() {
+
+        //for edit
+        $('.editsub_category').click(function() {
+
             let id = $(this).attr('_id');
+
             let url = `{{url('admin/sub_category')}}/${id}/edit`;
+
             axios.get(url).then(resp => {
+                response = resp.data.data;
+                $('#sub_category_name').val(response.sub_category);
+                $('#status').val(response.status);
+
+                $('form#sub_category').attr('action', '{{url("admin/sub_category")}}/' + id);
+                $('#put').html('<input type="hidden" name="_method" value="PUT">');
+
+                $('#modalHeading').html('Edit SubCategory');
+                $('#submitSubCategory').html('Update');
+                $('#sub_categoryModal').modal('show');
 
             }).catch(function(error) {
                 console.log(error);
@@ -164,6 +198,33 @@
                 );
             });
         })
+
+
+        //for delete
+        $('.remove').click(function() {
+
+            let id = $(this).attr('_id');
+
+            let url = `{{url('admin/sub_category')}}/${id}/edit`;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        });
     })
 </script>
 @endpush
