@@ -6,14 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class City extends Eloquent
+class City extends BaseModel
 {
     use HasFactory;
-
-    protected $connection = 'mongodb';
-    protected $collection = 'city';
-
-    protected $fillable = [
-        'state_id','city_name','status'
-    ];
 }

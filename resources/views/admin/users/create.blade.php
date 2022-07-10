@@ -18,44 +18,53 @@
                         @csrf
 
                         <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;User Details </h6>
-                                <hr>
-                            </div>
-                        </div>
 
-                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control form-control-sm" name="profile_img">
+                                <span id="profile_img_msg" class="c-text-danger"></span>
+                            </div>
+
                             <div class="form-group col-md-4">
                                 <label>Name&nbsp;<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-sm" name="name" placeholder="Enter Name">
-                                <span id="name_msg" class="text-danger"></span>
+                                <span id="name_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Email&nbsp;<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter Email">
-                                <span id="email_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" placeholder="Enter Mobile No">
-                                <span id="mobile_msg" class="text-danger"></span>
+                                <span id="email_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Password&nbsp;<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control form-control-sm" name="password" placeholder="Enter Password">
-                                <span id="password_msg" class="text-danger"></span>
+                                <span id="password_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label>Country</label>
-                                <input type="text" class="form-control form-control-sm" name="country" placeholder="Enter Country.">
-                                <span id="country_msg" class="text-danger"></span>
+                                <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" name="mobile" placeholder="Enter Mobile No">
+                                <span id="mobile_msg" class="c-text-danger"></span>
                             </div>
 
-                            <div class="form-group col-md-3">
+
+                            <div class="form-group col-md-4">
+                                <label>Status</label>
+                                <select class="form-select form-control form-control-sm" name="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Deactive</option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="form-group col-md-4">
+                                <label>Country</label>
+                                <input type="text" class="form-control form-control-sm" name="country" placeholder="Enter Country.">
+                                <span id="country_msg" class="c-text-danger"></span>
+                            </div> -->
+
+                            <div class="form-group col-md-4">
                                 <label>State</label>
                                 <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
@@ -63,31 +72,25 @@
                                     <option value="Goa">Goa</option>
                                     <option value="UP">UP</option>
                                 </select>
-                                <span id="state_msg" class="text-danger"></span>
+                                <span id="state_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>City</label>
                                 <input type="text" name="city" class="form-control form-control-sm" placeholder="Enter City">
-                                <span id="city_msg" class="text-danger"></span>
+                                <span id="city_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Pincode</label>
                                 <input type="text" class="form-control form-control-sm" name="pincode" placeholder="Enter Pincode">
-                                <span id="pincode_msg" class="text-danger"></span>
+                                <span id="pincode_msg" class="c-text-danger"></span>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label>Status</label>
-                                <select class="form-select form-control form-control-sm" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Deactive</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
+
+                            <div class="form-group col-md-4">
                                 <label>Address</label>
-                                <textarea class="form-control form-control-sm" name="address" rows="4" cols="50" placeholder="Address"></textarea>
-                                <span id="address_msg" class="text-danger"></span>
+                                <textarea class="form-control form-control-sm" name="address" rows="2" placeholder="Enter Address"></textarea>
+                                <span id="address_msg" class="c-text-danger"></span>
                             </div>
 
                         </div>

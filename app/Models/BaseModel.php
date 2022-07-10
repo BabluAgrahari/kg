@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class BaseModel extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $timestamps = false;
 
@@ -18,11 +20,11 @@ class BaseModel extends Model
         self::observe(\App\Observers\AttachTimeStamp::class);
     }
 
-     public function dFormat($date){
+    public function dFormat($date)
+    {
+        if (empty($date))
+            return false;
 
-	if(empty($date))
-		return false;
-
-     return date('d M Y',$date);
+        return date('d M Y', $date);
     }
 }

@@ -8,18 +8,19 @@ class AttachTimeStamp
 
     {
         if (empty($model->_id))
-        $model->created_at = time();
+            $model->created = time();
 
-         $model->updated_at = time();
+        $model->updated = time();
     }
 
     public function updating($model)
     {
-        $model->updated_at = time();
+        $model->updated = time();
     }
 
-    public function deleting($model){
+    public function deleting($model)
+    {
 
-        $model->deleted_at = time();
+        $model->deleted = time();
     }
 }
