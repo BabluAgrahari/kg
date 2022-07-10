@@ -219,7 +219,10 @@
                 $('#unit_id').val(response.unit_id);
                 $('#brand_id').val(response.brand_id);
                 $('#status').val(response.status);
-
+                if (response.sub_category_id) {
+                    $('#sub_category_id').val(response.sub_category_id);
+                    $('select[name="sub_category_id"]').append('<option value="' + response.sub_category_id + '">' + response.sub_category[0].toUpperCase() + response.sub_category.slice(1) + '</option>');
+                }
                 $('form#product').attr('action', '{{url("admin/product")}}/' + id);
                 $('#put').html('<input type="hidden" name="_method" value="PUT">');
 

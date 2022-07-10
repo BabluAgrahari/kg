@@ -35,6 +35,7 @@ class ProductController extends Controller
             'sku'             => $product->sku,
             'category_id'     => $product->category_id,
             'sub_category_id' => $product->sub_category_id,
+            'sub_category'    => $product->sub_category_id ? $product->subCategoryName->sub_category : '',
             'brand_id'        => $product->brand_id,
             'unit_id'         => $product->unit_id,
             'status'          => $product->status
