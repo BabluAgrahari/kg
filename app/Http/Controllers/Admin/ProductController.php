@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $data['lists'] = Product::get();
-        $data['suppliers'] = Supplier::Where('userType','supplier')->get();
+        $data['suppliers'] = Supplier::Where('userType', 'supplier')->get();
         return view('admin.products.index', $data);
     }
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
         $data['res']  = Product::find($id);
 
         $data['categories']    = Category::get();
-     //   $data['subcategories'] = SubCategory::get();
+        //   $data['subcategories'] = SubCategory::get();
         $data['units']         = Unit::get();
         $data['brands']        = Brand::get();
         return view('admin.products.edit', $data);
@@ -101,15 +101,27 @@ class ProductController extends Controller
     public function assignSupplier(Request $request)
     {
         try {
-                $id = $request->productId;
+            $id = $request->productId;
 
-                $product = Product::find($id);
-                $product->supplier_id = $request->supplier_id;
-                $res = $product->save();
-            
-            if ($res)
+            $product = Product::find($id);
+            $product->supplier_id = $request->supplier_id;
+            $res = $product->save();
+
+            if ($res) {
+                if (!empty($request->supplier_id)) {
+                $supplier = Supplier::find($request->supplier_id);
+                $productIds = $supplier->product_id;
+
+                if (empty($productIds))
+                    $productIds = [];
+
+                array_push($productIds, "$product->id");
+
+                $supplier->product_id = array_unique($productIds);
+                $supplier->save();
+                }
                 return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
-                
+            }
             return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
         } catch (\Exception $e) {
             return $e->getMessage();
