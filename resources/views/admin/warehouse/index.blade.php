@@ -11,11 +11,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                        <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
+                            <th>#</th>
                             <th>Store Name</th>
+                            <th>Store Email</th>
                             <th>Store Address</th>
                             <th>Verified</th>
                             <th>Status</th>
@@ -27,10 +25,8 @@
                         @foreach($lists as $key => $value)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{$value->name}}</td>
-                            <td>{{$value->email}}</td>
-                            <td>{{$value->mobile}}</td>
                             <td>{{$value->store_name}}</td>
+                            <td>{{$value->store_email}}</td>
                             <td>{{$value->store_address}}</td>
                             <td>{!! $value->verified == 1? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>' !!}</td>
                             <td>{!!$value->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
@@ -43,6 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $lists->onEachSide(5)->links() }}
             </div>
         </div>
     </div>

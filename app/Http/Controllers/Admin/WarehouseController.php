@@ -7,38 +7,37 @@ use App\Models\Shopkeeper;
 use Illuminate\Http\Request;
 use App\Models\UserDetails;
 use App\Models\Warehouse;
+use App\Models\User;
 use Str;
 
 class WarehouseController extends Controller
 {
     public function index()
     {
-        $data['lists'] = Warehouse ::get();
+        $data['lists'] = Warehouse ::paginate(5);
         return view('admin.warehouse.index',$data);
     }
 
     public function create(Request $request)
     {
-        return view('admin.warehouse.create');
+        $data['users'] = User::where('status', 1)->get();
+        return view('admin.warehouse.create',$data);
     }
 
     public function edit($id)
     {
         $data['res'] = Warehouse::find($id);
-
+        $data['users'] = User::where('status', 1)->get();
         return view('admin.warehouse.edit', $data);
     }
 
     public function store(Request $request)
     {
         $save = new Warehouse();
-        $save->userType        = 'warehouse';
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
-        $save->password          = $request->password;
+        $save->users           = $request->users;
         $save->store_name      = $request->store_name;
-        $save->business_email  = $request->business_email;
+        $save->store_mobile    = $request->store_mobile;
+        $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;
         $save->country         = $request->country;
@@ -62,12 +61,10 @@ class WarehouseController extends Controller
     public function update(Request $request, $id)
     {
         $save = Warehouse::find($id);
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
-        $save->password        = $request->password;
+        $save->users           = $request->users;
         $save->store_name      = $request->store_name;
-        $save->business_email  = $request->business_email;
+        $save->store_mobile    = $request->store_mobile;
+        $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;
         $save->country         = $request->country;
