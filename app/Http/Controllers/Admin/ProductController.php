@@ -9,6 +9,7 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Unit;
 use App\Models\Brand;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $data['lists'] = Product::get();
+        $data['suppliers'] = Supplier::Where('userType','supplier')->get();
         return view('admin.products.index', $data);
     }
 
@@ -94,5 +96,23 @@ class ProductController extends Controller
     {
         $subCat = SubCategory::Select('sub_category')->where('category_id', $id)->get()->toArray();
         return response()->json($subCat);
+    }
+
+    public function assignSupplier(Request $request)
+    {
+        try {
+                $id = $request->productId;
+
+                $product = Product::find($id);
+                $product->supplier_id = $request->supplier_id;
+                $res = $product->save();
+            
+            if ($res)
+                return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
+                
+            return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
