@@ -55,9 +55,9 @@ class ProductController extends Controller
         $save->status          = (int)$request->status;
 
         if (!$save->save())
-            return response(['status' => 'error', 'msg' => 'User not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Created']);
 
-        return response(['status' => 'success', 'msg' => 'User Created Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Created Successfully!']);
     }
 
 
