@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Category extends Eloquent
+class Category extends BaseModel
 {
     use HasFactory;
 
     protected $connection = 'mongodb';
     protected $collection = 'category';
-    
+
     protected $fillable = [
         'category_name', 'status'
     ];

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Shopkeeper extends Model
+class Shopkeeper extends BaseModel
 {
     use HasFactory;
 }
