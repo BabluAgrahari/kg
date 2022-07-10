@@ -78,4 +78,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/state-edit/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateEdit'])->name('state-edit');
     Route::post('/state-save', [App\Http\Controllers\Admin\StateController::class, 'stateSave'])->name('state-save');
     Route::get('/state-status/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateStatus'])->name('state-status');
+
+    Route::get('/getSubCategory/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'getSubCategory'])->name('getSubCategory');
 });

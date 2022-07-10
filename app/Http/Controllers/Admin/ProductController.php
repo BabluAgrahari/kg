@@ -5,18 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Validation\ProductValidation;
 use App\Models\Product;
+use App\Models\SubCategory;
+use App\Models\Category;
+use App\Models\Unit;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class ProductController extends Controller
 {
 
     public function index()
     {
-        $data['lists'] = Product::get();
+        $data['lists']         = Product::get();
+        $data['categories']    = Category::get();
+        $data['subcategories'] = SubCategory::get();
+        $data['units']         = Unit::get();
+        $data['brands']        = Brand::get();
 
-        return view('admin.products.index',$data);
+        return view('admin.products.index', $data);
     }
 
     public function create(Request $request)
@@ -26,27 +33,31 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data['res'] = Product::find($id);
+        $product = Product::find($id);
+        $data['res'] = array(
 
+            'title'           => $product->title,
+            'sku'             => $product->sku,
+            'category_id'     => $product->category_id ? $product->categoryName->category : '',
+            'sub_category_id' => $product->sub_category_id ? $product->subCategoryName->sub_category : '',
+            'brand_id'        => $product->brand_id ? $product->brandName->brand : '',
+            'unit_id'         => $product->unit_id ? $product->unitName->unit : '',
+            'status'          => $product->status
+        );
         return view('admin.products.edit', $data);
     }
 
     public function store(ProductValidation $request)
     {
         $save = new Product();
-        $save->parent_id       = Auth::user()->id;
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
-        $save->password        = Hash::make($request->password);
-        $save->state           = $request->state;
-        $save->city            = $request->city;
-        $save->pincode         = $request->pincode;
-        $save->address         = $request->address;
+        $save->user_id         = Auth::user()->id;
+        $save->title           = $request->title;
+        $save->sku             = $request->sku;
+        $save->category_id     = $request->category_id;
+        $save->sub_category_id = $request->sub_category_id;
+        $save->brand_id        = $request->brand_id;
+        $save->unit_id         = $request->unit_id;
         $save->status          = (int)$request->status;
-
-        if (!empty($request->file('profile_image')))
-        $save->profile_image  = singleFile($request->file('profile_image'), 'products');
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'User not Created']);
@@ -58,17 +69,13 @@ class ProductController extends Controller
     public function update(ProductValidation $request, $id)
     {
         $save = Product::find($id);
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
-        $save->state           = $request->state;
-        $save->city            = $request->city;
-        $save->pincode         = $request->pincode;
-        $save->address         = $request->address;
+        $save->title           = $request->title;
+        $save->sku             = $request->sku;
+        $save->category_id     = $request->category_id;
+        $save->sub_category_id = $request->sub_category_id;
+        $save->brand_id        = $request->brand_id;
+        $save->unit_id         = $request->unit_id;
         $save->status          = (int)$request->status;
-
-        if (!empty($request->hasFile('profile_img')))
-        $save->profile_img   = singleFile($request->file('profile_img'), 'products');
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'Product not Created']);
@@ -85,5 +92,11 @@ class ProductController extends Controller
             return response(['status' => 'error', 'msg' => 'Product not Created']);
 
         return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
+    }
+
+    public function getSubCategory($id)
+    {
+        $subCat = SubCategory::Select('sub_category')->where('category_id', $id)->get()->toArray();
+        return response()->json($subCat);
     }
 }
