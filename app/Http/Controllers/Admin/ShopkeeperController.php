@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Validation\ShopkeeperValidation;
 use App\Models\Shopkeeper;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShopkeeperController extends Controller
@@ -13,28 +14,26 @@ class ShopkeeperController extends Controller
     public function index()
     {
         $data['lists']= Shopkeeper::get();
-
         return view('admin.shopkeeper.index',$data);
     }
 
     public function create(Request $request)
     {
-        return view('admin.shopkeeper.create');
+        $data['users']=User::get();
+        return view('admin.shopkeeper.create',$data);
     }
 
     public function edit($id)
     {
         $data['res'] = Shopkeeper::find($id);
-
+        $data['users'] = User::find($id);
         return view('admin.shopkeeper.edit', $data);
     }
 
     public function store(Request $request)
     {
         $save = new Shopkeeper();
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
+        $save->users        = $request->user;
         $save->store_name      = $request->store_name;
         $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;
@@ -60,9 +59,7 @@ class ShopkeeperController extends Controller
     public function update(Request $request, $id)
     {
         $save = Shopkeeper::find($id);
-        $save->name            = $request->name;
-        $save->email           = $request->email;
-        $save->mobile          = $request->mobile;
+        $save->user_id        = $request->user;
         $save->store_name      = $request->store_name;
         $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;

@@ -20,16 +20,16 @@
                         <th>Action</th>
                     </tr>
                     <tbody>
-                        @foreach($lists as $key => $lsit)
+                        @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{$lsit->name}}</td>
-                            <td>{{$lsit->email}}</td>
-                            <td>{{$lsit->mobile}}</td>
-                            <td>{{$lsit->country}}</td>
-                            <td>{!!$lsit->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
+                            <td>{{$list->name}}</td>
+                            <td>{{$list->email}}</td>
+                            <td>{{$list->mobile}}</td>
+                            <td>{{$list->country}}</td>
+                            <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
-                                <a href="{{ url('admin/user/'.$lsit->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
+                                <a href="{{ url('admin/user/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
                             </td>
                         </tr>
