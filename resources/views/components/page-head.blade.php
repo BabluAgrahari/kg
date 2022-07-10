@@ -13,7 +13,7 @@
             <a href="{{ url($url) }}" style="float: right;" class="btn btn-outline-warning btn-sm"><span class="mdi mdi-backburger"></span>&nbsp;Back</a>
             @break
 
-           @endswitch
+            @endswitch
         </div>
     </div>
 </div>

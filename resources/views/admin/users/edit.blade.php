@@ -11,13 +11,7 @@
                     <form id="user" method="POST" action="{{url('admin/user/'.$res->_id)}}" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
-                        <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;User Details</h6>
-                                <hr>
-                            </div>
-                        </div>
+
 
                         <div class="form-row">
                             <div class="form-group col-md-4">

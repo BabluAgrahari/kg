@@ -9,6 +9,7 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Unit;
 use App\Models\Brand;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,30 +18,29 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data['lists']         = Product::get();
+        $data['lists'] = Product::get();
+        $data['suppliers'] = Supplier::Where('userType', 'supplier')->get();
+        return view('admin.products.index', $data);
+    }
+
+
+    public function create(Request $request)
+    {
         $data['categories']    = Category::get();
-        $data['subcategories'] = SubCategory::get();
         $data['units']         = Unit::get();
         $data['brands']        = Brand::get();
-
-        return view('admin.products.index', $data);
+        return view('admin.products.create', $data);
     }
 
 
     public function edit($id)
     {
-        $product = Product::find($id);
-        $data['res'] = array(
-            'title'           => $product->title,
-            'sku'             => $product->sku,
-            'category_id'     => $product->category_id,
-            'sub_category_id' => $product->sub_category_id,
-            'sub_category'    => $product->sub_category_id ? $product->subCategoryName->sub_category : '',
-            'brand_id'        => $product->brand_id,
-            'unit_id'         => $product->unit_id,
-            'status'          => $product->status
-        );
-        return response(['status' => 'success', 'data' => $data]);
+        $data['res']  = Product::find($id);
+
+        $data['categories']    = Category::get();
+        $data['units']         = Unit::get();
+        $data['brands']        = Brand::get();
+        return view('admin.products.edit', $data);
     }
 
     public function store(ProductValidation $request)
@@ -74,7 +74,7 @@ class ProductController extends Controller
         $save->status          = (int)$request->status;
 
         if (!$save->save())
-            return response(['status' => 'error', 'msg' => 'Product not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Updated']);
 
         return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
     }
@@ -85,14 +85,44 @@ class ProductController extends Controller
         $res = Product::find($id)->delete();
 
         if (!$res)
-            return response(['status' => 'error', 'msg' => 'Product not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Removed']);
 
-        return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Removed Successfully!']);
     }
 
     public function getSubCategory($id)
     {
         $subCat = SubCategory::Select('sub_category')->where('category_id', $id)->get()->toArray();
         return response()->json($subCat);
+    }
+
+    public function assignSupplier(Request $request)
+    {
+        try {
+            $id = $request->productId;
+
+            $product = Product::find($id);
+            $product->supplier_id = $request->supplier_id;
+            $res = $product->save();
+
+            if ($res) {
+                if (!empty($request->supplier_id)) {
+                    $supplier = Supplier::find($request->supplier_id);
+                    $productIds = $supplier->product_id;
+
+                    if (empty($productIds))
+                        $productIds = [];
+
+                    array_push($productIds, "$product->id");
+
+                    $supplier->product_id = array_unique($productIds);
+                    $supplier->save();
+                }
+                return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
+            }
+            return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
