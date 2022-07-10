@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Warehouse extends Model
+class Warehouse extends BaseModel
 {
     use HasFactory;
 }
