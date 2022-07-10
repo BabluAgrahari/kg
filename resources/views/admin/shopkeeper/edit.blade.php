@@ -21,22 +21,14 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Name&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="name" value="{{$res->name}}" placeholder="Enter Name">
-                                <span id="name_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Email&nbsp;<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control form-control-sm" name="email" value="{{$res->email}}" placeholder="Enter Email">
-                                <span id="email_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" value="{{$res->mobile}}" placeholder="Enter Mobile No">
-                                <span id="mobile_msg" class="text-danger"></span>
-                            </div>
+                                <label>User</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple= "multiple" name="user" id="user">
+                                    <option>-Select Here-</option>
+                                        @foreach($users as $show)
+                                    <option  value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
+                                     @endforeach
+                                </select>      
+                            </div> 
                         </div>
 
                         <div class="form-row">

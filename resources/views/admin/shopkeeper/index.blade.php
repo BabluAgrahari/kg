@@ -13,9 +13,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
+                            <th>User</th>
                             <th>Store Name</th>
                             <th>Store Address</th>
                             <th>Verified</th>
@@ -28,9 +26,7 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{$list->name}}</td>
-                            <td>{{$list->email}}</td>
-                            <td>{{$list->mobile}}</td>
+                            <td>{{ ucwords($list->user_id)}}</td>
                             <td>{{$list->store_name}}</td>
                             <td>{{$list->store_address}}</td>
                             <td>{!! $list->verified == 1? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>' !!}</td>

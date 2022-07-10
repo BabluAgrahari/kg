@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{{ asset('assets')}}/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{{asset('assets')}}/vendors/select2/select2.min.css" />
+  <link rel="stylesheet" href="{{asset('assets')}}/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />-
   <link rel="stylesheet" href="{{ asset('assets')}}/vendors/jquery-bar-rating/css-stars.css" />
   <link rel="stylesheet" href="{{ asset('assets')}}/vendors/font-awesome/css/font-awesome.min.css" />
   <!-- End plugin css for this page -->
@@ -21,6 +23,8 @@
   <link rel="stylesheet" href="{{ asset('assets')}}/css/demo_1/style.css" />
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{ asset('assets')}}/images/favicon.png" />
+
+  
 
   <style>
     .badge {

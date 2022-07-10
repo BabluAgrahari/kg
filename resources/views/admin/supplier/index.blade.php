@@ -19,22 +19,24 @@
                             <th>Store Address</th>
                             <th>Verified</th>
                             <th>Status</th>
+                            <th>Created</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($lists as $key => $lsit)
+                        @foreach($lists as $key => $list)
                         <tr>
                         <td>{{ ++$key }}</td>
-                            <td>{{$lsit->name}}</td>
-                            <td>{{$lsit->email}}</td>
-                            <td>{{$lsit->mobile}}</td>
-                            <td>{{$lsit->store_name}}</td>
-                            <td>{{$lsit->store_address}}</td>
-                            <td>{!! $lsit->verified == 1? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>' !!}</td>
-                            <td>{!!$lsit->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
+                            <td>{{$list->name}}</td>
+                            <td>{{$list->email}}</td>
+                            <td>{{$list->mobile}}</td>
+                            <td>{{$list->store_name}}</td>
+                            <td>{{$list->store_address}}</td>
+                            <td>{!! $list->verified == 1? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>' !!}</td>
+                            <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
+                            <td>{{ $list->dformat($list->created)}}</td>
                             <td>
-                                <a href="{{ url('admin/supplier/'.$lsit->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
+                                <a href="{{ url('admin/supplier/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
                             </td>
                         @endforeach

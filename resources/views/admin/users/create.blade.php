@@ -124,7 +124,7 @@
                 $('.h-body').removeClass('d-none');
 
                 /*Start Validation Error Message*/
-                $('span.custom-text-danger').html('');
+                $('span.c-text-danger').html('');
                 $.each(res.validation, (index, msg) => {
                     $(`#${index}_msg`).html(`${msg}`);
                 })
