@@ -210,7 +210,8 @@
             let url = `{{url('admin/product')}}/${id}/edit`;
 
             axios.get(url).then(resp => {
-                response = resp.data.data;
+                response = resp.data.data.res;
+               
                 $('#title').val(response.title);
                 $('#sku').val(response.sku);
                 $('#category_id').val(response.category_id);

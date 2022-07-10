@@ -26,25 +26,20 @@ class ProductController extends Controller
         return view('admin.products.index', $data);
     }
 
-    public function create(Request $request)
-    {
-        return view('admin.products.create');
-    }
 
     public function edit($id)
     {
         $product = Product::find($id);
         $data['res'] = array(
-
             'title'           => $product->title,
             'sku'             => $product->sku,
-            'category_id'     => $product->category_id ? $product->categoryName->category : '',
-            'sub_category_id' => $product->sub_category_id ? $product->subCategoryName->sub_category : '',
-            'brand_id'        => $product->brand_id ? $product->brandName->brand : '',
-            'unit_id'         => $product->unit_id ? $product->unitName->unit : '',
+            'category_id'     => $product->category_id,
+            'sub_category_id' => $product->sub_category_id,
+            'brand_id'        => $product->brand_id,
+            'unit_id'         => $product->unit_id,
             'status'          => $product->status
         );
-        return view('admin.products.edit', $data);
+        return response(['status' => 'success', 'data' => $data]);
     }
 
     public function store(ProductValidation $request)
