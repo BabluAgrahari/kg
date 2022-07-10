@@ -17,30 +17,30 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data['lists']         = Product::get();
+        $data['lists'] = Product::get();
+        return view('admin.products.index', $data);
+    }
+
+
+    public function create(Request $request)
+    {
         $data['categories']    = Category::get();
         $data['subcategories'] = SubCategory::get();
         $data['units']         = Unit::get();
         $data['brands']        = Brand::get();
-
-        return view('admin.products.index', $data);
+        return view('admin.products.create', $data);
     }
 
 
     public function edit($id)
     {
-        $product = Product::find($id);
-        $data['res'] = array(
-            'title'           => $product->title,
-            'sku'             => $product->sku,
-            'category_id'     => $product->category_id,
-            'sub_category_id' => $product->sub_category_id,
-            'sub_category'    => $product->sub_category_id ? $product->subCategoryName->sub_category : '',
-            'brand_id'        => $product->brand_id,
-            'unit_id'         => $product->unit_id,
-            'status'          => $product->status
-        );
-        return response(['status' => 'success', 'data' => $data]);
+        $data['res']  = Product::find($id);
+
+        $data['categories']    = Category::get();
+     //   $data['subcategories'] = SubCategory::get();
+        $data['units']         = Unit::get();
+        $data['brands']        = Brand::get();
+        return view('admin.products.edit', $data);
     }
 
     public function store(ProductValidation $request)
