@@ -3,32 +3,28 @@
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
+        <div class="cover-loader d-none">
+            <div class="loader"></div>
+        </div>
+
         <x-page-head title="Edit Shopkeeper " url="admin/shopkeeper" type="create" />
 
-        <div class="card-body">
+        <div class="card-body h-body">
             <div class="row">
                 <div class="col-lg-12">
                     <form id="shopkeeper" method="POST" action="{{url('admin/shopkeeper/'.$res->_id)}}" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
-                        <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details</h6>
-                                <hr>
-                            </div>
-                        </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>User</label>
-                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple= "multiple" name="user" id="user">
-                                    <option>-Select Here-</option>
-                                        @foreach($users as $show)
-                                    <option  value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
-                                     @endforeach
-                                </select>      
-                            </div> 
+                                <label>Select User</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="users[]" id="user">
+                                    @foreach($users as $list)
+                                    <option value="{{ $list->_id }}" {{(!empty($res->users) && in_array($list->_id,$res->users))?"selected":''}}>{{ ucwords($list->name)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-row">
@@ -82,7 +78,7 @@
                                 <span id="state_msg" class="text-danger"></span>
                             </div>
 
-                            <div class="form-group col-md-3"> 
+                            <div class="form-group col-md-3">
                                 <label>City</label>
                                 <input type="text" name="city" value="{{$res->city}}" class="form-control form-control-sm" placeholder="Enter City">
                                 <span id="city_msg" class="text-danger"></span>

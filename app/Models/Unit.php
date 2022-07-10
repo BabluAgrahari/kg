@@ -9,11 +9,4 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Unit extends BaseModel
 {
     use HasFactory;
-
-    protected $connection = 'mongodb';
-    protected $collection = 'unit';
-
-    protected $fillable = [
-        'unit_name', 'status'
-    ];
 }

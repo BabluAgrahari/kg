@@ -19,8 +19,8 @@
 
         <div class="card-body p-2">
             <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
+                <table class="table table-hover table-striped table-hovered">
+                    <!-- <thead> -->
                         <tr>
                             <th>#</th>
                             <th>Category</th>
@@ -29,12 +29,12 @@
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
-                    </thead>
+                    <!-- </thead> -->
                     <tbody>
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ ucwords($list->category_id)}}</td>
+                            <td>{{ !empty($list->Category['category'])?ucwords($list->Category['category']):'' }}</td>
                             <td>{{ ucwords($list->sub_category)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>{{ $list->dformat($list->created)}}</td>
@@ -79,10 +79,10 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select class="form-control form-control-sm" id="category" name="category">
-                        <option>select</option>  
+                        <option>select</option>
                             @foreach($categories as $show)
                             <option value="{{ $show->_id }}">{{ ucwords($show->category)}}</option>
-                           
+
                             @endforeach
                         </select>
                     </div>

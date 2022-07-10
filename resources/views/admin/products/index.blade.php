@@ -34,8 +34,8 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $list->title }}</td>
-                            <td>{{ ucwords($list->category_id ? $list->categoryName->category : '')}}</td>
-                            <td>{{ ucwords($list->sub_category_id ? $list->subCategoryName->sub_category : '')}}</td>
+                            <td>{{ ucwords($list->category ? $list->categoryName->category : '')}}</td>
+                            <td>{{ ucwords($list->sub_category ? $list->subCategoryName->sub_category : '')}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-info editProduct" _id="{{$list->_id}}"><span class="mdi mdi-pencil-box-outline"></span></a>
@@ -54,7 +54,7 @@
 @push('modal')
 <!-- Modal -->
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
 
         <div class="modal-content">
             <div class="modal-header">
@@ -96,7 +96,7 @@
                     <div class="form-group">
                         <label>Sub Category</label>
                         <select class="form-control form-control-sm" id="sub_category_id" name="sub_category_id">
-                           
+
                         </select>
                     </div>
 
@@ -211,7 +211,7 @@
 
             axios.get(url).then(resp => {
                 response = resp.data.data.res;
-               
+
                 $('#title').val(response.title);
                 $('#sku').val(response.sku);
                 $('#category_id').val(response.category_id);
@@ -270,7 +270,7 @@
     })
 
     $(document).ready(function() {
-        $('#category_id').on('change', function() { 
+        $('#category_id').on('change', function() {
             var cat_id = $(this).val();
             $.ajax({
                 url: 'getSubCategory/' + cat_id,

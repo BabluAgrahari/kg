@@ -5,17 +5,7 @@
 
     <div class="card shadow mb-4">
 
-        <!-- <x-page-head title="Supplier List " url="admin/supplier" type="list" /> -->
-        <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
-                </div>
-                <div class="col-md-6">
-                    <a href="javascript:void(0);" id="addCategory" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
-                </div>
-            </div>
-        </div>
+        <x-modal-head title="Category List" id="addCategory" />
 
         <div class="card-body p-2">
             <div class="table-responsive">

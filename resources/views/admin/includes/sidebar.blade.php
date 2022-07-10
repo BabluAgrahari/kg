@@ -1,86 +1,3 @@
-<!-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">KG-Food</div>
-    </a>
-    <hr class="sidebar-divider my-0">
-    <li class="nav-item active">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Users
-    </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Users</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Active Users:</h6>
-                <a class="collapse-item" href="">Shopkeeper</a>
-                <a class="collapse-item" href="">Supplier</a>
-                <a class="collapse-item" href="">Warehouses</a>
-            </div>
-        </div>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Addons
-    </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesMaster"
-            aria-expanded="true" aria-controls="collapsePagesMaster">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Master</span>
-        </a>
-        <div id="collapsePagesMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Master List:</h6>
-                <a class="collapse-item" href="">State</a>
-                <a class="collapse-item" href="">City</a>
-                <a class="collapse-item" href="">Brand</a>
-                <a class="collapse-item" href="">Unit</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Category</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Category List:</h6>
-                <a class="collapse-item" href="">Category</a>
-                <a class="collapse-item" href="">Sub Category</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Product</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Orders</span></a>
-    </li>
-
-
-</ul> -->
-
-
-
-
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile border-bottom">
@@ -119,28 +36,40 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+      <a class="nav-link" href="{{url('admin/user')}}">
         <i class="mdi mdi-account-multiple menu-icon"></i>
-        <span class="menu-title">Users</span>
-        <i class="menu-arrow"></i>
+        <span class="menu-title">User</span>
       </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/shopkeeper')}}">Shopkeeper</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/supplier') }}">Supplier</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('admin/user')}}">User</a>
-          </li>
-        </ul>
-      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('admin/shopkeeper')}}">
+        <i class="mdi mdi-account-network menu-icon"></i>
+        <span class="menu-title">Shopkeeper</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('admin/supplier')}}">
+        <i class="mdi mdi-nature-people menu-icon"></i>
+        <span class="menu-title">Supplier</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('admin/warehouse')}}">
+        <i class="mdi mdi-store menu-icon"></i>
+        <span class="menu-title">Warehouse</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('admin/product') }}">
+        <i class="mdi mdi-buffer menu-icon"></i>
+        <span class="menu-title">Product</span>
+      </a>
     </li>
 
     <li class="nav-item">
@@ -165,9 +94,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/sub_category') }}">Sub Category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/product') }}">Product</a>
           </li>
         </ul>
       </div>

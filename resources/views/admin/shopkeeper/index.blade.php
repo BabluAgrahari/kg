@@ -13,8 +13,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>User</th>
                             <th>Store Name</th>
+                            <th>Store Email</th>
                             <th>Store Address</th>
                             <th>Verified</th>
                             <th>Status</th>
@@ -26,8 +26,8 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ ucwords($list->user_id)}}</td>
                             <td>{{$list->store_name}}</td>
+                            <td>{{$list->store_email}}</td>
                             <td>{{$list->store_address}}</td>
                             <td>{!! $list->verified == 1? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>' !!}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
@@ -40,6 +40,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $lists->onEachSide(5)->links() }}
             </div>
         </div>
     </div>

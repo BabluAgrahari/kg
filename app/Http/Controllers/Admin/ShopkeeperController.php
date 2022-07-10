@@ -13,27 +13,27 @@ class ShopkeeperController extends Controller
 
     public function index()
     {
-        $data['lists']= Shopkeeper::get();
-        return view('admin.shopkeeper.index',$data);
+        $data['lists'] = Shopkeeper::paginate(5);
+        return view('admin.shopkeeper.index', $data);
     }
 
     public function create(Request $request)
     {
-        $data['users']=User::get();
-        return view('admin.shopkeeper.create',$data);
+        $data['users'] = User::where('status', 1)->get();
+        return view('admin.shopkeeper.create', $data);
     }
 
     public function edit($id)
     {
         $data['res'] = Shopkeeper::find($id);
-        $data['users'] = User::find($id);
+        $data['users'] = User::where('status', 1)->get();
         return view('admin.shopkeeper.edit', $data);
     }
 
     public function store(Request $request)
     {
         $save = new Shopkeeper();
-        $save->users        = $request->user;
+        $save->users           = $request->users;
         $save->store_name      = $request->store_name;
         $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;
@@ -59,7 +59,7 @@ class ShopkeeperController extends Controller
     public function update(Request $request, $id)
     {
         $save = Shopkeeper::find($id);
-        $save->user_id        = $request->user;
+        $save->users           = $request->users;
         $save->store_name      = $request->store_name;
         $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;
