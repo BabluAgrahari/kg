@@ -25,6 +25,7 @@
                             <th>#</th>
                             <th>Unit</th>
                             <th>Status</th>
+                            <th>Created</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                             <td>{{ ++$key }}</td>
                             <td>{{ ucwords($list->unit)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
+                            <td>{{ $list->dformat($list->created)}}</td>
                             <td>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-info editunit" _id="{{$list->_id}}"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger remove"><span class="mdi mdi-delete"></span></a>
