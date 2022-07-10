@@ -27,7 +27,6 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $data['categories']    = Category::get();
-        $data['subcategories'] = SubCategory::get();
         $data['units']         = Unit::get();
         $data['brands']        = Brand::get();
         return view('admin.products.create', $data);
@@ -39,7 +38,6 @@ class ProductController extends Controller
         $data['res']  = Product::find($id);
 
         $data['categories']    = Category::get();
-        //   $data['subcategories'] = SubCategory::get();
         $data['units']         = Unit::get();
         $data['brands']        = Brand::get();
         return view('admin.products.edit', $data);
@@ -76,7 +74,7 @@ class ProductController extends Controller
         $save->status          = (int)$request->status;
 
         if (!$save->save())
-            return response(['status' => 'error', 'msg' => 'Product not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Updated']);
 
         return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
     }
@@ -87,9 +85,9 @@ class ProductController extends Controller
         $res = Product::find($id)->delete();
 
         if (!$res)
-            return response(['status' => 'error', 'msg' => 'Product not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Removed']);
 
-        return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Removed Successfully!']);
     }
 
     public function getSubCategory($id)
@@ -109,16 +107,16 @@ class ProductController extends Controller
 
             if ($res) {
                 if (!empty($request->supplier_id)) {
-                $supplier = Supplier::find($request->supplier_id);
-                $productIds = $supplier->product_id;
+                    $supplier = Supplier::find($request->supplier_id);
+                    $productIds = $supplier->product_id;
 
-                if (empty($productIds))
-                    $productIds = [];
+                    if (empty($productIds))
+                        $productIds = [];
 
-                array_push($productIds, "$product->id");
+                    array_push($productIds, "$product->id");
 
-                $supplier->product_id = array_unique($productIds);
-                $supplier->save();
+                    $supplier->product_id = array_unique($productIds);
+                    $supplier->save();
                 }
                 return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
             }

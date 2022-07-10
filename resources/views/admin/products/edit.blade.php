@@ -17,12 +17,7 @@
                     <form id="product" action="{{url('admin/product/'.$res->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('PUT') }}
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Product Details </h6>
-                                <hr>
-                            </div>
-                        </div>
+
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Title<span class="text-danger">*</span></label>

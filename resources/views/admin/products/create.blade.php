@@ -16,53 +16,50 @@
                 <div class="col-lg-12">
                     <form id="product" action="{{url('admin/product')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Product Details </h6>
-                                <hr>
-                            </div>
-                        </div>
+
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Title<span class="text-danger">*</span></label>
                                 <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Title" required>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label>SKU<span class="text-danger">*</span></label>
                                 <input type="text" name="sku" id="sku" class="form-control form-control-sm" placeholder="Enter SKU" required>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label>Category</label>
                                 <select class="form-control form-control-sm" id="category_id" name="category_id">
                                     <option>select</option>
-                                    @foreach($categories as $show)
-                                    <option value="{{ $show->_id }}">{{ ucwords($show->category)}}</option>
-
+                                    @foreach($categories as $list)
+                                    <option value="{{ $list->_id }}">{{ ucwords($list->category)}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label>Sub Category</label>
                                 <select class="form-control form-control-sm" id="sub_category_id" name="sub_category_id">
-
                                 </select>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label>Unit</label>
                                 <select class="form-control form-control-sm" id="unit_id" name="unit_id">
                                     <option>select</option>
-                                    @foreach($units as $show)
-                                    <option value="{{ $show->_id }}">{{ ucwords($show->unit)}}</option>
-
+                                    @foreach($units as $list)
+                                    <option value="{{ $list->_id }}">{{ ucwords($list->unit)}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label>Brand</label>
                                 <select class="form-control form-control-sm" id="brand_id" name="brand_id">
                                     <option>select</option>
-                                    @foreach($brands as $show)
-                                    <option value="{{ $show->_id }}">{{ ucwords($show->brand)}}</option>
+                                    @foreach($brands as $list)
+                                    <option value="{{ $list->_id }}">{{ ucwords($list->brand)}}</option>
 
                                     @endforeach
                                 </select>
