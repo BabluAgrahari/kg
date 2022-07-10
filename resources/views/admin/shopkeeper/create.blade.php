@@ -18,24 +18,17 @@
                         @csrf
 
                         <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details </h6>
-                                <hr>
-                            </div>
-                        </div> 
 
-                        <div class="form-row">
-                            
                             <div class="form-group col-md-4">
                                     <label>User</label>
-                                    <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple= "multiple" name="user[]" id="user">
+                                    <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple= "multiple" name="users[]" id="user">
                                         <option>-Select Here-</option>
                                         @foreach($users as $show)
                                 <option  value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
-                            
+
                                 @endforeach
                                     </select>
-                                    
+
                                 </div>
                         </div>
 

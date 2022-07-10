@@ -10,10 +10,4 @@ class Category extends BaseModel
 {
     use HasFactory;
 
-    protected $connection = 'mongodb';
-    protected $collection = 'category';
-
-    protected $fillable = [
-        'category_name', 'status'
-    ];
 }

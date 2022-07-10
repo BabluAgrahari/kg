@@ -26,8 +26,8 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $list->title }}</td>
-                            <td>{{ ucwords($list->category_id ? $list->categoryName->category : '')}}</td>
-                            <td>{{ ucwords($list->sub_category_id ? $list->subCategoryName->sub_category : '')}}</td>
+                            <td>{{ ucwords($list->category ? $list->categoryName->category : '')}}</td>
+                            <td>{{ ucwords($list->sub_category ? $list->subCategoryName->sub_category : '')}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td><a href="javascript:void(0);" class="btn btn-sm btn-outline-info assignSupplier" _id="{{$list->_id}}">Assign</a></td>
                             <td>

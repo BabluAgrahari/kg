@@ -9,10 +9,10 @@ use App\Models\Category;
 
 class SubCategoryController extends Controller
 {
- 
+
     public function index(Request $request)
     {
-        $data['lists'] = SubCategory::get();
+        $data['lists'] = SubCategory::with('Category')->get();
         $data['categories'] = Category::get();
         return view('admin.sub_category.index', $data);
 
