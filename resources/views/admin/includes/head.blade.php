@@ -121,4 +121,11 @@
         transform: rotate(360deg);
       }
     }
+
+
+    .c-text-danger {
+      color: red;
+      font-size: 12px;
+      font-weight: 600;
+    }
   </style>

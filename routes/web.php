@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController as User;
 use App\Http\Controllers\Admin\DashboardController as Dashboard;
 use App\Http\Controllers\Admin\ShopkeeperController as Shopkeeper;
 use App\Http\Controllers\Admin\SupplierController as Supplier;
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('dashboard', [Dashboard::class, 'index']);
 
+    Route::resource('user', User::class);
     Route::resource('shopkeeper', Shopkeeper::class);
     Route::resource('supplier', Supplier::class);
     Route::resource('warehouse', Warehouse::class);
