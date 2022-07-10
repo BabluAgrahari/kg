@@ -3,37 +3,37 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Validation\UserValidation;
-use App\Models\User;
+use App\Http\Validation\ProductValidation;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
 
     public function index()
     {
-        $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
+        $data['lists'] = Product::get();
 
-        return view('admin.users.index',$data);
+        return view('admin.products.index',$data);
     }
 
     public function create(Request $request)
     {
-        return view('admin.users.create');
+        return view('admin.products.create');
     }
 
     public function edit($id)
     {
-        $data['res'] = User::find($id);
+        $data['res'] = Product::find($id);
 
-        return view('admin.users.edit', $data);
+        return view('admin.products.edit', $data);
     }
 
-    public function store(UserValidation $request)
+    public function store(ProductValidation $request)
     {
-        $save = new User();
+        $save = new Product();
         $save->parent_id       = Auth::user()->id;
         $save->name            = $request->name;
         $save->email           = $request->email;
@@ -46,7 +46,7 @@ class UserController extends Controller
         $save->status          = (int)$request->status;
 
         if (!empty($request->file('profile_image')))
-        $save->profile_image  = singleFile($request->file('profile_image'), 'users');
+        $save->profile_image  = singleFile($request->file('profile_image'), 'products');
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'User not Created']);
@@ -55,9 +55,9 @@ class UserController extends Controller
     }
 
 
-    public function update(UserValidation $request, $id)
+    public function update(ProductValidation $request, $id)
     {
-        $save = User::find($id);
+        $save = Product::find($id);
         $save->name            = $request->name;
         $save->email           = $request->email;
         $save->mobile          = $request->mobile;
@@ -68,22 +68,22 @@ class UserController extends Controller
         $save->status          = (int)$request->status;
 
         if (!empty($request->hasFile('profile_img')))
-        $save->profile_img   = singleFile($request->file('profile_img'), 'users');
+        $save->profile_img   = singleFile($request->file('profile_img'), 'products');
 
         if (!$save->save())
-            return response(['status' => 'error', 'msg' => 'User not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Created']);
 
-        return response(['status' => 'success', 'msg' => 'User Updated Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
     }
 
 
     public function destroy($id)
     {
-        $res = User::find($id)->delete();
+        $res = Product::find($id)->delete();
 
         if (!$res)
-            return response(['status' => 'error', 'msg' => 'User not Created']);
+            return response(['status' => 'error', 'msg' => 'Product not Created']);
 
-        return response(['status' => 'success', 'msg' => 'User Updated Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
     }
 }

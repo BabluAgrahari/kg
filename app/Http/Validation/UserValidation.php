@@ -25,6 +25,7 @@ class UserValidation extends FormRequest
             'city'             => 'required',
             'pincode'          => 'required|digits:6',
             'address'          => 'required',
+            'profile_image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
         ];
     }
 
@@ -37,15 +38,17 @@ class UserValidation extends FormRequest
             'email.required'       => 'Email field is Required.',
             'email.email'          => 'Please enter valid Email.',
             'email.max'            => 'Email should not be maximum 30 Character.',
-            'mobile.required'      => 'Phone No is Required.',
-            'mobile.numeric'       => 'Phone No should be Numeric.',
-            'mobile.not_in'        => 'Please enter valid Phone No.',
-            'mobile.digits'        => 'Phone No. Must be 10 digits.',
+            'mobile.required'      => 'Mobile No is Required.',
+            'mobile.numeric'       => 'Mobile No should be Numeric.',
+            'mobile.not_in'        => 'Please enter valid Mobile No.',
+            'mobile.digits'        => 'Mobile No. Must be 10 digits.',
             'password.max'         => 'Password should not be maximum 16 Character.',
             'password.min'         => 'Password should not be minimum 6 Character.',
             'password.same'        => 'Password should be same as confirm Password.',
             'confirm_password.max' => 'Confirm Password should not be maximum 16 Character.',
             'confirm_password.min' => 'Confirm Password should not be minimum 6 Character.',
+            'profile_image.mimes'  =>'Profile Pic must be a file of type: png, jpg, jpeg.',
+            'profile_image.max'    =>'Profile Pic should not be more than 2 MB.'
 
         ];
     }

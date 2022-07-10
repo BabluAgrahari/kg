@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UnitController as Unit;
 use App\Http\Controllers\Admin\BrandController as Brand;
 use App\Http\Controllers\Admin\CategoryController as Category;
 use App\Http\Controllers\Admin\SubCategoryController as SubCategory;
+use App\Http\Controllers\Admin\ProductController as Product;
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('brand', Brand::class);
     Route::resource('category', Category::class);
     Route::resource('sub_category',SubCategory::class);
+    Route::resource('product',Product::class);
 
 
     Route::get('/shopkeeper-details', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetails'])->name('shopkeeper-details');

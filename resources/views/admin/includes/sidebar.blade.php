@@ -166,6 +166,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/sub_category') }}">Sub Category</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/product') }}">Product</a>
+          </li>
         </ul>
       </div>
     </li>
