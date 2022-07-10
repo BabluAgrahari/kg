@@ -139,7 +139,7 @@
     })
 
     $(document).ready(function() {
-        $('#category_id').on('change', function() {
+        $('#category_id').on('click', function() {
             var cat_id = $(this).val();
             $.ajax({
                 url: "{{ url('admin/getSubCategory') }}/" + cat_id,
