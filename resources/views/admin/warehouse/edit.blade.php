@@ -3,7 +3,11 @@
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
-        <x-page-head title="Edit warehouse " url="admin/warehouse/edit" type="edit" />
+    <div class="cover-loader d-none">
+            <div class="loader"></div>
+        </div>
+
+        <x-page-head title="Edit warehouse " url="admin/warehouse" type="create" />
 
         <div class="card-body">
             <div class="row">
@@ -21,21 +25,12 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Name&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="name" value="{{$res->name}}" placeholder="Enter Name">
-                                <span id="name_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Email&nbsp;<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control form-control-sm" name="email" value="{{$res->email}}" placeholder="Enter Email">
-                                <span id="email_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" value="{{$res->mobile}}" placeholder="Enter Mobile No">
-                                <span id="mobile_msg" class="text-danger"></span>
+                                <label>Select User</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="users[]" id="user">
+                                    @foreach($users as $list)
+                                    <option value="{{ $list->_id }}" {{(!empty($res->users) && in_array($list->_id,$res->users))?"selected":''}}>{{ ucwords($list->name)}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -133,14 +128,14 @@
                             <div class="form-group">
                                 <label>Store Cover Photo</label>
                                 <input type="file" name="store_cover_photo" class="form-control form-control-sm" accept="image/*,.pdf">
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-12 text-center">
-                                <input type="submit" value="Update" class="btn btn-success">
-                                <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 text-center">
+                                    <input type="submit" value="Update" class="btn btn-success">
+                                    <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
+                                </div>
+                            </div>
 
                     </form>
                 </div>

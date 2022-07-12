@@ -19,7 +19,10 @@ class ProductController extends Controller
     public function index()
     {
         $data['lists'] = Product::get();
-        $data['suppliers'] = Supplier::Where('userType', 'supplier')->get();
+        $data['suppliers'] = Supplier::where('status',1)->get();
+        $data['products'] = Product::where('status',1)->get();
+
+       
         return view('admin.products.index', $data);
     }
 

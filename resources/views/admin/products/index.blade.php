@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
 
         <x-page-head title="Product List" url="admin/product/create" type="list" />
-
+        <a href="javascript:void(0);" class="btn btn-sm btn-outline-info assignSupplier">Supplier</a>
         <div class="card-body p-2">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $list->title }}</td>
-                            <td>{{ ucwords($list->category ? $list->categoryName->category : '')}}</td>
+                            <td>{{ ucwords($list->category ? $list->categoryName->category : '')}}</td>-
                             <td>{{ ucwords($list->sub_category ? $list->subCategoryName->sub_category : '')}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td><a href="javascript:void(0);" class="btn btn-sm btn-outline-info assignSupplier" _id="{{$list->_id}}">Assign</a></td>
@@ -71,8 +71,19 @@
                         <label>Supplier<span class="text-danger">*</span></label>
                         <select class="form-control" id="supplier_id" name="supplier_id"  required>
                             <option disabled>select</option>
-                            @foreach($suppliers as $show)
-                            <option value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
+                            @foreach($suppliers as $list)
+                            <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="supplierMsg"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Products name<span class="text-danger">*</span></label>
+                        <select class="form-control" id="products_id" name="products_id"  required>
+                            <option disabled>select</option>
+                            @foreach($products as $list)
+                            <option value="{{ $list->_id }}">{{ ucwords($list->title)}}</option>
                             @endforeach
                         </select>
                         <span class="text-danger" id="supplierMsg"></span>

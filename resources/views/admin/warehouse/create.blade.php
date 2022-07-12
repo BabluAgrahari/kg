@@ -21,27 +21,15 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Name&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm " name="name" placeholder="Enter Name">
-                                <span id="name_msg" class="text-danger"></span>
-                            </div>
+                                <label>User</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="users[]" id="user">
+                                    <option>-Select Here-</option>
+                                    @foreach($users as $show)
+                                    <option value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
 
-                            <div class="form-group col-md-4">
-                                <label>Email&nbsp;<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control form-control-sm" name="email" placeholder="Enter Email">
-                                <span id="email_msg" class="text-danger"></span>
-                            </div>
+                                    @endforeach
+                                </select>
 
-                            <div class="form-group col-md-4">
-                                <label>Mobile No&nbsp;<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" name="mobile" placeholder="Enter Mobile No">
-                                <span id="mobile_msg" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Password&nbsp;<span class="text-danger">*</span></label>
-                                <input type="password" class="form-control form-control-sm" name="password" placeholder="Enter Password">
-                                <span id="password_msg" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-row">
@@ -60,8 +48,8 @@
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="">Business Email</label>
-                                <input type="email" class="form-control form-control-sm" name="business_email" placeholder="Business email">
+                                <label for="">Store Email</label>
+                                <input type="email" class="form-control form-control-sm" name="store_email" placeholder="Store email">
                             </div>
 
                             <div class="form-group col-md-3">
@@ -142,8 +130,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
-                              <input type="submit" value="Submit" class="btn btn-success">
-                              <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
+                                <input type="submit" value="Submit" class="btn btn-success">
+                                <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
                         </div>
                     </form>
