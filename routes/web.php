@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/shopkeeper-details-add', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetailsAdd'])->name('shopkeeper-details-add');
     Route::get('/shopkeeper-details-edit/{id?}', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetailsEdit'])->name('shopkeeper-details-edit');
     Route::post('/shopkeeper-details-save', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetailsSave'])->name('shopkeeper-details-save');
+
     Route::get('/shopkeeper-details-delete/{id?}', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetailsDelete'])->name('shopkeeper-details-delete');
 
 
