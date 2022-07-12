@@ -14,11 +14,13 @@ class PageHead extends Component
     public $title;
     public $url;
     public $type;
-    public function __construct($title,$url,$type)
+    public $arr;
+    public function __construct($title,$url,$type,$arr=array())
     {
         $this->title = $title;
         $this->url = $url;
         $this->type = $type;
+        $this->arr = $arr;
     }
 
     /**
