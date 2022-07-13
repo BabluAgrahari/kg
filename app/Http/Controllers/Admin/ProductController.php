@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Unit;
 use App\Models\Brand;
 use App\Models\Supplier;
+use App\Models\SupplierProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,10 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data['lists'] = Product::with(['Category','SubCategory','Brand','Unit'])->get();
+        $data['lists'] = Product::with(['Category', 'SubCategory', 'Brand', 'Unit'])->get();
 
-        $data['suppliers'] = Supplier::where('status',1)->get();
-        $data['products'] = Product::where('status',1)->get();
+        $data['suppliers'] = Supplier::where('status', 1)->get();
+        $data['products'] = Product::where('status', 1)->get();
 
 
         return view('admin.products.index', $data);
@@ -100,31 +101,17 @@ class ProductController extends Controller
         return response()->json($subCat);
     }
 
-    public function assignSupplier(Request $request)
+    public function assignProduct(Request $request)
     {
         try {
-            $id = $request->productId;
+            $data = new SupplierProduct();
+            $data->supplier_id = $request->supplier_id;
+            $data->product_id  = $request->products;
 
-            $product = Product::find($id);
-            $product->supplier_id = $request->supplier_id;
-            $res = $product->save();
+            if (!$data->save())
+                return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
 
-            if ($res) {
-                if (!empty($request->supplier_id)) {
-                    $supplier = Supplier::find($request->supplier_id);
-                    $productIds = $supplier->product_id;
-
-                    if (empty($productIds))
-                        $productIds = [];
-
-                    array_push($productIds, "$product->id");
-
-                    $supplier->product_id = array_unique($productIds);
-                    $supplier->save();
-                }
-                return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
-            }
-            return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
+            return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

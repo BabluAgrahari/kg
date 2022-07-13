@@ -80,7 +80,7 @@
 
                     <div class="form-group">
                         <label>Select Products<span class="text-danger">*</span></label>
-                        <select class="form-control form-control-sm" multiple="multiple" id="products" name="products[]">
+                        <select class="form-control form-control-sm" multiple="multiple" id="product_ids" name="product_ids[]">
                             <option value="">Select</option>
                             @foreach($lists as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->title)}}</option>
@@ -102,7 +102,7 @@
     $(document).ready(function() {
 
         $('#assingProduct').click(function() {
-            $("#products").select2({});
+            $("#product_ids").select2({});
             $('.select2-container').css("width", "100%");
             $('#assingProductModal').modal('show');
         });

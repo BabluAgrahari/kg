@@ -137,24 +137,20 @@
     $(document).ready(function() {
         $('#category_id').on('click', function() {
             var cat_id = $(this).val();
-            $.ajax({
-                url: "{{ url('admin/getSubCategory') }}/" + cat_id,
-                type: "GET",
-                data: '',
-                dataType: "json",
-                success: function(data) {
-
-                    if (data) {
+            var url = "{{ url('admin/getSubCategory') }}/" + cat_id;
+            axios.get(url)
+            .then(function(response) {   
+                res = response.data;
+                if (res) {
                         $('#sub_category_id').empty();
                         $('#sub_category_id').append('<option value="" hidden>Select</option>');
-                        data.forEach(function(e) {
+                        res.forEach(function(e) {
                             $('select[name="sub_category_id"]').append('<option value="' + e._id + '" >' + e.sub_category[0].toUpperCase() + e.sub_category.slice(1) + '</option>');
                         });
                     } else {
                         $('#sub_category_id').empty();
                     }
 
-                }
             });
         });
     });
