@@ -7,8 +7,7 @@
         <div class="cover-loader d-none">
             <div class="loader"></div>
         </div>
-        @php $arr = ['dfd'=>'fdf','dd'=>'dfdfdf'];@endphp
-        <x-page-head title="Add Product " url="admin/product" type="create" :arr=$arr />
+        <x-page-head title="Add Product " url="admin/product" type="create" />
 
         <div class="card-body h-body">
             <div class="row">
@@ -31,9 +30,9 @@
                             <div class="form-group col-md-4">
                                 <label>Category</label>
                                 <select class="form-control form-control-sm" id="category_id" name="category_id">
-                                    <option>select</option>
+                                    <option value="">Select</option>
                                     @foreach($categories as $list)
-                                    <option value="{{ $list->_id }}">{{ ucwords($list->category)}}</option>
+                                    <option value="{{ $list->_id }}">{{ ucwords($list->name)}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -46,7 +45,7 @@
 
                             <div class="form-group col-md-4">
                                 <label>Unit</label>
-                                <select class="form-control form-control-sm" id="unit_id" name="unit_id">
+                                <select class="form-control form-control-sm" id="e3" name="unit_id">
                                     <option>select</option>
                                     @foreach($units as $a)
                                     <option value="{{ $list->_id }}">{{ ucwords($list->unit)}}</option>

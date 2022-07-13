@@ -15,7 +15,6 @@ class SubCategoryController extends Controller
         $data['lists'] = SubCategory::with('Category')->get();
         $data['categories'] = Category::get();
         return view('admin.sub_category.index', $data);
-
     }
 
 
@@ -30,21 +29,21 @@ class SubCategoryController extends Controller
     {
 
         $save            = new SubCategory;
-        $save->category_id      = $request->category;
-        $save->sub_category      = $request->sub_category;
+        $save->category_id = $request->category;
+        $save->name      = $request->name;
         $save->status    = (int)$request->status;
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'SubCategory not Saved!']);
 
         return response(['status' => 'success', 'msg' => 'SubCategory Saved Successfully!']);
-
     }
 
     public function update(Request $request, $id)
     {
         $save            = SubCategory::find($id);
-        $save->sub_category      = $request->sub_category;
+        $save->name      = $request->name;
+        $save->category_id = $request->category;
         $save->status    = (int)$request->status;
 
         if (!$save->save())

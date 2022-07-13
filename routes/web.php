@@ -81,5 +81,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/state-status/{id?}', [App\Http\Controllers\Admin\StateController::class, 'stateStatus'])->name('state-status');
 
     Route::get('getSubCategory/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'getSubCategory'])->name('getSubCategory');
-    Route::post('assignSupplier/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'assignSupplier'])->name('assignSupplier');
+    // Route::post('assignProduct/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'assignProduct'])->name('assignProduct');
 });

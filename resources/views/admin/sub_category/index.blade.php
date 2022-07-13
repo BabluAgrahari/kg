@@ -9,7 +9,7 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">SubCategory List</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Sub Category List</h6>
                 </div>
                 <div class="col-md-6">
                     <a href="javascript:void(0);" id="addSubCategory" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
@@ -21,21 +21,21 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-hovered">
                     <!-- <thead> -->
-                        <tr>
-                            <th>#</th>
-                            <th>Category</th>
-                            <th>SubCategory</th>
-                            <th>Status</th>
-                            <th>Created</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
                     <!-- </thead> -->
                     <tbody>
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ !empty($list->Category['category'])?ucwords($list->Category['category']):'' }}</td>
-                            <td>{{ ucwords($list->sub_category)}}</td>
+                            <td>{{ ucwords($list->name)}}</td>
+                            <td>{{ !empty($list->Category['name'])?ucwords($list->Category['name']):'' }}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>{{ $list->dformat($list->created)}}</td>
                             <td>
@@ -79,17 +79,16 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select class="form-control form-control-sm" id="category" name="category">
-                        <option>select</option>
-                            @foreach($categories as $show)
-                            <option value="{{ $show->_id }}">{{ ucwords($show->category)}}</option>
-
+                            <option>Select</option>
+                            @foreach($categories as $list)
+                            <option value="{{ $list->_id }}">{{ ucwords($list->name)}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Sub Category Name</label>
-                        <input type="text" name="sub_category" id="sub_category_name" class="form-control form-control-sm" placeholder="Enter Sub Category Name">
+                        <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Enter Sub Category Name">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
@@ -180,7 +179,8 @@
 
             axios.get(url).then(resp => {
                 response = resp.data.data;
-                $('#sub_category_name').val(response.sub_category);
+                $('#name').val(response.name);
+                $('#category').val(response.category_id);
                 $('#status').val(response.status);
 
                 $('form#sub_category').attr('action', '{{url("admin/sub_category")}}/' + id);

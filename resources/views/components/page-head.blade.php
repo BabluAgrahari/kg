@@ -12,8 +12,14 @@
             @case('create')
             <a href="{{ url($url) }}" style="float: right;" class="btn btn-outline-warning btn-sm"><span class="mdi mdi-backburger"></span>&nbsp;Back</a>
             @break
-
             @endswitch
+
+            @if(!empty($addons))
+            @if(!empty($addons['assign']))
+            <a href="javascript:void(0);" style="float: right;" id="{{$addons['assign']['selector']}}" class="btn btn-outline-info btn-sm mr-1"><span class="mdi mdi-rotate-right-variant"></span>&nbsp;{{ucwords($addons['assign']['name'])}}</a>
+            @endif
+
+            @endif
         </div>
     </div>
 </div>

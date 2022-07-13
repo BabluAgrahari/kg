@@ -24,22 +24,13 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{ asset('assets')}}/images/favicon.png" />
 
-  
+
 
   <style>
     .badge {
       font-size: 12px !important;
       padding: 0.165rem 0.3125rem !important;
     }
-
-    /* .spinner-border {
-      position: absolute;
-      top: 50%;
-      left: 45%;
-      z-index: 9999;
-    } */
-
-
 
     /*loader css*/
     .cover-loader {
@@ -132,4 +123,6 @@
       font-size: 12px;
       font-weight: 600;
     }
+
+
   </style>

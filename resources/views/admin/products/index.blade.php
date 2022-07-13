@@ -5,8 +5,9 @@
 
     <div class="card shadow mb-4">
 
-        <x-page-head title="Product List" url="admin/product/create" type="list" />
-        <a href="javascript:void(0);" class="btn btn-sm btn-outline-info assignSupplier">Supplier</a>
+        @php $addons = ['assign'=>['selector'=>'assingProduct','name'=>'Assing']];@endphp
+        <x-page-head title="Product List" url="admin/product/create" type="list" :addons=$addons />
+
         <div class="card-body p-2">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -15,9 +16,10 @@
                             <th>#</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>SubCategory</th>
+                            <th>Sub Category</th>
+                            <th>Unit</th>
+                            <th>Brand</th>
                             <th>Status</th>
-                            <th>Assign To</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -26,10 +28,11 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $list->title }}</td>
-                            <td>{{ ucwords($list->category ? $list->categoryName->category : '')}}</td>-
-                            <td>{{ ucwords($list->sub_category ? $list->subCategoryName->sub_category : '')}}</td>
+                            <td>{{ !empty($list->Category->name) ? ucwords($list->Category->name): ''}}</td>
+                            <td>{{ !empty($list->SubCategory->name) ? ucwords($list->SubCategory->name): ''}}</td>
+                            <td>{{ !empty($list->Unit->unit) ? ucwords($list->Unit->unit): ''}}</td>
+                            <td>{{ !empty($list->Brand->brand) ? ucwords($list->Brand->brand): ''}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
-                            <td><a href="javascript:void(0);" class="btn btn-sm btn-outline-info assignSupplier" _id="{{$list->_id}}">Assign</a></td>
                             <td>
                                 <a href="{{ url('admin/product/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a onclick="return confirm('Are you sure to detele this?')" href="" class="btn btn-sm btn-outline-danger"><span class="mdi mdi-delete"></span></a>
@@ -45,32 +48,29 @@
 
 @push('modal')
 <!-- Modal -->
-<div class="modal fade" id="AssignSupplierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="assingProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalHeading">Assign Supplier</h5>
+                <h5 class="modal-title" id="modalHeading">Assign Product</h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="cover-loader d-none">
                 <div class="loader"></div>
             </div>
 
-
             <div class="modal-body h-body">
-                <form id="assignSupplier" action="{{url('admin/assignSupplier')}}" method="post">
+                <form id="assignProduct" action="{{url('admin/assignProduct')}}" method="post">
                     @csrf
-                    <div id="put"></div>
-                    <input type="hidden" id="productId" name="productId">
+
                     <div class="form-group">
                         <label>Supplier<span class="text-danger">*</span></label>
-                        <select class="form-control" id="supplier_id" name="supplier_id"  required>
-                            <option disabled>select</option>
+                        <select class="form-control form-control-sm" id="supplier_id" name="supplier_id">
+                            <option value="">Select</option>
                             @foreach($suppliers as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
                             @endforeach
@@ -79,10 +79,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Products name<span class="text-danger">*</span></label>
-                        <select class="form-control" id="products_id" name="products_id"  required>
-                            <option disabled>select</option>
-                            @foreach($products as $list)
+                        <label>Select Products<span class="text-danger">*</span></label>
+                        <select class="form-control form-control-sm" multiple="multiple" id="products" name="products[]">
+                            <option value="">Select</option>
+                            @foreach($lists as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->title)}}</option>
                             @endforeach
                         </select>
@@ -101,15 +101,14 @@
 <script>
     $(document).ready(function() {
 
-        $('.assignSupplier').click(function() {
-            $('form#assignSupplier')[0].reset();
-            let id = $(this).attr('_id');
-            $('#productId').val(id);
-            $('#AssignSupplierModal').modal('show');
+        $('#assingProduct').click(function() {
+            $("#products").select2({});
+            $('.select2-container').css("width", "100%");
+            $('#assingProductModal').modal('show');
         });
 
-        $('form#assignSupplier').submit(function(e) {
-            
+        $('form#assignProduct').submit(function(e) {
+
             e.preventDefault();
             formData = new FormData(this);
             let url = $(this).attr('action');

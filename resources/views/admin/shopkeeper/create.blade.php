@@ -20,16 +20,16 @@
                         <div class="form-row">
 
                             <div class="form-group col-md-4">
-                                    <label>User</label>
-                                    <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple= "multiple" name="users[]" id="user">
-                                        <option>-Select Here-</option>
-                                        @foreach($users as $show)
-                                <option  value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
+                                <label>User</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="users[]" id="user">
+                                    <option>-Select Here-</option>
+                                    @foreach($users as $show)
+                                    <option value="{{ $show->_id }}">{{ ucwords($show->name)}}</option>
 
-                                @endforeach
-                                    </select>
+                                    @endforeach
+                                </select>
 
-                                </div>
+                            </div>
                         </div>
 
                         <div class="form-row">

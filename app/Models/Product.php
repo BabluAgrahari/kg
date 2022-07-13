@@ -9,20 +9,24 @@ class Product extends BaseModel
 {
     use HasFactory;
 
-    public function categoryName(){
+    public function Category()
+    {
 
-        return $this->belongsTo('App\Models\Category','category_id');
+        return $this->belongsTo('App\Models\Category', 'category_id', '_id');
     }
-    public function subCategoryName(){
+    public function SubCategory()
+    {
 
-        return $this->belongsTo('App\Models\SubCategory','sub_category_id');
+        return $this->belongsTo('App\Models\SubCategory', 'sub_category_id');
     }
-    public function brandName(){
+    public function Brand()
+    {
 
-        return $this->belongsTo('App\Models\Brand','brand_id');
+        return $this->belongsTo('App\Models\Brand', 'brand_id');
     }
-    public function unitName(){
+    public function Unit()
+    {
 
-        return $this->belongsTo('App\Models\Unit','unit_id');
+        return $this->belongsTo('App\Models\Unit', 'unit_id');
     }
 }

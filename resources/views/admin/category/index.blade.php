@@ -23,7 +23,7 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ ucwords($list->category)}}</td>
+                            <td>{{ ucwords($list->name)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Avtive</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>{{ $list->dformat($list->created)}}</td>
                             <td>
@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                         <label>Category Name</label>
-                        <input type="text" name="category" id="category_name" class="form-control form-control-sm" placeholder="Enter Category Name">
+                        <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Enter Category Name">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
