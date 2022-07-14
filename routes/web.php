@@ -50,8 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('unit', Unit::class);
     Route::resource('brand', Brand::class);
     Route::resource('category', Category::class);
-    Route::resource('sub_category',SubCategory::class);
-    Route::resource('product',Product::class);
+    Route::resource('sub_category', SubCategory::class);
+    Route::resource('product', Product::class);
 
 
     Route::get('/shopkeeper-details', [App\Http\Controllers\Admin\ShopkeeperController::class, 'shopkeeperDetails'])->name('shopkeeper-details');
@@ -82,4 +82,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('getSubCategory/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'getSubCategory'])->name('getSubCategory');
     Route::post('assignProduct/{id?}', [App\Http\Controllers\Admin\ProductController::class, 'assignProduct'])->name('assignProduct');
+});
+
+
+Route::group(['prefix' => 'supplier', 'middleware' => 'supplier'], function () {
+
+    // Route::get('dashboard', [Dashboard::class, 'index']);
+    Route::get('dashboard', function () {
+        echo "dfdf";
+    });
 });

@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
 
-        return view('admin.users.index',$data);
+        return view('admin.users.index', $data);
     }
 
     public function create(Request $request)
@@ -38,6 +38,7 @@ class UserController extends Controller
         $save->name            = $request->name;
         $save->email           = $request->email;
         $save->mobile          = $request->mobile;
+        $save->role            = $request->role;
         $save->password        = Hash::make($request->password);
         $save->state           = $request->state;
         $save->city            = $request->city;
@@ -46,7 +47,7 @@ class UserController extends Controller
         $save->status          = (int)$request->status;
 
         if (!empty($request->file('profile_image')))
-        $save->profile_image  = singleFile($request->file('profile_image'), 'users');
+            $save->profile_image  = singleFile($request->file('profile_image'), 'users');
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'User not Created']);
@@ -60,6 +61,7 @@ class UserController extends Controller
         $save = User::find($id);
         $save->name            = $request->name;
         $save->email           = $request->email;
+        $save->role            = $request->role;
         $save->mobile          = $request->mobile;
         $save->state           = $request->state;
         $save->city            = $request->city;
@@ -67,8 +69,8 @@ class UserController extends Controller
         $save->address         = $request->address;
         $save->status          = (int)$request->status;
 
-        if (!empty($request->hasFile('profile_img')))
-        $save->profile_img   = singleFile($request->file('profile_img'), 'users');
+        if (!empty($request->file('profile_img')))
+            $save->profile_img   = singleFile($request->file('profile_img'), 'users');
 
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'User not Created']);
