@@ -51,18 +51,16 @@
 
 
                             <div class="form-group col-md-4">
-                                <label>Status</label>
-                                <select class="form-select form-control form-control-sm" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Deactive</option>
+                                <label>Role</label>
+                                <select class="form-control form-control-sm" name="role" id="role">
+                                    <option value="">Select</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="supplier">Supplier</option>
+                                    <option value="shopkeeper">Shopkeeper</option>
+                                    <option value="warehouse">Warehouse</option>
                                 </select>
+                                <span id="role_msg" class="c-text-danger"></span>
                             </div>
-
-                            <!-- <div class="form-group col-md-4">
-                                <label>Country</label>
-                                <input type="text" class="form-control form-control-sm" name="country" placeholder="Enter Country.">
-                                <span id="country_msg" class="c-text-danger"></span>
-                            </div> -->
 
                             <div class="form-group col-md-4">
                                 <label>State</label>
@@ -91,6 +89,14 @@
                                 <label>Address</label>
                                 <textarea class="form-control form-control-sm" name="address" rows="2" placeholder="Enter Address"></textarea>
                                 <span id="address_msg" class="c-text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Status</label>
+                                <select class="form-select form-control form-control-sm" name="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Deactive</option>
+                                </select>
                             </div>
 
                         </div>

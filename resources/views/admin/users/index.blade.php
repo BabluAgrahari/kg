@@ -12,9 +12,11 @@
                 <table class="table table-striped">
                     <tr>
                         <th>#</th>
+                        <th>Profile</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
+                        <th>Role</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -22,9 +24,13 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
+                            <td class="py-1">
+                                <img src="{{asset('users/'.$list->profile_img)}}" alt="image">
+                            </td>
                             <td>{{$list->name}}</td>
                             <td>{{$list->email}}</td>
                             <td>{{$list->mobile}}</td>
+                            <td>{{ucwords($list->role)}}</td>
                             <td>{!!$list->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">In Active</span>'!!}</td>
                             <td>
                                 <a href="{{ url('admin/user/'.$list->_id.'/edit') }}" class="btn btn-sm btn-outline-info"><span class="mdi mdi-pencil-box-outline"></span></a>

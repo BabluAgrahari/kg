@@ -5,7 +5,11 @@
 
         <x-page-head title="Edit User " url="admin/user" type="create" />
 
-        <div class="card-body">
+        <div class="cover-loader d-none">
+            <div class="loader"></div>
+        </div>
+
+        <div class="card-body h-body">
             <div class="row">
                 <div class="col-lg-12">
                     <form id="user" method="POST" action="{{url('admin/user/'.$res->_id)}}" enctype="multipart/form-data">
@@ -46,6 +50,18 @@
                                 </select>
                             </div>
 
+                            <div class="form-group col-md-4">
+                                <label>Role</label>
+                                <select class="form-control form-control-sm" name="role" id="role">
+                                    <option value="">Select</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="supplier">Supplier</option>
+                                    <option value="shopkeeper">Shopkeeper</option>
+                                    <option value="warehouse">Warehouse</option>
+                                </select>
+                                <span id="role_msg" class="c-text-danger"></span>
+                            </div>
+
                             <!-- <div class="form-group col-md-4">
                                 <label>Country</label>
                                 <input type="text" class="form-control form-control-sm" name="country" value="{{$res->country}}" placeholder="Enter Country.">
@@ -77,7 +93,7 @@
 
                             <div class="form-group col-md-4">
                                 <label>Address</label>
-                                <textarea class="form-control form-control-sm" name="address"  rows="2" placeholder="Address"><?= $res->address ?></textarea>
+                                <textarea class="form-control form-control-sm" name="address" rows="2" placeholder="Address"><?= $res->address ?></textarea>
                                 <span id="address_msg" class="text-danger"></span>
                             </div>
                         </div>

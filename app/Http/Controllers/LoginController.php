@@ -24,10 +24,14 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+
+            if (Auth::user()->role == 'supplier')
+                return redirect()->intended('supplier/dashboard');
+            else if (Auth::user()->role == 'admin')
+                return redirect()->intended('admin/dashboard');
         }
 
-        return redirect("/")->with('error','Login Credentails are Invalid');
+        return redirect("/")->with('error', 'Login Credentails are Invalid');
     }
 
 

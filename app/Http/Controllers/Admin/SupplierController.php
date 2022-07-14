@@ -13,14 +13,14 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $data['lists'] = Supplier ::paginate(5);
-        return view('admin.supplier.index',$data);
+        $data['lists'] = Supplier::desc()->paginate(5);
+        return view('admin.supplier.index', $data);
     }
 
     public function create(Request $request)
     {
         $data['users'] = User::where('status', 1)->get();
-        return view('admin.supplier.create',$data);
+        return view('admin.supplier.create', $data);
     }
 
     public function edit($id)
@@ -35,7 +35,7 @@ class SupplierController extends Controller
         $save = new Supplier();
         $save->users           = $request->users;
         $save->store_name      = $request->store_name;
-        $save->store_email  = $request->store_email;
+        $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;
         $save->country         = $request->country;
@@ -61,7 +61,7 @@ class SupplierController extends Controller
         $save = Supplier::find($id);
         $save->users           = $request->users;
         $save->store_name      = $request->store_name;
-        $save->store_email  = $request->store_email;
+        $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;
         $save->country         = $request->country;
