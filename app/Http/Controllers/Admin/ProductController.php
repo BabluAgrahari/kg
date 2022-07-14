@@ -104,14 +104,15 @@ class ProductController extends Controller
     public function assignProduct(Request $request)
     {
         try {
-            $data = new SupplierProduct();
-            $data->supplier_id = $request->supplier_id;
-            $data->product_id  = $request->products;
+            foreach ($request->product_ids as $p_id) {
+                $data = new SupplierProduct();
+                $data->supplier_id = $request->supplier_id;
+                $data->product_id  = $p_id;
 
-            if (!$data->save())
-                return response(['status' => 'error', 'msg' => 'Supplier not Assigned!']);
-
-            return response(['status' => 'success', 'msg' => 'Supplier Assigned successfully!']);
+                if (!$data->save())
+                    return response(['status' => 'error', 'msg' => 'Product not Assigned!']);
+            }
+            return response(['status' => 'success', 'msg' => 'Product Assigned successfully!']);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
