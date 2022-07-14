@@ -19,13 +19,14 @@ class UserValidation extends FormRequest
         return [
             'name'             => 'required|string|max:30',
             'email'            => 'required|email|max:30',
+            'role'             => 'required',
             'mobile'           => 'required|numeric|not_in:0|digits:10',
             'password'         => 'nullable|max:16|min:6',
             'state'            => 'required',
             'city'             => 'required',
             'pincode'          => 'required|digits:6',
             'address'          => 'required',
-            'profile_image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'profile_image'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
         ];
     }
 
