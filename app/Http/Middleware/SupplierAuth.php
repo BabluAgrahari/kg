@@ -18,15 +18,15 @@ class SupplierAuth
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (Auth::check()) {
 
-            if (Auth::user()->isSuppler)
+            if (Auth::user()->role == 'supplier') {
                 return $next($request);
-            else if (Auth::user()->isAdmin)
+            } else if (Auth::user()->role == 'admin') {
                 return redirect('admin/dashboard');
-            else
+            } else {
                 return Redirect('/');
+            }
         }
     }
 }

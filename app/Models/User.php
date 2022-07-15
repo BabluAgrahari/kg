@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
@@ -43,14 +44,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin()
+    public function isAdminR()
     {
-        return $this->role == 'admin';
+        return $this->role === 'admin';
+        // return true;
     }
 
-    public function isSupplier()
+    public function isSupplier1()
     {
-        return $this->role == 'supplier';
+        return $this->role === 'supplier';
     }
 
     public function isShopkeeper()
