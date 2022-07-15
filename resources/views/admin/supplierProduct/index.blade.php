@@ -31,8 +31,9 @@
                         <th>#</th>
                         <th>Product Name</th>
                         <th>Supplier Name</th>
-                        <th>Price</th>
                         <th>Assign Date</th>
+                        <th>Price</th>
+                        <th>Date Range</th>
                         <th>Action</th>
                     </tr>
                     <!-- </thead> -->
@@ -42,8 +43,9 @@
                             <td>{{ ++$key }}</td>
                             <td>{{!empty($plist->Product->title) ? ucwords($plist->Product->title): ''}}</td>
                             <td>{{!empty($plist->Supplier->store_name) ? ucwords($plist->Supplier->store_name): ''}}</td>
-                            <td>{{ !empty($plist->price) ? $plist->price : '' }}</td>
                             <td>{{ $plist->dformat($plist->created)}}</td>
+                            <td>{{ !empty($plist->price) ? $plist->price : '' }}</td>
+                            <td>{{ !empty($plist->start_date) ? $plist->start_date:'' }} To {{ !empty($plist->end_date) ? $plist->end_date: ''}}</td>
                             <td>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-info editSupplierProduct" _id="{{$plist->_id}}"><span class="mdi mdi-pencil-box-outline"></span></a>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger remove"><span class="mdi mdi-delete"></span></a>
@@ -86,7 +88,17 @@
                         <label>Price</label>
                         <input type="text" name="price" id="price" class="form-control form-control-sm" placeholder="Enter Price" required>
                     </div>
-
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="date" id="start_date" class="form-control form-control-sm" name="start_date">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="date" id="end_date" class="form-control form-control-sm" name="end_date">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-success" id="submitproduct">Submit</button>
                     </div>
@@ -104,7 +116,7 @@
     })
 
     $(document).ready(function() {
-        
+
         $('form#supplier_product').submit(function(e) {
             e.preventDefault();
             formData = new FormData(this);
@@ -167,7 +179,8 @@
                 response = resp.data.data;
 
                 $('#price').val(response.price);
-                $('#date').val(response.date);
+                $('#start_date').val(response.start_date);
+                $('#end_date').val(response.end_date);
 
                 $('form#supplier_product').attr('action', '{{url("admin/supplier_product")}}/' + id);
                 $('#put').html('<input type="hidden" name="_method" value="PUT">');
