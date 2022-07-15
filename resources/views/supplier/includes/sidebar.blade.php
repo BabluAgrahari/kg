@@ -7,7 +7,7 @@
           <!--change to offline or busy as needed-->
         </div>
         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
-          <span class="font-weight-semibold mb-1 mt-2 text-center">Antonio Olson</span>
+          <span class="font-weight-semibold mb-1 mt-2 text-center">{{ Auth::user()->name}}</span>
           <!-- <span class="text-secondary icon-sm text-center">$3499.00</span> -->
         </div>
       </a>
@@ -31,13 +31,13 @@
             <span class="nav-item-head">Template Pages</span>
           </li> -->
     <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/dashboard')}}">
+      <a class="nav-link" href="{{url('supplier/dashboard')}}">
         <i class="mdi mdi-compass-outline menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="{{url('admin/user')}}">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">User</span>
@@ -49,18 +49,12 @@
         <i class="mdi mdi-account-network menu-icon"></i>
         <span class="menu-title">Shopkeeper</span>
       </a>
-    </li>
+    </li> -->
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="{{url('admin/supplier')}}">
         <i class="mdi mdi-nature-people menu-icon"></i>
         <span class="menu-title">Supplier</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/supplier_product')}}">
-        <i class="mdi mdi-nature-people menu-icon"></i>
-        <span class="menu-title">Supplier Product</span>
       </a>
     </li>
 
@@ -69,16 +63,16 @@
         <i class="mdi mdi-store menu-icon"></i>
         <span class="menu-title">Warehouse</span>
       </a>
-    </li>
+    </li> -->
 
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('admin/product') }}">
+      <a class="nav-link" href="{{ url('supplier/s-product') }}">
         <i class="mdi mdi-buffer menu-icon"></i>
         <span class="menu-title">Product</span>
       </a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">Addons</span>
@@ -103,15 +97,7 @@
           </li>
         </ul>
       </div>
-    </li>
-
-
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('admin/po') }}">
-        <i class="mdi mdi-buffer menu-icon"></i>
-        <span class="menu-title">Purchase Order</span>
-      </a>
-    </li>
+    </li> -->
 
     <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">
