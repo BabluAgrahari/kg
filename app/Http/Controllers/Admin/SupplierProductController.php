@@ -27,14 +27,14 @@ class SupplierProductController extends Controller
     public function update(Request $request, $id)
     {
         $save            = SupplierProduct::find($id);
-        $save->name      = $request->name;
-        $save->category_id = $request->category;
+        $save->price     = $request->name;
+        $save->date      = $request->category;
         $save->status    = (int)$request->status;
 
         if (!$save->save())
-            return response(['status' => 'error', 'msg' => 'SubCategory not Updated!']);
+            return response(['status' => 'error', 'msg' => 'Product not Updated!']);
 
-        return response(['status' => 'success', 'msg' => 'SubCategory Updated Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Updated Successfully!']);
     }
 
     public function destrory($id)
@@ -42,9 +42,9 @@ class SupplierProductController extends Controller
         $res = SupplierProduct::find($id)->delete();
 
         if (!$res)
-            return response(['status' => 'error', 'msg' => 'SubCategory not Removed!']);
+            return response(['status' => 'error', 'msg' => 'Product not Removed!']);
 
-        return response(['status' => 'success', 'msg' => 'SubCategory Removed Successfully!']);
+        return response(['status' => 'success', 'msg' => 'Product Removed Successfully!']);
     }
 }
 
