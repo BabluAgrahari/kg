@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Filters\ProductFilter;
+use Illuminate\Database\Eloquent\Builder;
 
 class SupplierProduct extends BaseModel
 {
@@ -18,5 +20,10 @@ class SupplierProduct extends BaseModel
     {
 
         return $this->belongsTo('App\Models\Supplier', 'supplier_id');
+    }
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new ProductFilter($request))->filter($builder);
     }
 }

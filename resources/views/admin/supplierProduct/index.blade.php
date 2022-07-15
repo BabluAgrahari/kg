@@ -13,10 +13,10 @@
                 </div>
                 <div class="col-md-2">
                     <label>Supplier</label>
-                    <select class="form-control form-control-sm" name="supplier_id">
+                    <select class="form-control form-control-sm" name="supplier_id" id="selectSupplier">
                         <option value="">Select</option>
                         @foreach($suppliers as $list)
-                        <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
+                        <option value="{{ $list->_id }}" {{ (app('request')->input('_id')==$list->_id)?"selected":"" }}>{{ ucwords($list->store_name)}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -98,6 +98,12 @@
 @endpush
 @push('script')
 <script>
+    $('#selectSupplier').on('load change', function() {
+        var id = $(this).val();
+        window.location.href = window.location.origin + '/admin/supplier_product' + '? _id=' + id;
+    })
+
+
     $(document).ready(function() {
 
         //for edit

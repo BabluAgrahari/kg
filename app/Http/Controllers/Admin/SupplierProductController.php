@@ -12,7 +12,7 @@ class SupplierProductController extends Controller
 
     public function index(Request $request)
     {
-        $data['productLists'] = SupplierProduct::with(['Product', 'Supplier'])->get();
+        $data['productLists'] = SupplierProduct::filter($request)->with(['Product', 'Supplier'])->get();
         $data['suppliers'] = Supplier::get();
 
         return view('admin.supplierProduct.index', $data);
