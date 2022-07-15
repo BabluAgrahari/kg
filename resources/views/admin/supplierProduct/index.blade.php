@@ -104,6 +104,7 @@
     })
 
     $(document).ready(function() {
+        
         $('form#supplier_product').submit(function(e) {
             e.preventDefault();
             formData = new FormData(this);
