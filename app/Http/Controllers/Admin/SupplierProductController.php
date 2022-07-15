@@ -28,7 +28,7 @@ class SupplierProductController extends Controller
     {
         $save            = SupplierProduct::find($id);
         $save->price     = $request->name;
-        $save->date      = $request->category;
+        $save->date      = $request->date;
         $save->status    = (int)$request->status;
 
         if (!$save->save())
