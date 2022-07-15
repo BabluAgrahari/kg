@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController as User;
 use App\Http\Controllers\Admin\DashboardController as Dashboard;
 use App\Http\Controllers\Admin\ShopkeeperController as Shopkeeper;
 use App\Http\Controllers\Admin\SupplierController as Supplier;
+use App\Http\Controllers\Admin\SupplierProductController as SupplierProduct;
 use App\Http\Controllers\Admin\WarehouseController as Warehouse;
 use App\Http\Controllers\Admin\CityController as City;
 use App\Http\Controllers\Admin\UnitController as Unit;
@@ -44,6 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user', User::class);
     Route::resource('shopkeeper', Shopkeeper::class);
     Route::resource('supplier', Supplier::class);
+    Route::resource('supplier_product', SupplierProduct::class);
     Route::resource('warehouse', Warehouse::class);
 
     Route::resource('city', City::class);
