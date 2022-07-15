@@ -12,8 +12,16 @@ class SupplierProductController extends Controller
 
     public function index(Request $request)
     {
-      
-        $data['productLists'] = SupplierProduct::filter($request)->with(['Product', 'Supplier'])->get();
+        $supplier_id = '';
+
+        if (!empty($request->get('supplier_id'))) {
+            $supplier_id = $request->get('supplier_id');
+            $data['productLists'] = SupplierProduct::where('supplier_id', $supplier_id)->with(['Product', 'Supplier'])->get();
+        } else {
+            $data['productLists'] = [];
+        }
+
+        //  $data['productLists'] = SupplierProduct::filter($request)->with(['Product', 'Supplier'])->get();
         $data['suppliers'] = Supplier::get();
 
         return view('admin.supplierProduct.index', $data);
@@ -50,4 +58,3 @@ class SupplierProductController extends Controller
         return response(['status' => 'success', 'msg' => 'Product Removed Successfully!']);
     }
 }
-
