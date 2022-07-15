@@ -11,6 +11,7 @@ use App\Models\Unit;
 use App\Models\Brand;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,16 +105,17 @@ class ProductController extends Controller
     public function assignProduct(Request $request)
     {
         try {
-            foreach ($request->product_ids as $p_id) {
-                $data = new SupplierProduct();
-                $data->supplier_id = $request->supplier_id;
-                $data->product_id  = $p_id;
+            foreach ($request->products as $id) {
+                $save = new SupplierProduct();
+                $save->supplier_id = $request->supplier_id;
+                $save->product_id  = $id;
 
-                if (!$data->save())
+                if (!$save->save())
                     return response(['status' => 'error', 'msg' => 'Product not Assigned!']);
             }
+
             return response(['status' => 'success', 'msg' => 'Product Assigned successfully!']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }

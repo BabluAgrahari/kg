@@ -5,8 +5,7 @@
 
     <div class="card shadow mb-4">
 
-        @php $addons = ['assign'=>['selector'=>'assingProduct','name'=>'Assing']];@endphp
-        <x-page-head title="Product List" url="admin/po/create" type="list" :addons=$addons />
+        <x-page-head title="Product List" url="admin/po/create" type="list" />
 
         <div class="card-body p-2">
             <div class="table-responsive">
@@ -46,57 +45,6 @@
     </div>
 </div>
 
-@push('modal')
-<!-- Modal -->
-<div class="modal fade" id="assingProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHeading">Assign Product</h5>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="cover-loader d-none">
-                <div class="loader"></div>
-            </div>
-
-            <div class="modal-body h-body">
-                <form id="assignProduct" action="{{url('admin/assignProduct')}}" method="post">
-                    @csrf
-
-                    <div class="form-group">
-                        <label>Supplier<span class="text-danger">*</span></label>
-                        <select class="form-control form-control-sm" id="supplier_id" name="supplier_id">
-                            <option value="">Select</option>
-                            @foreach($suppliers as $list)
-                            <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="supplierMsg"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Select Products<span class="text-danger">*</span></label>
-                        <select class="form-control form-control-sm" multiple="multiple" id="products" name="products[]">
-                            <option value="">Select</option>
-                            @foreach($lists as $list)
-                            <option value="{{ $list->_id }}">{{ ucwords($list->title)}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="supplierMsg"></span>
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success" id="Assign">Assign</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endpush
 @push('script')
 <script>
     $(document).ready(function() {
