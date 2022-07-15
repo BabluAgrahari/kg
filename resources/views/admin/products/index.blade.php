@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label>Supplier<span class="text-danger">*</span></label>
-                        <select class="form-control form-control-sm" id="supplier_id" name="supplier_id">
+                        <select class="form-control form-control-sm" id="supplier_id" name="supplier_id" required>
                             <option value="">Select</option>
                             @foreach($suppliers as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
@@ -80,13 +80,13 @@
 
                     <div class="form-group">
                         <label>Select Products<span class="text-danger">*</span></label>
-                        <select class="form-control form-control-sm" multiple="multiple" id="products" name="products[]">
+                        <select class="form-control form-control-sm" multiple="multiple" id="product_ids" name="product_ids[]" required>
                             <option value="">Select</option>
                             @foreach($lists as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->title)}}</option>
                             @endforeach
                         </select>
-                        <span class="text-danger" id="supplierMsg"></span>
+                        <span class="text-danger" id="productMsg"></span>
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-success" id="Assign">Assign</button>
@@ -102,7 +102,7 @@
     $(document).ready(function() {
 
         $('#assingProduct').click(function() {
-            $("#products").select2({});
+            $("#product_ids").select2({});
             $('.select2-container').css("width", "100%");
             $('#assingProductModal').modal('show');
         });
@@ -140,7 +140,7 @@
 
                     //for reset all field
                     if (res.status == 'success') {
-                        $('form#assignSupplier')[0].reset();
+                        $('form#assignProduct')[0].reset();
                         setTimeout(() => {
                             location.reload();
                         }, 1000);
