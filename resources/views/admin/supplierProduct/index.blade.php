@@ -104,6 +104,56 @@
     })
 
     $(document).ready(function() {
+        $('form#supplier_product').submit(function(e) {
+            e.preventDefault();
+            formData = new FormData(this);
+            let url = $(this).attr('action');
+            $('.cover-loader').removeClass('d-none');
+            $('.h-body').addClass('d-none');
+            axios.post(url, formData)
+                .then(function(response) {
+                    res = response.data;
+
+                    $('.cover-loader').addClass('d-none');
+                    $('.h-body').removeClass('d-none');
+
+                    /*Start Validation Error Message*/
+                    $('span.custom-text-danger').html('');
+                    $.each(res.validation, (index, msg) => {
+                        $(`#${index}_msg`).html(`${msg}`);
+                    })
+                    /*Start Validation Error Message*/
+
+                    /*Start Status message*/
+                    if (res.status == 'success' || res.status == 'error') {
+                        Swal.fire(
+                            `${res.status}!`,
+                            res.msg,
+                            `${res.status}`,
+                        )
+                    }
+                    /*End Status message*/
+
+                    //for reset all field
+                    if (res.status == 'success') {
+                        $('form#supplier_product')[0].reset();
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    }
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                    error = error ?? '';
+                    Swal.fire(
+                        `Error!`,
+                        error,
+                        `error`,
+                    );
+                });
+        });
+
 
         //for edit
         $('.editSupplierProduct').click(function() {
@@ -114,12 +164,12 @@
 
             axios.get(url).then(resp => {
                 response = resp.data.data;
-                $('#price').val(response.name);
-                $('#date').val(response.category_id);
+
+                $('#price').val(response.price);
+                $('#date').val(response.date);
 
                 $('form#supplier_product').attr('action', '{{url("admin/supplier_product")}}/' + id);
                 $('#put').html('<input type="hidden" name="_method" value="PUT">');
-                $('#submitproduct').html('Update');
                 $('#editSupplierProductModal').modal('show');
 
             }).catch(function(error) {

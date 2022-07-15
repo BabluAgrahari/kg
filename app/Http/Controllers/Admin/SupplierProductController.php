@@ -38,8 +38,8 @@ class SupplierProductController extends Controller
     public function update(Request $request, $id)
     {
         $save            = SupplierProduct::find($id);
-        $save->price     = $request->name;
-        $save->date      = $request->date;
+        $save->price     = $request->price;
+        $save->date      = (int)$request->date;
         $save->status    = (int)$request->status;
 
         if (!$save->save())
