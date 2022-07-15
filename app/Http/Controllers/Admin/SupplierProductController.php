@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SupplierProduct;
+use App\Models\Supplier;
 
 class SupplierProductController extends Controller
 {
@@ -12,6 +13,7 @@ class SupplierProductController extends Controller
     public function index(Request $request)
     {
         $data['productLists'] = SupplierProduct::with(['Product', 'Supplier'])->get();
+        $data['suppliers'] = Supplier::get();
 
         return view('admin.supplierProduct.index', $data);
     }

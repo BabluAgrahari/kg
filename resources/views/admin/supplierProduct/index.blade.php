@@ -8,12 +8,18 @@
         <!-- <x-page-head title="Supplier List " url="admin/supplier" type="list" /> -->
         <div class="card-header py-3">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <h6 class="m-0 font-weight-bold text-primary">Supplier Products</h6>
                 </div>
-                <!-- <div class="col-md-6">
-                    <a href="javascript:void(0);" id="addSubCategory" class="float-right btn btn-outline-success btn-sm"><span class="mdi mdi-plus"></span>&nbsp;Add</a>
-                </div> -->
+                <div class="col-md-2">
+                    <label>Supplier</label>
+                    <select class="form-control form-control-sm" name="supplier_id">
+                        <option value="">Select</option>
+                        @foreach($suppliers as $list)
+                        <option value="{{ $list->_id }}">{{ ucwords($list->store_name)}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -93,7 +99,7 @@
 @push('script')
 <script>
     $(document).ready(function() {
-       
+
         //for edit
         $('.editSupplierProduct').click(function() {
 
@@ -105,7 +111,7 @@
                 response = resp.data.data;
                 $('#price').val(response.name);
                 $('#date').val(response.category_id);
-    
+
                 $('form#supplier_product').attr('action', '{{url("admin/supplier_product")}}/' + id);
                 $('#put').html('<input type="hidden" name="_method" value="PUT">');
                 $('#submitproduct').html('Update');
