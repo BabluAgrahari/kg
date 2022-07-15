@@ -57,6 +57,12 @@
         <span class="menu-title">Supplier</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('admin/supplier_product')}}">
+        <i class="mdi mdi-nature-people menu-icon"></i>
+        <span class="menu-title">Supplier Product</span>
+      </a>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{{url('admin/warehouse')}}">

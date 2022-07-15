@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\ProductController as Product;
 
 //for suppler
 use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
-use App\Http\Controllers\Supplier\ProductController as SupplierProduct;
+use App\Http\Controllers\Admin\SupplierProductController as SupplierProduct;
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Artisan;
@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user', User::class);
     Route::resource('shopkeeper', Shopkeeper::class);
     Route::resource('supplier', Supplier::class);
+    Route::resource('supplier_product', SupplierProduct::class);
     Route::resource('warehouse', Warehouse::class);
 
     Route::resource('city', City::class);
