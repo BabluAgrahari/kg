@@ -19,49 +19,55 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Title<span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Title" required>
+                                <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Title" >
+                                <span id="title_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>SKU<span class="text-danger">*</span></label>
-                                <input type="text" name="sku" id="sku" class="form-control form-control-sm" placeholder="Enter SKU" required>
+                                <input type="text" name="sku" id="sku" class="form-control form-control-sm" placeholder="Enter SKU" >
+                                <span id="sku_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Category</label>
-                                <select class="form-control form-control-sm" id="category_id" name="category_id">
+                                <select class="form-control form-control-sm" id="category_id" name="category">
                                     <option value="">Select</option>
                                     @foreach($categories as $list)
                                     <option value="{{ $list->_id }}">{{ ucwords($list->name)}}</option>
                                     @endforeach
                                 </select>
+                                <span id="category_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Sub Category</label>
-                                <select class="form-control form-control-sm" id="sub_category_id" name="sub_category_id">
+                                <select class="form-control form-control-sm" id="sub_category_id" name="sub_category">
                                 </select>
+                                <span id="sub_category_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Unit</label>
-                                <select class="form-control form-control-sm" id="e3" name="unit_id">
-                                    <option>select</option>
+                                <select class="form-control form-control-sm" id="e3" name="unit">
+                                    <option value="">select</option>
                                     @foreach($units as $a)
                                     <option value="{{ $list->_id }}">{{ ucwords($list->unit)}}</option>
                                     @endforeach
                                 </select>
+                                <span id="unit_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Brand</label>
-                                <select class="form-control form-control-sm" id="brand_id" name="brand_id">
-                                    <option>select</option>
+                                <select class="form-control form-control-sm" id="brand_id" name="brand">
+                                    <option value="">select</option>
                                     @foreach($brands as $list)
                                     <option value="{{ $list->_id }}">{{ ucwords($list->brand)}}</option>
 
                                     @endforeach
                                 </select>
+                                <span id="brand_msg" class="c-text-danger"></span>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Status</label>
@@ -69,6 +75,7 @@
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
+                                <span id="status_msg" class="c-text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">

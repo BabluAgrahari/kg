@@ -30,7 +30,7 @@ class ShopkeeperController extends Controller
         return view('admin.shopkeeper.edit', $data);
     }
 
-    public function store(Request $request)
+    public function store(Shopkeepervalidation $request)
     {
         $save = new Shopkeeper();
         $save->users           = $request->users;

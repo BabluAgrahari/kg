@@ -53,10 +53,10 @@ class ProductController extends Controller
         $save->user_id         = Auth::user()->id;
         $save->title           = $request->title;
         $save->sku             = $request->sku;
-        $save->category_id     = $request->category_id;
-        $save->sub_category_id = $request->sub_category_id;
-        $save->brand_id        = $request->brand_id;
-        $save->unit_id         = $request->unit_id;
+        $save->category_id     = $request->category;
+        $save->sub_category_id = $request->sub_category;
+        $save->brand_id        = $request->brand;
+        $save->unit_id         = $request->unit;
         $save->status          = (int)$request->status;
 
         if (!$save->save())

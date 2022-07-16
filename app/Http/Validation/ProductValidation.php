@@ -17,12 +17,17 @@ class ProductValidation extends FormRequest
     public function rules()
     {
         return [
-            'title'                     => 'required|string',
-            'sku'                       => 'required',
-            
+            'title'                  => 'required|string',
+            'sku'                    => 'required',
+            'category'               => 'required',
+            'sub_category'           => 'required',
+            'brand'                  => 'required',
+            'unit'                   => 'required',
+            'status'                 => 'required',
+
         ];
     }
-   
+
     protected function failedValidation(Validator $validator)
     {
         // throw new HttpResponseException();
