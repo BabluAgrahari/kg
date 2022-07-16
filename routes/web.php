@@ -12,10 +12,12 @@ use App\Http\Controllers\Admin\CategoryController as Category;
 use App\Http\Controllers\Admin\PoController as Po;
 use App\Http\Controllers\Admin\SubCategoryController as SubCategory;
 use App\Http\Controllers\Admin\ProductController as Product;
+use App\Http\Controllers\Admin\SupplierProductController as SupplierProduct;
 
 //for suppler
 use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
-use App\Http\Controllers\Admin\SupplierProductController as SupplierProduct;
+use App\Http\Controllers\Supplier\ProductController as SProduct;
+
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Artisan;
@@ -41,7 +43,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Login::class, 'index']);
 Route::post('login', [Login::class, 'login']);
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('logout', [Login::class, 'logout']);
 
@@ -50,7 +52,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user', User::class);
     Route::resource('shopkeeper', Shopkeeper::class);
     Route::resource('supplier', Supplier::class);
-    Route::resource('supplier_product', SupplierProduct::class);
+    Route::resource('supplier-product', SupplierProduct::class);
+    Route::get('get-supplier-product/{id}', [SupplierProduct::class, 'getSupplierProduct']);
     Route::resource('warehouse', Warehouse::class);
 
     Route::resource('city', City::class);
@@ -60,6 +63,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('sub_category', SubCategory::class);
     Route::resource('product', Product::class);
 
+    Route::post('assign-product', [Product::class, 'assignProduct']);
+
     Route::resource('po', Po::class);
 });
 
@@ -68,7 +73,7 @@ Route::group(['prefix' => 'supplier', 'middleware' => 'supplier'], function () {
 
     // Route::get('dashboard', [Dashboard::class, 'index']);
     Route::resource('dashboard', SupplierDashboard::class);
-    Route::resource('s-product', SupplierProduct::class);
+    Route::resource('s-product', SProduct::class);
 });
 
 

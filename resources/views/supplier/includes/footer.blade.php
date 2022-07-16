@@ -11,11 +11,6 @@
      </div>
  </footer> -->
  <!-- partial -->
- </div>
- <!-- main-panel ends -->
- </div>
- <!-- page-body-wrapper ends -->
- </div>
 
 
  <script src="{{ asset('assets') }}/vendors/js/vendor.bundle.base.js"></script>

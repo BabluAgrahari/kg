@@ -6,22 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SupplierProduct;
 use App\Models\Supplier;
+use App\Models\Unit;
 
 class SupplierProductController extends Controller
 {
 
     public function index(Request $request)
     {
-        $supplier_id = '';
+        if (!empty($request->supplier_id))
+            $data['lists'] = SupplierProduct::with(['Product', 'Supplier'])->where('supplier_id', $request->supplier_id)->get();
 
-        if (!empty($request->get('supplier_id'))) {
-            $supplier_id = $request->get('supplier_id');
-            $data['productLists'] = SupplierProduct::where('supplier_id', $supplier_id)->with(['Product', 'Supplier'])->get();
-        } else {
-            $data['productLists'] = [];
-        }
-
-        //  $data['productLists'] = SupplierProduct::filter($request)->with(['Product', 'Supplier'])->get();
         $data['suppliers'] = Supplier::get();
 
         return view('admin.supplierProduct.index', $data);
@@ -37,10 +31,13 @@ class SupplierProductController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $dateRange = explode('-', $request->daterange);
+
         $save             = SupplierProduct::find($id);
         $save->price      = $request->price;
-        $save->start_date = $request->start_date;
-        $save->end_date   = $request->end_date;
+        $save->start_date = $dateRange[0];
+        $save->end_date   = $dateRange[1];
         $save->status     = (int)$request->status;
 
         if (!$save->save())
@@ -57,5 +54,34 @@ class SupplierProductController extends Controller
             return response(['status' => 'error', 'msg' => 'Product not Removed!']);
 
         return response(['status' => 'success', 'msg' => 'Product Removed Successfully!']);
+    }
+
+    public function unit1($id = false)
+    {
+        if (!$id)
+            return false;
+        $unit =   Unit::find($id);
+        return !empty($unit->unit) ? $unit->unit : '';
+    }
+
+    public function getSupplierProduct($id)
+    {
+        $records = SupplierProduct::with(['Product'])->where('supplier_id', $id)->get();
+
+        $record = [];
+        foreach ($records as $rec) {
+
+            $record[] = [
+                '_id' => $rec->_id,
+                'price' => $rec->price,
+                'start_date' => $rec->start_date,
+                'end_date' => $rec->end_date,
+                'supplier_id' => $rec->supplier_id,
+                'created' => $rec->created,
+                'product' => $rec->product,
+                'unit' => $this->unit1($rec->product->unit_id)
+            ];
+        }
+        return response(['status' => 'success', 'data' => $record]);
     }
 }

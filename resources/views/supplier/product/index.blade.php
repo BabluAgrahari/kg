@@ -1,4 +1,4 @@
-@extends('admin.layouts.layouts')
+@extends('supplier.layouts.layouts')
 @section('content')
 
 <div class="content-wrapper pb-0">
@@ -84,14 +84,19 @@
                     @csrf
                     <div id="put"></div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Price</label>
-                            <input type="text" name="price" id="price" class="form-control form-control-sm" placeholder="Enter Price" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Date Range</label>
-                            <input type="text" id="daterange" class="form-control form-control-sm daterange" name="daterange">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" name="price" id="price" class="form-control form-control-sm" placeholder="Enter Price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="date" id="start_date" class="form-control form-control-sm" name="start_date">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="date" id="end_date" class="form-control form-control-sm" name="end_date">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group text-center">
@@ -109,7 +114,7 @@
 
         //for supplier select filter
         $('#selectSupplier').on('load change', function() {
-            window.location.href = window.location.origin + '/admin/supplier-product' + '? supplier_id=' + $(this).val();
+            window.location.href = window.location.origin + '/supplier/s-product' + '? supplier_id=' + $(this).val();
         })
 
         $('form#contractProduct').submit(function(e) {

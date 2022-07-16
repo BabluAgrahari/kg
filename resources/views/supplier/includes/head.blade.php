@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Plus Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/flag-icon-css/css/flag-icon.min.css">
-  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/flag-icon-css/css/flag-icon.min.css"/>
+  <link rel="stylesheet" href="{{ asset('assets')}}/vendors/css/vendor.bundle.base.css"/>
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{asset('assets')}}/vendors/select2/select2.min.css" />
@@ -126,3 +126,4 @@
 
 
   </style>
+</head>

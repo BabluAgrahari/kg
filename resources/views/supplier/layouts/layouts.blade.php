@@ -2,7 +2,6 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_sidebar.html -->
 
         @include('supplier/includes/sidebar')
 
@@ -42,3 +41,9 @@
 
 
                 @include('supplier/includes/footer')
+
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>

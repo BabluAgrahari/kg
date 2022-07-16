@@ -15,7 +15,7 @@ class PageHead extends Component
     public $url;
     public $type;
     public $addons;
-    public function __construct($title,$url,$type,$addons=array())
+    public function __construct($title,$url=false,$type=false,$addons=array())
     {
         $this->title = $title;
         $this->url = $url;

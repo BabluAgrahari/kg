@@ -4,6 +4,7 @@
             <h6 class="m-0 font-weight-bold text-primary">{{ ucwords($title) }}</h6>
         </div>
         <div class="col-md-6">
+            @if(!empty($type))
             @switch($type)
 
             @case('list')
@@ -13,6 +14,7 @@
             <a href="{{ url($url) }}" style="float: right;" class="btn btn-outline-warning btn-sm"><span class="mdi mdi-backburger"></span>&nbsp;Back</a>
             @break
             @endswitch
+            @endif
 
             @if(!empty($addons))
             @if(!empty($addons['assign']))

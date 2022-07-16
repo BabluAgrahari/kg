@@ -8,7 +8,7 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
- 
+
     public function index(Request $request)
     {
         $data['lists'] = Brand::get();
@@ -23,7 +23,7 @@ class BrandController extends Controller
     }
     public function store(Request $request)
     {
-       
+
         $save            = new Brand;
         $save->brand      = $request->brand;
         $save->status    = (int)$request->status;

@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 class ShopkeeperController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $data['lists'] = Shopkeeper::paginate(5);
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Shopkeeper::paginate($perPage);
+
         return view('admin.shopkeeper.index', $data);
     }
 

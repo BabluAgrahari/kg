@@ -31,7 +31,7 @@
             <span class="nav-item-head">Template Pages</span>
           </li> -->
     <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/dashboard')}}">
+      <a class="nav-link " href="{{url('admin/dashboard')}}">
         <i class="mdi mdi-compass-outline menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
@@ -52,14 +52,14 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/supplier')}}">
+      <a class="nav-link {{ (url()->full() == url('admin/supplier'))? 'active':'inactive'}}" href="{{url('admin/supplier')}}">
         <i class="mdi mdi-nature-people menu-icon"></i>
         <span class="menu-title">Supplier</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/supplier_product')}}">
-        <i class="mdi mdi-nature-people menu-icon"></i>
+      <a class="nav-link {{ (url()->full() == url('admin/supplier-product'))? 'active':'inactive'}}" href="{{url('admin/supplier-product')}}">
+        <i class="mdi mdi-playstation menu-icon"></i>
         <span class="menu-title">Supplier Product</span>
       </a>
     </li>
@@ -80,7 +80,7 @@
 
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <i class="mdi mdi-arrow-expand-all menu-icon"></i>
         <span class="menu-title">Addons</span>
         <i class="menu-arrow"></i>
       </a>
@@ -108,7 +108,7 @@
 
     <li class="nav-item">
       <a class="nav-link" href="{{ url('admin/po') }}">
-        <i class="mdi mdi-buffer menu-icon"></i>
+        <i class="mdi mdi-pokeball menu-icon"></i>
         <span class="menu-title">Purchase Order</span>
       </a>
     </li>

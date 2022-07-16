@@ -14,6 +14,9 @@
                         <tr>
                             <th>#</th>
                             <th>PO No</th>
+                            <th>Supplier Name</th>
+                            <th>No of Item</th>
+                            <th>Created</th>
                             <!-- <th>Category</th>
                             <th>Sub Category</th>
                             <th>Unit</th>
@@ -26,7 +29,10 @@
                         @foreach($lists as $key => $list)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $list->title }}</td>
+                            <td>{{ $list->po_no }}</td>
+                            <td>{{ $list->Supplier->store_name }}</td>
+                            <td>{{ count($list->item_details) }}</td>
+                            <td>{{ $list->dformat($list->created)}}</td>
                             <!-- <td>{{ !empty($list->Category->name) ? ucwords($list->Category->name): ''}}</td>
                             <td>{{ !empty($list->SubCategory->name) ? ucwords($list->SubCategory->name): ''}}</td>
                             <td>{{ !empty($list->Unit->unit) ? ucwords($list->Unit->unit): ''}}</td>

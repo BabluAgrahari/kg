@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model;
 use App\Filters\ProductFilter;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -13,14 +12,16 @@ class SupplierProduct extends BaseModel
 
     public function Product()
     {
-
-        return $this->belongsTo('App\Models\Product', 'product_id');
+        return $this->hasOne('App\Models\Product', '_id', 'product_id');
     }
+
     public function Supplier()
     {
-
-        return $this->belongsTo('App\Models\Supplier', 'supplier_id');
+        return $this->hasOne('App\Models\Supplier', '_id', 'supplier_id')->select('store_name');
     }
+
+
+
 
     public function scopeFilter(Builder $builder, $request)
     {

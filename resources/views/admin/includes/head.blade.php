@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{{asset('assets')}}/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />-
   <link rel="stylesheet" href="{{ asset('assets')}}/vendors/jquery-bar-rating/css-stars.css" />
   <link rel="stylesheet" href="{{ asset('assets')}}/vendors/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <!-- endinject -->
@@ -123,6 +124,4 @@
       font-size: 12px;
       font-weight: 600;
     }
-
-
   </style>

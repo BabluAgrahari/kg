@@ -26,9 +26,8 @@ class Product extends BaseModel
     }
     public function Unit()
     {
-
-        return $this->belongsTo('App\Models\Unit', 'unit_id');
+        return $this->belongsTo('App\Models\Unit');
     }
 
- 
+
 }

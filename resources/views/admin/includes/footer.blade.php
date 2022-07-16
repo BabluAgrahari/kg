@@ -29,12 +29,14 @@
  <script src="{{ asset('assets') }}/vendors/flot/jquery.flot.categories.js"></script>
  <script src="{{ asset('assets') }}/vendors/flot/jquery.flot.fillbetween.js"></script>
  <script src="{{ asset('assets') }}/vendors/flot/jquery.flot.stack.js"></script>
+
+
  <!-- End plugin js for this page -->
  <script src="{{ asset('assets')}}/js/select2.js"></script>
  <!-- inject:js -->
  <script src="{{ asset('assets') }}/js/off-canvas.js"></script>
  <script src="{{ asset('assets') }}/js/hoverable-collapse.js"></script>
- <script src="{{ asset('assets') }}/js/misc.js"></script>
+ <!-- <script src="{{ asset('assets') }}/js/misc.js"></script> -->
  <script src="{{ asset('assets') }}/js/settings.js"></script>
  <script src="{{ asset('assets') }}/js/todolist.js"></script>
  <!-- endinject -->
@@ -47,6 +49,19 @@
  <!-- axios library-->
  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+ <script>
+     $(function() {
+         $('.daterange').daterangepicker({
+             opens: 'left'
+         }, function(start, end, label) {
+             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+         });
+     });
+ </script>
  @stack('modal')
  @stack('script')
  </body>
