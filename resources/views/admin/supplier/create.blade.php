@@ -45,21 +45,25 @@
                             <div class="form-group col-md-3">
                                 <label for="">Store Name</label>
                                 <input type="text" class="form-control form-control-sm" name="store_name" placeholder="Store name">
+                                <span id="store_name" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Store Email</label>
                                 <input type="email" class="form-control form-control-sm" name="store_email" placeholder="Store email">
+                                <span id="store_email" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">GST No</label>
                                 <input type="text" class="form-control form-control-sm" name="gst_no" placeholder="GST no.">
+                                <span id="gst_no" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Mobile</label>
                                 <input type="text" class="form-control form-control-sm" name="store_mobile" placeholder="Mobile">
+                                <span id="store_mobile" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -69,6 +73,7 @@
                                     <option value="India">India</option>
                                     <option value="USA">USA</option>
                                 </select>
+                                <span id="country" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -79,6 +84,7 @@
                                     <option value="Goa">Goa</option>
                                     <option value="UP">UP</option>
                                 </select>
+                                <span id="state" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -89,16 +95,19 @@
                                     <option value="Noida">Noida</option>
                                     <option value="Agra">Agra</option>
                                 </select>
+                                <span id="city" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Pincode</label>
                                 <input type="text" class="form-control form-control-sm" name="pincode" placeholder="pincode">
+                                <span id="pincode" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="">Store Address</label>
                                 <textarea class="form-control form-control-sm" name="store_address" rows="4" cols="50" placeholder="Store Address"></textarea>
+                                <span id="store_address" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
