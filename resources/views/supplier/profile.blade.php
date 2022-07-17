@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('admin/profile/'.$user->_id)}}" enctype="multipart/form-data">
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile/'.$user->_id)}}" enctype="multipart/form-data">
                                     {{ method_field('PUT') }}
                                     @csrf
                                     <div class="form-group row">
@@ -138,7 +138,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="passwordreset">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('admin/profile/changepassword'.$user->_id)}}" enctype="multipart/form-data">
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile/changepassword'.$user->_id)}}" enctype="multipart/form-data">
                                     {{ method_field('PUT') }}
                                     @csrf
                                     <div class="form-group row">

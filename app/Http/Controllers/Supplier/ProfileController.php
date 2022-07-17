@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +14,7 @@ class ProfileController extends Controller
     public function index()
     {
         $data['user'] = User::find(Auth::user()->_id);
-        //  $data['state'] = State::get();
-        return view('admin.profile', $data);
+        return view('supplier.profile', $data);
     }
 
     public function update(Request $request, $id)

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProfileController as Profile;
 //for suppler
 use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
 use App\Http\Controllers\Supplier\ProductController as SProduct;
+use App\Http\Controllers\Supplier\ProfileController as sProfile;
 
 
 use App\Http\Controllers\LoginController as Login;
@@ -77,6 +78,7 @@ Route::group(['prefix' => 'supplier', 'middleware' => 'supplier'], function () {
     // Route::get('dashboard', [Dashboard::class, 'index']);
     Route::resource('dashboard', SupplierDashboard::class);
     Route::resource('s-product', SProduct::class);
+    Route::resource('s-profile', SProfile::class);
 });
 
 
