@@ -1,4 +1,4 @@
-@extends('supplier.layouts.layouts')
+@extends('warehouse.layouts.layouts')
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile/'.$user->_id)}}" enctype="multipart/form-data">
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('warehouse/w-profile/'.$user->_id)}}" enctype="multipart/form-data">
                                     {{ method_field('PUT') }}
                                     @csrf
                                     <div class="form-group row">
@@ -139,13 +139,13 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="passwordreset">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile')}}" enctype="multipart/form-data">  
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('warehouse/w-profile')}}" enctype="multipart/form-data">  
                                     @csrf
                                     <div class="form-group row">
                                         <label for="inputPassword1" class="col-sm-2 col-form-label">Old Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="current_password" id="current_password" class="form-control" placeholder="Enter Old Password" value="">
-                                            <span class="c-text-danger" id="current_password_msg"></span>
+                                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Enter Old Password" value="">
+                                            <span class="c-text-danger" id="old_password_msg"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -158,8 +158,8 @@
                                     <div class="form-group row">
                                         <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Enter Confirm Password" value="">
-                                            <span class="c-text-danger" id="password_confirmation_msg"></span>
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter Confirm Password" value="">
+                                            <span class="c-text-danger" id="confirm_password_msg"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

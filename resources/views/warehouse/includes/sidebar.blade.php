@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile border-bottom">
-      <a href="{{'s-profile'}}" class="nav-link flex-column">
+      <a href="{{'w-profile'}}" class="nav-link flex-column">
         <div class="nav-profile-image">
           <img src="{{asset('assets')}}/images/faces/face1.jpg" alt="profile" />
           <!--change to offline or busy as needed-->
@@ -14,7 +14,7 @@
     </li>
  
     <li class="nav-item">
-      <a class="nav-link" href="{{url('supplier/dashboard')}}">
+      <a class="nav-link" href="{{url('warehouse/dashboard')}}">
         <i class="mdi mdi-compass-outline menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
