@@ -2,6 +2,7 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-md-3">
 
@@ -138,28 +139,27 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="passwordreset">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile/changepassword'.$user->_id)}}" enctype="multipart/form-data">
-                                    {{ method_field('PUT') }}
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile')}}" enctype="multipart/form-data">  
                                     @csrf
                                     <div class="form-group row">
                                         <label for="inputPassword1" class="col-sm-2 col-form-label">Old Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Enter Old Password" value="">
-                                            <span class="validation-msg" id="oldpasswordMsg"></span>
+                                            <span class="text-danger" id="oldpass_msg"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword2" class="col-sm-2 col-form-label">New Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="">
-                                            <span class="validation-msg" id="passwordMsg"></span>
+                                            <span class="text-danger" id="password_msg"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter Confirm Password" value="">
-                                            <span class="validation-msg" id="confirmMsg"></span>
+                                            <span class="text-danger" id="confirm_msg"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

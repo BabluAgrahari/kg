@@ -8,7 +8,8 @@ use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Validation\UserValidation;
+use App\Http\Validation\ProfileValidation;
+use App\Http\Validation\ResetValidation;
 
 class ProfileController extends Controller
 {
@@ -19,7 +20,25 @@ class ProfileController extends Controller
         return view('admin.profile', $data);
     }
 
-    public function update(Request $request, $id)
+
+    public function store(ResetValidation $request)
+    {
+      
+        $user = Auth::user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            
+            return response(['status' => 'error', 'msg' => 'Current password does not match!']);
+        }
+
+        $user->password = Hash::make($request->password);
+        if (!$user->save())
+            return response(['status' => 'error', 'msg' => 'Password not changed']);
+
+        return response(['status' => 'success', 'msg' => 'Password successfully changed!']);
+    }
+
+    public function update(ProfileValidation $request, $id)
     {
         $save = User::find($id);
         $save->name            = $request->name;
