@@ -25,6 +25,8 @@ class AdminAuth
                 return redirect('supplier/dashboard');
             } else if (Auth::user()->role == 'admin') {
                 return $next($request);
+            }else if (Auth::user()->role == 'warehouse') {
+                return redirect('warehouse/dashboard');
             } else {
                 return Redirect('/');
             }

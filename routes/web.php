@@ -20,6 +20,9 @@ use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
 use App\Http\Controllers\Supplier\ProductController as SProduct;
 use App\Http\Controllers\Supplier\ProfileController as sProfile;
 
+//for warehouse
+use App\Http\Controllers\Warehouse\DashboardController as WarehouseDashboard;
+use App\Http\Controllers\Warehouse\ProfileController as wProfile;
 
 use App\Http\Controllers\LoginController as Login;
 use Illuminate\Support\Facades\Artisan;
@@ -81,6 +84,11 @@ Route::group(['prefix' => 'supplier', 'middleware' => 'supplier'], function () {
     Route::resource('s-profile', SProfile::class);
 });
 
+Route::group(['prefix' => 'warehouse', 'middleware' => 'warehouse'], function () {
+
+    Route::resource('dashboard', WarehouseDashboard::class);
+    Route::resource('w-profile', WProfile::class);
+});
 
 
 Route::get('/clear-cache', function () {

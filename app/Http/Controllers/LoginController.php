@@ -29,6 +29,8 @@ class LoginController extends Controller
                 return redirect()->intended('supplier/dashboard');
             } else if (Auth::user()->role == 'admin') {
                 return redirect()->intended('admin/dashboard');
+            }else if (Auth::user()->role == 'warehouse') {
+                return redirect()->intended('warehouse/dashboard');
             }
         }
 
