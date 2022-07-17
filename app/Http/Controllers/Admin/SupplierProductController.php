@@ -64,6 +64,17 @@ class SupplierProductController extends Controller
         return !empty($unit->unit) ? $unit->unit : '';
     }
 
+
+    public function getSupplier(Request $request, $warehouse_id = false)
+    {
+        if (!$warehouse_id)
+            return false;
+
+        $records = Supplier::select('_id','store_name')->where('warehouses', 'all', [$warehouse_id])->get();
+
+        return response(['status' => 'success', 'data' => $records]);
+    }
+
     public function getSupplierProduct($id)
     {
         $records = SupplierProduct::with(['Product'])->where('supplier_id', $id)->get();

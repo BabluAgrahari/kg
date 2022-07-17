@@ -18,7 +18,7 @@
         <div class="cover-loader d-none">
             <div class="loader"></div>
         </div>
-        <x-page-head title="Create Purchase Order" url="admin/po" type="create"/>
+        <x-page-head title="Create Purchase Order" url="admin/po" type="create" />
 
         <div class="card-body h-body">
             <div class="row">
@@ -28,35 +28,49 @@
                         @csrf
 
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label>PO No</label>
                                 <input type="text" name="po_no" value="{{time()}}" id="po_no" class="form-control form-control-sm" placeholder="Enter PO No">
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label>Select Supllier</label>
-                                <select class="form-control form-control-sm" name="supplier_id" id="supplier">
+
+                            <div class="form-group col-md-3">
+                                <label>Select Warehouse</label>
+                                <select class="form-control form-control-sm" name="warehouse_id" id="warehouse">
                                     <option value="">Select</option>
-                                    @foreach($suppliers as $list)
+                                    @foreach($warehouse as $list)
                                     <option value="{{$list->_id}}">{{ ucwords($list->store_name) }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Select Supllier</label>
+                                <select class="form-control form-control-sm" name="supplier_id" id="supplier" disabled>
+                                    <option value="">Select</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Estimated Delivery Date</label>
+                                <input type="date" name="estimated_del_date" class="form-control form-control-sm">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-sm">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Sku</th>
-                                            <th>Product</th>
-                                            <th>Remaning Qty</th>
-                                            <th>Pending Qty</th>
-                                            <th>Requested Qty</th>
-                                            <th>Unit</th>
-                                            <th>Action</th>
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Sku</th>
+                                                <th>Product</th>
+                                                <th>Stock</th>
+                                                <th>Pending Qty</th>
+                                                <th>Requested Qty</th>
+                                                <th>Unit</th>
+                                                <th>Action</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="table-body">
                                             <tr>
@@ -83,6 +97,24 @@
 </div>
 @push('script')
 <script>
+    $('#warehouse').change(function() {
+        let id = $(this).val();
+        let url = "{{ url('admin/get-supplier') }}/" + id;
+        axios.get(url).then(function(response) {
+            res = response.data.data;
+            if (res) {
+                var option = '<option value="">Select</option>';
+                res.forEach((e) => {
+                    option += `<option value="${e._id}">${e.store_name}</option>`;
+                })
+                $('#supplier').attr('disabled', false);
+                $('#supplier').html(option);
+            } else {
+                $('#supplier').attr('disabled', true);
+            }
+        })
+    });
+
     $('#supplier').change(function() {
         let id = $(this).val();
         let url = "{{ url('admin/get-supplier-product') }}/" + id;
@@ -96,8 +128,8 @@
                         tr += `<tr>
                     <td>
                       ${i++}
-                    <input type="checkbox" class="checkbox d-none" name="item_details[${i}][ids]" value="${e._id}">
-                  </td>
+                    <input type="checkbox" class="checkbox d-none" name="item_details[${i}][id]" value="${e._id}">
+                   </td>
                     <td>${e.product.sku}</td>
                     <td>${e.product.title}</td>
                     <td>0</td>
@@ -168,7 +200,7 @@
 
                 //for reset all field
                 if (res.status == 'success') {
-                    $('form#product')[0].reset();
+                    $('form#po')[0].reset();
                     setTimeout(() => {
                         // location.reload();
                     }, 1000);

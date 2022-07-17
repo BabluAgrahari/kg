@@ -9,17 +9,6 @@
 
         <div class="card-body p-2">
 
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <select class="form-control form-control-sm" id="selectSupplier">
-                        <option value="">Select Supplier</option>
-                        @foreach($suppliers as $list)
-                        <option value="{{ $list->_id }}" {{ (app('request')->input('supplier_id')==$list->_id)?"selected":"" }}>{{ ucwords($list->store_name)}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-hovered">
                     <!-- <thead> -->
@@ -44,7 +33,7 @@
                             <td>{{ !empty($list->start_date) ? $list->start_date:'' }} To {{ !empty($list->end_date) ? $list->end_date: ''}}</td>
                             <td>{{ $list->dformat($list->created)}}</td>
                             <td>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-info contractProduct" _id="{{$list->_id}}"><span class="mdi mdi-book-plus"></span></a>
+                                <!-- <a href="javascript:void(0);" class="btn btn-sm btn-outline-info contractProduct" _id="{{$list->_id}}"><span class="mdi mdi-book-plus"></span></a> -->
                             </td>
                         </tr>
                         @endforeach

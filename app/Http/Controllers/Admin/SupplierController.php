@@ -52,6 +52,8 @@ class SupplierController extends Controller
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'supplier not Created']);
 
+        self::updateSupplierIds($save->users, $save->_id); // update suppler id in user collection
+
         return response(['status' => 'success', 'msg' => 'supplier Created Successfully!']);
     }
 
@@ -78,6 +80,7 @@ class SupplierController extends Controller
         if (!$save->save())
             return response(['status' => 'error', 'msg' => 'supplier not Created']);
 
+        self::updateSupplierIds($save->users, $save->_id); // update suppler id in user collection
         return response(['status' => 'success', 'msg' => 'supplier Updated Successfully!']);
     }
 
@@ -90,5 +93,25 @@ class SupplierController extends Controller
             return response(['status' => 'error', 'msg' => 'Supplier not Created']);
 
         return response(['status' => 'success', 'msg' => 'Supplier Updated Successfully!']);
+    }
+
+
+    //for update supplier id use collection
+    private function updateSupplierIds($users = array(), $s_id = false)
+    {
+        if (empty($users) || !$s_id)
+            return false;
+
+        foreach ($users as $id) {
+            $suppliers = [];
+
+            $user = user::find($id);
+            if (!empty($user->suppliers))
+                $suppliers = $user->suppliers;
+
+            $suppliers[] = $s_id;
+            $user->suppliers = $suppliers;
+            $user->save();
+        }
     }
 }

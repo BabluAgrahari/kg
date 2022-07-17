@@ -12,8 +12,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        if (!empty($request->supplier_id))
-            $data['lists'] = SupplierProduct::with(['Product', 'Supplier'])->where('supplier_id', $request->supplier_id)->get();
+            $data['lists'] = SupplierProduct::with(['Product', 'Supplier'])->where('supplier_id','all',Auth::user()->suppliers)->get();
 
         $data['suppliers'] = Supplier::where('users','all',[Auth::user()->_id])->get();
 

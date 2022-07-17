@@ -5,18 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Validation\UserValidation;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
 
     public function index()
     {
-        $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
-
-        return view('admin.users.index', $data);
+        try {
+            $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
+            return view('admin.users.index', $data);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     public function create(Request $request)

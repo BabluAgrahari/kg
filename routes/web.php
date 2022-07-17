@@ -38,7 +38,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
 // Auth::routes();
 
 Route::get('/', [Login::class, 'index']);
@@ -48,15 +47,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('logout', [Login::class, 'logout']);
 
-    Route::resource('profile', Profile::class);
-
     Route::get('dashboard', [Dashboard::class, 'index']);
 
+    Route::resource('profile', Profile::class);
+
     Route::resource('user', User::class);
+
     Route::resource('shopkeeper', Shopkeeper::class);
+
     Route::resource('supplier', Supplier::class);
+
     Route::resource('supplier-product', SupplierProduct::class);
-    Route::get('get-supplier-product/{id}', [SupplierProduct::class, 'getSupplierProduct']);
+    Route::controller(SupplierProduct::class)->group(function () {
+        Route::get('get-supplier-product/{id}', 'getSupplierProduct');
+        Route::get('get-supplier/{id}', 'getSupplier');
+    });
+
     Route::resource('warehouse', Warehouse::class);
 
     Route::resource('city', City::class);

@@ -3,7 +3,7 @@
 <div class="content-wrapper pb-0">
     <div class="card shadow mb-4">
 
-    <div class="cover-loader d-none">
+        <div class="cover-loader d-none">
             <div class="loader"></div>
         </div>
 
@@ -15,13 +15,6 @@
                     <form id="warehouse" method="POST" action="{{url('admin/warehouse/'.$res->_id)}}" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
-                        <!-- <input type="hidden" name="userType" value="shopkeeper"> -->
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <h6><span class="mdi mdi-account-check"></span>&nbsp;Persional Details</h6>
-                                <hr>
-                            </div>
-                        </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
@@ -29,6 +22,15 @@
                                 <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="users[]" id="user">
                                     @foreach($users as $list)
                                     <option value="{{ $list->_id }}" {{(!empty($res->users) && in_array($list->_id,$res->users))?"selected":''}}>{{ ucwords($list->name)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Select Supplier</label>
+                                <select class="form-select form-control form-control-sm js-example-basic-multiple" multiple="multiple" name="suppliers[]" id="suppliers">
+                                    @foreach($suppliers as $list)
+                                    <option value="{{ $list->_id }}" {{(!empty($res->suppliers) && in_array($list->_id,$res->suppliers))?"selected":''}}>{{ ucwords($list->store_name)}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -129,13 +131,13 @@
                                 <label>Store Cover Photo</label>
                                 <input type="file" name="store_cover_photo" class="form-control form-control-sm" accept="image/*,.pdf">
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-12 text-center">
-                                    <input type="submit" value="Update" class="btn btn-success">
-                                    <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <input type="submit" value="Update" class="btn btn-success">
+                                <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                             </div>
+                        </div>
 
                     </form>
                 </div>
