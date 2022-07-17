@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $data['lists'] = Product::with(['Category', 'SubCategory', 'Brand', 'Unit'])->get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Product::paginate($perPage);
 
         $data['suppliers'] = Supplier::where('status', 1)->get();
         $data['products'] = Product::where('status', 1)->get();

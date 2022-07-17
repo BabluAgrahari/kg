@@ -1,6 +1,6 @@
 <?php
 return [
-    'perPage' => 10,
+    'perPage' => 20,
 
     'state' => [
         'Arunachal Pradesh',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\UnitValidation;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 
@@ -11,7 +12,10 @@ class UnitController extends Controller
  
     public function index(Request $request)
     {
-        $data['lists'] = Unit::get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Unit::paginate($perPage);
+
         return view('admin.unit.index', $data);
     }
 
@@ -23,7 +27,7 @@ class UnitController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(UnitValidation $request)
     {
         $save            = new Unit;
         $save->unit      = $request->unit;
@@ -35,7 +39,7 @@ class UnitController extends Controller
         return response(['status' => 'success', 'msg' => 'Unit Saved Successfully!']);
     }
 
-    public function update(Request $request, $id)
+    public function update(UnitValidation $request, $id)
     {
         $save            = Unit::find($id);
         $save->unit      = $request->unit;

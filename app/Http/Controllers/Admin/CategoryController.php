@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\CategoryValidation;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -11,7 +12,9 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $data['lists'] = Category::get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Category::paginate($perPage);
         return view('admin.category.index', $data);
     }
 
@@ -23,7 +26,7 @@ class CategoryController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CategoryValidation $request)
     {
         $save            = new Category;
         $save->name      = $request->name;
@@ -37,7 +40,7 @@ class CategoryController extends Controller
         // }
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryValidation $request, $id)
     {
         $save            = Category::find($id);
         $save->name      = $request->name;

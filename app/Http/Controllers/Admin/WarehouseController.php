@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\WarehouseValidation;
 use App\Models\Shopkeeper;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -13,9 +14,11 @@ use Str;
 
 class WarehouseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['lists'] = Warehouse::desc()->paginate(5);
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+        $data['lists'] = Warehouse::paginate($perPage);
+
         return view('admin.warehouse.index', $data);
     }
 
@@ -34,13 +37,12 @@ class WarehouseController extends Controller
         return view('admin.warehouse.edit', $data);
     }
 
-    public function store(Request $request)
+    public function store(WarehouseValidation $request)
     {
         $save = new Warehouse();
         $save->users           = $request->users;
         $save->suppliers       = $request->suppliers;
         $save->store_name      = $request->store_name;
-        $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;
@@ -64,13 +66,12 @@ class WarehouseController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(WarehouseValidation $request, $id)
     {
         $save = Warehouse::find($id);
         $save->users           = $request->users;
         $save->suppliers       = $request->suppliers;
         $save->store_name      = $request->store_name;
-        $save->store_mobile    = $request->store_mobile;
         $save->store_email     = $request->store_email;
         $save->gst_no          = $request->gst_no;
         $save->store_mobile    = $request->store_mobile;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\validation;
+namespace App\Http\Validation;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplierValidation extends FormRequest
+class WarehouseValidation extends FormRequest
 {
 
     public function authorize()
@@ -22,7 +22,7 @@ class SupplierValidation extends FormRequest
             'store_email'            => 'required|email|max:100',
             'gst_no'                 => 'nullable|max:50',
             'store_mobile'           => 'required|numeric|not_in:0|digits:10',
-            'country'                => 'nullable|max:16|min:1',
+            'country'                => 'nullable|max:16|min:6',
             'state'                  => 'required',
             'city'                   => 'required',
             'pincode'                => 'required|digits:6',

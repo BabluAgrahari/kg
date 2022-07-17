@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
+            $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+            $data['lists'] = User::where('parent_id', Auth::user()->id)->paginate($perPage);
             return view('admin.users.index', $data);
         } catch (Exception $e) {
             Log::error($e->getMessage());
