@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index( Request $request)
     {
-        $data['lists'] = User::where('parent_id', Auth::user()->id)->get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+        $data['lists'] = User::where('parent_id', Auth::user()->id)->paginate($perPage);
 
         return view('admin.users.index', $data);
     }

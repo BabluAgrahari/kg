@@ -46,6 +46,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $lists->appends($_GET)->links()}}
             </div>
         </div>
     </div>
@@ -79,16 +80,18 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select class="form-control form-control-sm" id="category" name="category">
-                            <option>Select</option>
+                            <option value="">Select</option>
                             @foreach($categories as $list)
                             <option value="{{ $list->_id }}">{{ ucwords($list->name)}}</option>
                             @endforeach
                         </select>
+                        <span id="category_msg" class="c-text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label>Sub Category Name</label>
                         <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Enter Sub Category Name">
+                        <span id="name_msg" class="c-text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Status</label>

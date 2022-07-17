@@ -34,6 +34,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $lists->appends($_GET)->links()}}
             </div>
         </div>
     </div>
@@ -67,6 +68,7 @@
                     <div class="form-group">
                         <label>City Name</label>
                         <input type="text" name="city" id="city_name" class="form-control form-control-sm" placeholder="Enter City Name">
+                        <span id="city_msg" class="c-text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Status</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\CityValidation;
 use Illuminate\Http\Request;
 use App\Models\City;
 
@@ -11,7 +12,9 @@ class CityController extends Controller
 
     public function index(Request $request)
     {
-        $data['lists'] = City::get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = City::paginate($perPage);
         return view('admin.city.index', $data);
     } 
 
@@ -23,7 +26,7 @@ class CityController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CityValidation $request)
     {
         $save            = new city;
         $save->city      = $request->city;
@@ -35,7 +38,7 @@ class CityController extends Controller
         return response(['status' => 'success', 'msg' => 'City Saved Successfully!']);
     }
 
-    public function update(Request $request, $id)
+    public function update(CityValidation $request, $id)
     {
         $save            = City::find($id);
         $save->city      = $request->city;

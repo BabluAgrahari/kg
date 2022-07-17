@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\Sub_CategoryValidation;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\Category;
@@ -12,9 +13,13 @@ class SubCategoryController extends Controller
 
     public function index(Request $request)
     {
-        $data['lists'] = SubCategory::with('Category')->get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = SubCategory::paginate($perPage);
         $data['categories'] = Category::get();
         return view('admin.sub_category.index', $data);
+       
+        
     }
 
 
@@ -25,7 +30,7 @@ class SubCategoryController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Sub_CategoryValidation $request)
     {
 
         $save            = new SubCategory;
@@ -39,11 +44,11 @@ class SubCategoryController extends Controller
         return response(['status' => 'success', 'msg' => 'SubCategory Saved Successfully!']);
     }
 
-    public function update(Request $request, $id)
+    public function update(Sub_CategoryValidation $request, $id)
     {
         $save            = SubCategory::find($id);
-        $save->name      = $request->name;
         $save->category_id = $request->category;
+        $save->name      = $request->name;
         $save->status    = (int)$request->status;
 
         if (!$save->save())

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validation\BrandValidation;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 
@@ -11,7 +12,9 @@ class BrandController extends Controller
 
     public function index(Request $request)
     {
-        $data['lists'] = Brand::get();
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Brand::paginate($perPage);
         return view('admin.brand.index', $data);
     }
 
@@ -21,7 +24,7 @@ class BrandController extends Controller
         $record = Brand::where('_id', $id)->first();
         return response(['status' => 'success', 'data' => $record]);
     }
-    public function store(Request $request)
+    public function store(BrandValidation $request)
     {
 
         $save            = new Brand;
@@ -34,7 +37,7 @@ class BrandController extends Controller
         return response(['status' => 'success', 'msg' => 'Brand Saved Successfully!']);
     }
 
-    public function update(Request $request, $id)
+    public function update(BrandValidation $request, $id)
     {
         $save            = Brand::find($id);
         $save->brand      = $request->brand;

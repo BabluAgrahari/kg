@@ -29,6 +29,7 @@
 
                                     @endforeach
                                 </select>
+                                <span id="users_msg" class="c-text-danger"></span>
 
                             </div>
                         </div>
@@ -45,21 +46,25 @@
                             <div class="form-group col-md-3">
                                 <label for="">Store Name</label>
                                 <input type="text" class="form-control form-control-sm" name="store_name" placeholder="Store name">
+                                <span id="store_name_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Store Email</label>
                                 <input type="email" class="form-control form-control-sm" name="store_email" placeholder="Store email">
+                                <span id="store_email_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">GST No</label>
                                 <input type="text" class="form-control form-control-sm" name="gst_no" placeholder="GST no.">
+                                <span id="gst_no_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Mobile</label>
                                 <input type="text" class="form-control form-control-sm" name="store_mobile" placeholder="Mobile">
+                                <span id="store_mobile_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -69,36 +74,37 @@
                                     <option value="India">India</option>
                                     <option value="USA">USA</option>
                                 </select>
+                                <span id="country_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">State</label>
                                 <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="UP">UP</option>
+                                    @foreach(config('global.state') as $state)
+                                    <option value="{{$state}}">{{$state}}</option>
+                                    @endforeach
                                 </select>
+                                <span id="state_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">City</label>
-                                <select class="form-select form-control form-control-sm" name="city">
-                                    <option value="">-Select Here-</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Noida">Noida</option>
-                                    <option value="Agra">Agra</option>
-                                </select>
+                                <input type="text" class="form-select form-control form-control-sm" name="city">
+                                <span id="city_msg" class="c-text-danger"></span>
+
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="">Pincode</label>
                                 <input type="text" class="form-control form-control-sm" name="pincode" placeholder="pincode">
+                                <span id="pincode_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="">Store Address</label>
                                 <textarea class="form-control form-control-sm" name="store_address" rows="4" cols="50" placeholder="Store Address"></textarea>
+                                <span id="store_address_msg" class="c-text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-3">

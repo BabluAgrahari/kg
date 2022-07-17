@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function index()
+    public function index(request $request)
     {
-        $data['lists'] = Supplier::desc()->paginate(5);
+        $perPage = (!empty($request->perPage)) ? $request->perPage : config('global.perPage');
+
+        $data['lists'] = Supplier::paginate($perPage);
+
         return view('admin.supplier.index', $data);
     }
 

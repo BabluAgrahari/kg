@@ -34,6 +34,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $lists->appends($_GET)->links()}}
             </div>
         </div>
     </div>
@@ -67,6 +68,7 @@
                     <div class="form-group">
                         <label>Brand Name</label>
                         <input type="text" name="brand" id="brand_name" class="form-control form-control-sm" placeholder="Enter Brand Name">
+                        <span id="brand_msg" class="c-text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Status</label>
