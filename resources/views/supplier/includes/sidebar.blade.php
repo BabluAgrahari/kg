@@ -1,9 +1,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile border-bottom">
-      <a href="#" class="nav-link flex-column">
+      <a href="{{'s-profile'}}" class="nav-link flex-column">
         <div class="nav-profile-image">
-          <img src="../assets/images/faces/face1.jpg" alt="profile" />
+          <img src="{{asset('assets')}}/images/faces/face1.jpg" alt="profile" />
           <!--change to offline or busy as needed-->
         </div>
         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">

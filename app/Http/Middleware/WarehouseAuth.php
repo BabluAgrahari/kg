@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class SupplierAuth
+class WarehouseAuth
 {
     /**
      * Handle an incoming request.
@@ -20,12 +20,12 @@ class SupplierAuth
     {
         if (Auth::check()) {
 
-            if (Auth::user()->role == 'supplier') {
+            if (Auth::user()->role == 'warehouse') {
                 return $next($request);
             } else if (Auth::user()->role == 'admin') {
                 return redirect('admin/dashboard');
-            } else if (Auth::user()->role == 'warehouse') {
-                return redirect('warehouse/dashboard');
+            } else if (Auth::user()->role == 'supplier') {
+                return redirect('supplier/dashboard');
             }else {
                 return Redirect('/');
             }
