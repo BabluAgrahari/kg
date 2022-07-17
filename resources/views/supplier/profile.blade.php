@@ -1,8 +1,9 @@
+
 @extends('supplier.layouts.layouts')
 @section('content')
 <section class="content">
     <div class="container-fluid">
-
+        
         <div class="row">
             <div class="col-md-3">
 
@@ -15,8 +16,8 @@
                             <img class="profile-user-img img-fluid img-circle" src="{{asset('assets')}}/images/faces/face1.jpg" alt="User profile picture">
                             @endif
                         </div>
-                        <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-                        <p class="text-muted text-center">{{ Auth::user()->role }}</p>
+                        <h3 class="profile-username text-center">{{ucwords(Auth::user()->name)}}</h3>
+                        <p class="text-muted text-center">{{ucwords(Auth::user()->role)}}</p>
                         <!-- <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>Followers</b> <a class="float-right">1,322</a>
@@ -55,7 +56,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header p-2">
+                    <div class="card-header p-1">
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Settings</a></li>
                             <li class="nav-item"><a class="nav-link" href="#passwordreset" data-toggle="tab">Password Reset</a></li>
@@ -67,102 +68,94 @@
                                 <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile/'.$user->_id)}}" enctype="multipart/form-data">
                                     {{ method_field('PUT') }}
                                     @csrf
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control form-control-sm" name="name" value="{{$user->name}}" placeholder="Enter Name">
                                             <span id="name_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
                                             <input type="email" class="form-control form-control-sm" name="email" value="{{$user->email}}" placeholder="Enter Email">
                                             <span id="email_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputName2" class="col-sm-2 col-form-label">Mobile No</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control form-control-sm" name="mobile" value="{{$user->mobile}}" placeholder="Enter Mobile No">
                                             <span id="mobile_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control form-control-sm" name="address" rows="2" placeholder="Address"><?= $user->address ?></textarea>
-                                            <span id="address_msg" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">State</label>
                                         <div class="col-sm-10">
                                             <select class="form-select form-control form-control-sm" name="state">
                                                 <option value="">-Select Here-</option>
-                                                <option value="Delhi" {{ ($user->state =="Delhi")?'selected':''}}>Delhi</option>
-                                                <option value="Goa" {{ ($user->state =="Goa")?'selected':''}}>Goa</option>
-                                                <option value="UP" {{ ($user->state =="UP")?'selected':''}}>UP</option>
+                                                @foreach(config('global.state') as $state)
+                                                <option value="{{$state}}">{{$state}}</option>
+                                                @endforeach
                                             </select>
                                             <span id="state_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputExperience" class="col-sm-2 col-form-label">City</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="city" value="{{$user->city}}" class="form-control form-control-sm" placeholder="Enter City">
                                             <span id="city_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputExperience" class="col-sm-2 col-form-label">Pincode</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control form-control-sm" name="pincode" value="{{$user->pincode}}" placeholder="Enter Pincode">
                                             <span id="pincode_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                                </label>
-                                            </div>
+                                    <div class="mb-1 row">
+                                        <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control form-control-sm" name="address" rows="2" placeholder="Address"><?= $user->address ?></textarea>
+                                            <span id="address_msg" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                   
+                                    <div class="mb-1 row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">Submit</button>
+                                            <button type="submit" class="btn btn-success">Update</button>
                                             <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-pane" id="passwordreset">
-                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile')}}" enctype="multipart/form-data">  
+                                <form class="form-horizontal" id="user" method="POST" action="{{url('supplier/s-profile')}}" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputPassword1" class="col-sm-2 col-form-label">Old Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Enter Old Password" value="">
-                                            <span class="text-danger" id="oldpass_msg"></span>
+                                            <span class="text-danger" id="oldpassword_msg"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputPassword2" class="col-sm-2 col-form-label">New Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="">
                                             <span class="text-danger" id="password_msg"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Enter Confirm Password" value="">
                                             <span class="text-danger" id="confirm_msg"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="mb-1 row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <button type="submit" class="btn btn-success">Submit</button>
                                             <button type="reset" class="btn btn-warning"><span class="mdi mdi-rotate-left"></span>&nbsp;Reset</button>
