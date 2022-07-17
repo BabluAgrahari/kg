@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\State;
 
-class StateController extends Controller
+class ProfileController extends Controller
 {
     public function index(Request $request)
     {

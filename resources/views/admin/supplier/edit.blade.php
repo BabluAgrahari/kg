@@ -74,9 +74,9 @@
                                 <label>State</label>
                                 <select class="form-select form-control form-control-sm" name="state">
                                     <option value="">-Select Here-</option>
-                                    <option value="Delhi" {{ ($res->verified =="Delhi")?'selected':''}}>Delhi</option>
-                                    <option value="Goa" {{ ($res->verified =="Goa")?'selected':''}}>Goa</option>
-                                    <option value="UP" {{ ($res->verified =="UP")?'selected':''}}>UP</option>
+                                    @foreach(config('global.state') as $state)
+                                    <option value="{{$state}}" {{ ($res->state ==$state)?'selected':''}}>{{$state}}</option>
+                                    @endforeach
                                 </select>
                                 <span id="state_msg" class="text-danger"></span>
                             </div>

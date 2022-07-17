@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use App\Models\User;
-use App\http\validation\SupplierValidation;
+use App\Http\Validation\SupplierValidation;
 use Illuminate\Http\Request;
 
-use App\Models\UserDetails;
-use Str;
 
 class SupplierController extends Controller
 {

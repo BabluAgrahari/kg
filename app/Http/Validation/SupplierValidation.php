@@ -19,7 +19,7 @@ class SupplierValidation extends FormRequest
         return [
             'store_name'             => 'required|string|max:100',
             'store_email'            => 'required|email|max:100',
-            'gst_no'                 => 'nullable',
+            'gst_no'                 => 'nullable|max:50',
             'store_mobile'           => 'required|numeric|not_in:0|digits:10',
             'country'                => 'nullable|max:16|min:6',
             'state'                  => 'required',

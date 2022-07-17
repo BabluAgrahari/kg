@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PoController as Po;
 use App\Http\Controllers\Admin\SubCategoryController as SubCategory;
 use App\Http\Controllers\Admin\ProductController as Product;
 use App\Http\Controllers\Admin\SupplierProductController as SupplierProduct;
+use App\Http\Controllers\Admin\ProfileController as Profile;
 
 //for suppler
 use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
@@ -46,6 +47,8 @@ Route::post('login', [Login::class, 'login']);
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('logout', [Login::class, 'logout']);
+
+    Route::resource('profile', Profile::class);
 
     Route::get('dashboard', [Dashboard::class, 'index']);
 
